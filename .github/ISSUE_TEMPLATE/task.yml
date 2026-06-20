@@ -1,0 +1,27 @@
+name: Engineering task
+description: A bounded implementation, documentation, QA or setup task
+title: "[TASK] "
+labels: ["task"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required evidence
