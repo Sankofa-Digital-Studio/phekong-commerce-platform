@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -22,3 +25,18 @@ jobs:
       - run: npm run typecheck
       - run: npm run test:run
       - run: npm run build
+
+  supabase-baseline:
+    name: Supabase baseline
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: supabase/setup-cli@v2
+        with:
+          version: 2.84.2
+      - name: Validate migrations, profile provisioning and access boundaries
+        run: bash scripts/validate-supabase-m0.sh
