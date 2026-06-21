@@ -27,18 +27,16 @@ jobs:
       - run: npm run build
 
   supabase-baseline:
-    name: Supabase migration reset
+    name: Supabase baseline
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - uses: supabase/setup-cli@v2
         with:
           version: 2.84.2
-      - name: Start database and apply migrations
-        run: supabase db start
-      - name: Prove clean migration reset
-        run: supabase db reset
-      - name: Stop local database
-        if: always()
-        run: supabase stop --no-backup
+      - name: Validate migrations, profile provisioning and access boundaries
+        run: bash scripts/validate-supabase-m0.sh
