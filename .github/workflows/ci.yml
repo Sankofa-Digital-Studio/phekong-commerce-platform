@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -22,3 +25,20 @@ jobs:
       - run: npm run typecheck
       - run: npm run test:run
       - run: npm run build
+
+  supabase-baseline:
+    name: Supabase migration reset
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v2
+        with:
+          version: 2.84.2
+      - name: Start database and apply migrations
+        run: supabase db start
+      - name: Prove clean migration reset
+        run: supabase db reset
+      - name: Stop local database
+        if: always()
+        run: supabase stop --no-backup
