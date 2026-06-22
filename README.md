@@ -13,10 +13,10 @@ Custom commerce, booking, inventory, seller-tracking and business intelligence M
 
 ## Local setup
 
-1. Install Node.js LTS, Git, GitHub CLI, Docker Desktop and Supabase CLI.
+1. Install Node.js LTS, Git, GitHub CLI and Docker Desktop. The Supabase CLI is installed from the repository lockfile.
 2. Copy `.env.example` to `.env.local`.
-3. Run `npm install`.
-4. Run `supabase start`.
+3. Run `npm ci`.
+4. Run `npm run supabase:m0:windows` on Windows or `npm run supabase:m0:unix` on macOS/Linux to validate the local Supabase baseline.
 5. Run `npm run dev`.
 
 ## Working rule

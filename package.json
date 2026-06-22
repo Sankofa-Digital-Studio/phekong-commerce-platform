@@ -9,7 +9,12 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "supabase:version": "supabase --version",
+    "supabase:m0:check": "node scripts/validate-supabase-m0.mjs",
+    "supabase:m0:windows": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/validate-supabase-m0.ps1",
+    "supabase:m0:unix": "bash ./scripts/validate-supabase-m0.sh",
+    "supabase:m0:ci": "bash ./scripts/validate-supabase-m0.sh"
   },
   "dependencies": {
     "@supabase/ssr": "^0.6.1",
@@ -28,6 +33,7 @@
     "eslint": "^9.22.0",
     "eslint-config-next": "^16.2.1",
     "jsdom": "^26.0.0",
+    "supabase": "2.107.0",
     "typescript": "^5.8.2",
     "vitest": "^3.0.8"
   },

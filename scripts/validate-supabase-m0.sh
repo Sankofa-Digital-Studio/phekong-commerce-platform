@@ -12,6 +12,7 @@ trap cleanup EXIT
 
 supabase start
 supabase db reset
+supabase db lint --local --level warning --fail-on error
 
 supabase status -o env \
   --override-name api.url=SUPABASE_URL \

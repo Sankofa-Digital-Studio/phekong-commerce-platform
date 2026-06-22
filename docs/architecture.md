@@ -64,6 +64,17 @@ Next.js with TypeScript is selected because the MVP needs public SEO-focused pag
 - Client-submitted totals and roles are revalidated.
 - Production data is not used for intern development.
 
+## Booking concurrency invariant
+
+Booking-conflict protection is enforced by PostgreSQL, not only by application checks. Every non-cancelled booking reserves the half-open interval `[starts_at, ends_at)` for both its assigned staff member, when present, and its normalized service slot. Therefore:
+
+- time ranges for the same staff member cannot overlap, even across different services;
+- time ranges for the same service slot cannot overlap, even when no staff member is assigned;
+- adjacent bookings are allowed when one booking ends exactly when the next begins; and
+- changing a cancelled booking back to another status rechecks both constraints.
+
+M0 uses the trimmed, case-insensitive `service_name` as a single-capacity service-slot key because no stable service/resource table exists yet. A future multi-capacity model must introduce an explicit service or resource identifier and migrate the exclusion constraint to that identifier before allowing concurrent capacity.
+
 ## Runtime and package management
 - Node.js: active LTS supported by the selected Next.js release
 - Package manager: npm
