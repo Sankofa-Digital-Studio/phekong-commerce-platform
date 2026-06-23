@@ -1,41 +1,55 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 
-// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
+const dirname =
+  typeof __dirname !== "undefined"
+    ? __dirname
+    : path.dirname(fileURLToPath(import.meta.url));
+
 export default defineConfig({
   test: {
     coverage: {
-      reporter: ["text", "json", "html"]
+      reporter: ["text", "json", "html"],
     },
-    workspace: [{
-      extends: true,
-      test: {
-        environment: "jsdom",
-        globals: true,
-        setupFiles: ["./vitest.setup.ts"]
-      }
-    }, {
-      extends: true,
-      plugins: [
-      // The plugin will run tests for the stories defined in your Storybook config
-      // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
-      storybookTest({
-        configDir: path.join(dirname, '.storybook')
-      })],
-      test: {
-        name: 'storybook',
-        browser: {
-          enabled: true,
-          headless: true,
-          provider: 'playwright',
-          instances: [{
-            browser: 'chromium'
-          }]
-        }
-      }
-    }]
-  }
+
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: "unit",
+          environment: "jsdom",
+          globals: true,
+          setupFiles: ["./vitest.setup.ts"],
+        },
+      },
+
+      {
+        extends: true,
+
+        plugins: [
+          storybookTest({
+            configDir: path.join(dirname, ".storybook"),
+          }),
+        ],
+
+        test: {
+          name: "storybook",
+
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: "playwright",
+
+            instances: [
+              {
+                browser: "chromium",
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
 });

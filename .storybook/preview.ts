@@ -2,42 +2,42 @@ import type { Preview } from "@storybook/nextjs-vite";
 import "../src/app/globals.css";
 import "../src/styles/phekong-tokens.css";
 
-
 const preview: Preview = {
- 
   parameters: {
     layout: "fullscreen",
     nextjs: {
-    appDirectory: true
-  },
+      appDirectory: true,
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i
-      }
+        date: /Date$/i,
+      },
     },
     viewport: {
       options: {
         mobile390: {
           name: "Mobile 390",
-          styles: { width: "390px", height: "844px" }
+          styles: { width: "390px", height: "844px" },
         },
         desktop1440: {
           name: "Desktop 1440",
-          styles: { width: "1440px", height: "900px" }
-        }
-      }
+          styles: { width: "1440px", height: "900px" },
+        },
+      },
     },
+    // Temporary during M1 setup.
+    // Change to "error" only after current accessibility findings are reviewed.
     a11y: {
-      test: "todo"
+      test: "todo",
     },
     backgrounds: {
       default: "Phekong surface",
       values: [
         { name: "Phekong surface", value: "#fffdf8" },
-        { name: "Dark surface", value: "#111416" }
-      ]
-    }
+        { name: "Dark surface", value: "#111416" },
+      ],
+    },
   },
   globalTypes: {
     palette: {
@@ -48,9 +48,9 @@ const preview: Preview = {
         items: [
           { value: "earth", title: "Earth & Gold" },
           { value: "ocean", title: "Ocean & Amber" },
-          { value: "botanical", title: "Botanical & Bronze" }
-        ]
-      }
+          { value: "botanical", title: "Botanical & Bronze" },
+        ],
+      },
     },
     mode: {
       description: "Light or dark mode",
@@ -59,9 +59,9 @@ const preview: Preview = {
         icon: "mirror",
         items: [
           { value: "light", title: "Light" },
-          { value: "dark", title: "Dark" }
-        ]
-      }
+          { value: "dark", title: "Dark" },
+        ],
+      },
     },
     locale: {
       description: "Interface language",
@@ -70,10 +70,10 @@ const preview: Preview = {
         icon: "globe",
         items: [
           { value: "en", title: "English" },
-          { value: "zh", title: "中文" }
-        ]
-      }
-    }
+          { value: "zh", title: "中文" },
+        ],
+      },
+    },
   },
   decorators: [
     (Story, context) => {
@@ -82,8 +82,8 @@ const preview: Preview = {
       document.documentElement.dataset.mode = mode;
       document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
       return Story();
-    }
-  ]
+    },
+  ],
 };
 
 export default preview;

@@ -85,7 +85,7 @@ function assertBookingConflict(result, scenario) {
 try {
   const created = await request("/auth/v1/admin/users", {
     method: "POST",
-    headers: serviceHeaders(),
+    headers: jsonHeaders(serviceRoleKey),
     body: JSON.stringify({
       email,
       password,
@@ -262,7 +262,7 @@ try {
   if (userId) {
     await request(`/auth/v1/admin/users/${encodeURIComponent(userId)}`, {
       method: "DELETE",
-      headers: serviceHeaders(),
+      headers: jsonHeaders(serviceRoleKey),
     }).catch(() => undefined);
   }
 }

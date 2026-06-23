@@ -1,4 +1,5 @@
 $ErrorActionPreference = "Stop"
+$Supabase = (Resolve-Path (Join-Path $PSScriptRoot "..\node_modules\.bin\supabase.cmd")).Path
 
 function Invoke-CheckedCommand {
     param(
@@ -16,11 +17,11 @@ function Invoke-CheckedCommand {
 }
 
 try {
-    Invoke-CheckedCommand supabase start
-    Invoke-CheckedCommand supabase db reset
-    Invoke-CheckedCommand supabase db lint --local --level warning --fail-on error
+    Invoke-CheckedCommand $Supabase start --exclude "edge-runtime,imgproxy,logflare,mailpit,postgres-meta,realtime,storage-api,studio,supavisor,vector"
+    Invoke-CheckedCommand $Supabase db reset
+    Invoke-CheckedCommand $Supabase db lint --local --level warning --fail-on error
 
-    $statusLines = & supabase status -o env `
+    $statusLines = & $Supabase status -o env `
         --override-name api.url=SUPABASE_URL `
         --override-name auth.anon_key=SUPABASE_ANON_KEY `
         --override-name auth.service_role_key=SUPABASE_SERVICE_ROLE_KEY
@@ -40,5 +41,5 @@ try {
     Invoke-CheckedCommand node scripts/validate-supabase-m0.mjs
 }
 finally {
-    & supabase stop --no-backup | Out-Null
+    & $Supabase stop --no-backup | Out-Null
 }

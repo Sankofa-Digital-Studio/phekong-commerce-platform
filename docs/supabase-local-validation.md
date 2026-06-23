@@ -22,7 +22,7 @@ npm run supabase:version
 
 ## Run the complete gate
 
-The OS-specific wrappers start the local stack, rebuild the database from migrations, create a temporary local authentication user, exercise the access boundaries, remove the user, and stop the stack.
+The OS-specific wrappers start only the local Database, Auth, PostgREST, and API gateway services required by M0, rebuild the database from migrations, create a temporary local authentication user, exercise the access boundaries, remove the user, and stop the stack. Unrelated services such as Storage, Realtime, Studio, and Analytics are excluded so their health cannot mask a database-contract failure.
 
 ### Windows PowerShell
 
