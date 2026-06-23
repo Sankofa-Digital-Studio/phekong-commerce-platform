@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/nextjs-vite";
-import  "../src/app/global.css";
+import "../src/app/globals.css";
 import "../src/styles/phekong-tokens.css";
 
 
