@@ -10,7 +10,23 @@ max_rows = 1000
 [db]
 port = 54322
 shadow_port = 54320
-major_version = 15
+health_timeout = "2m"
+# No hosted project is linked yet. Version 17 matches the CLI 2.107.0 default;
+# set this to the hosted project's major version before the first db pull/push.
+major_version = 17
+
+[db.migrations]
+enabled = true
+schema_paths = []
+
+[db.seed]
+# M0 has no approved seed data. Keep resets deterministic instead of relying on
+# an absent default supabase/seed.sql file.
+enabled = false
+sql_paths = []
+
+[realtime]
+enabled = true
 
 [studio]
 enabled = true
@@ -20,9 +36,18 @@ port = 54323
 enabled = true
 port = 54324
 
+[storage]
+enabled = true
+file_size_limit = "50MiB"
+
 [auth]
 enabled = true
 site_url = "http://localhost:3000"
 additional_redirect_urls = ["http://127.0.0.1:3000"]
 jwt_expiry = 3600
+enable_refresh_token_rotation = true
+refresh_token_reuse_interval = 10
 enable_signup = true
+enable_anonymous_sign_ins = false
+minimum_password_length = 8
+password_requirements = "lower_upper_letters_digits_symbols"

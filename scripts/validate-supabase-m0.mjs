@@ -19,6 +19,7 @@ const email = `m0-ci-${runId}-${runAttempt}@example.invalid`;
 const password = `M0-ci-${runId}-Aa9!`;
 
 let userId = "";
+const bookingIds = [];
 
 async function request(path, options = {}) {
   const response = await fetch(`${baseUrl}${path}`, options);
@@ -42,6 +43,36 @@ function jsonHeaders(apiKey, token = apiKey) {
     Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   };
+}
+
+async function createBooking(payload) {
+  return request("/rest/v1/bookings", {
+    method: "POST",
+    headers: {
+      ...jsonHeaders(serviceRoleKey),
+      Prefer: "return=representation",
+    },
+    body: JSON.stringify(payload),
+  });
+}
+
+function rememberBooking(result) {
+  const id = result.body?.[0]?.id ?? "";
+  assert.ok(id, "Successful booking insert did not return an ID");
+  bookingIds.push(id);
+}
+
+function assertBookingConflict(result, scenario) {
+  assert.equal(
+    result.response.status,
+    409,
+    `${scenario} should fail with HTTP 409`,
+  );
+  assert.equal(
+    result.body?.code,
+    "23P01",
+    `${scenario} should fail with a PostgreSQL exclusion violation`,
+  );
 }
 
 try {
@@ -158,10 +189,69 @@ try {
     );
   }
 
+  const serviceSlot = `M0 Service ${runId}-${runAttempt}`;
+  const otherServiceSlot = `M0 Other Service ${runId}-${runAttempt}`;
+  const baseBooking = {
+    user_id: userId,
+    service_name: serviceSlot,
+    assigned_staff_id: userId,
+    starts_at: "2035-01-15T10:00:00.000Z",
+    ends_at: "2035-01-15T11:00:00.000Z",
+  };
+
+  const firstBooking = await createBooking(baseBooking);
+  assert.equal(firstBooking.response.status, 201, "Base booking insert failed");
+  rememberBooking(firstBooking);
+
+  const sameStaffOverlap = await createBooking({
+    ...baseBooking,
+    service_name: otherServiceSlot,
+    starts_at: "2035-01-15T10:30:00.000Z",
+    ends_at: "2035-01-15T11:30:00.000Z",
+  });
+  assertBookingConflict(sameStaffOverlap, "Overlapping booking for the same staff member");
+
+  const sameServiceOverlap = await createBooking({
+    ...baseBooking,
+    service_name: `  ${serviceSlot.toUpperCase()}  `,
+    assigned_staff_id: null,
+    starts_at: "2035-01-15T10:15:00.000Z",
+    ends_at: "2035-01-15T10:45:00.000Z",
+  });
+  assertBookingConflict(sameServiceOverlap, "Overlapping booking for the same service slot");
+
+  const adjacentBooking = await createBooking({
+    ...baseBooking,
+    starts_at: "2035-01-15T11:00:00.000Z",
+    ends_at: "2035-01-15T12:00:00.000Z",
+  });
+  assert.equal(adjacentBooking.response.status, 201, "Adjacent booking should be allowed");
+  rememberBooking(adjacentBooking);
+
+  const cancelledOverlap = await createBooking({
+    ...baseBooking,
+    status: "cancelled",
+    starts_at: "2035-01-15T10:15:00.000Z",
+    ends_at: "2035-01-15T10:45:00.000Z",
+  });
+  assert.equal(
+    cancelledOverlap.response.status,
+    201,
+    "Cancelled booking should not consume staff or service capacity",
+  );
+  rememberBooking(cancelledOverlap);
+
   console.log(
-    "Supabase M0 authentication, profile and closed-table checks passed.",
+    "Supabase M0 authentication, access-boundary and booking-conflict checks passed.",
   );
 } finally {
+  for (const bookingId of bookingIds) {
+    await request(`/rest/v1/bookings?id=eq.${encodeURIComponent(bookingId)}`, {
+      method: "DELETE",
+      headers: jsonHeaders(serviceRoleKey),
+    }).catch(() => undefined);
+  }
+
   if (userId) {
     await request(`/auth/v1/admin/users/${encodeURIComponent(userId)}`, {
       method: "DELETE",

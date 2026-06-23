@@ -1,5 +1,8 @@
 create extension if not exists pgcrypto;
 
+create schema if not exists private;
+revoke all on schema private from public, anon, authenticated;
+
 create type public.app_role as enum ('admin', 'staff', 'seller', 'customer');
 create type public.order_status as enum ('pending', 'paid', 'failed', 'cancelled', 'fulfilled', 'refunded', 'partially_refunded');
 create type public.booking_status as enum ('requested', 'confirmed', 'cancelled', 'completed', 'no_show');
@@ -118,7 +121,7 @@ create trigger orders_set_updated_at
 before update on public.orders
 for each row execute function public.set_updated_at();
 
-create function public.handle_new_user()
+create function private.handle_new_user()
 returns trigger
 language plpgsql
 security definer
@@ -133,7 +136,7 @@ $$;
 
 create trigger on_auth_user_created
 after insert on auth.users
-for each row execute function public.handle_new_user();
+for each row execute function private.handle_new_user();
 
 alter table public.profiles enable row level security;
 alter table public.products enable row level security;
@@ -172,7 +175,7 @@ grant update (full_name, phone) on table public.profiles to authenticated;
 grant select on table public.products to anon, authenticated;
 
 revoke execute on function public.set_updated_at() from public, anon, authenticated;
-revoke execute on function public.handle_new_user() from public, anon, authenticated;
+revoke execute on function private.handle_new_user() from public, anon, authenticated;
 
 comment on table public.audit_logs is 'Sensitive administrative actions recorded for accountability.';
 comment on column public.profiles.role is 'Server-controlled application role. Never writable by a signed-in customer.';

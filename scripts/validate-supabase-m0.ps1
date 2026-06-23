@@ -18,6 +18,7 @@ function Invoke-CheckedCommand {
 try {
     Invoke-CheckedCommand supabase start
     Invoke-CheckedCommand supabase db reset
+    Invoke-CheckedCommand supabase db lint --local --level warning --fail-on error
 
     $statusLines = & supabase status -o env `
         --override-name api.url=SUPABASE_URL `

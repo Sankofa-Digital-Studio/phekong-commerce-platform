@@ -27,7 +27,7 @@ jobs:
       - run: npm run build
 
   supabase-baseline:
-    name: Supabase baseline
+    name: Supabase M0 validation
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -35,8 +35,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - uses: supabase/setup-cli@v2
-        with:
-          version: 2.84.2
-      - name: Validate migrations, profile provisioning and access boundaries
-        run: bash scripts/validate-supabase-m0.sh
+          cache: npm
+      - run: npm ci
+      - name: Confirm repository-pinned Supabase CLI
+        run: npm run supabase:version
+      - name: Validate migrations, access boundaries and booking conflicts
+        run: npm run supabase:m0:ci

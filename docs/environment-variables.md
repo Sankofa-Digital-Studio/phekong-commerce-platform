@@ -26,9 +26,9 @@ The service-role key must only be used in trusted server code. It must not be pl
 ## Local setup
 
 1. Copy `.env.example` to `.env.local`.
-2. Run `supabase start`.
+2. Run `npm ci` and then `npm exec -- supabase start`.
 3. Copy the local API URL and keys printed by the Supabase CLI into `.env.local`.
-4. Run `supabase db reset` before reviewing or merging migration changes.
+4. Run the complete M0 gate (`npm run supabase:m0:windows` on Windows or `npm run supabase:m0:unix` on macOS/Linux) before reviewing or merging migration changes.
 
 `.env.local` is ignored by Git. Only `.env.example`, containing placeholders, is committed.
 
