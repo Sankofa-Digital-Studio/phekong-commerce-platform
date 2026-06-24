@@ -10,7 +10,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-supabase start --exclude "edge-runtime,imgproxy,logflare,mailpit,postgres-meta,realtime,storage-api,studio,supavisor,vector"
+supabase start --exclude "edge-runtime,imgproxy,logflare,mailpit,postgres-meta,realtime,storage-api,studio,supavisor,analytics, vector"
 supabase db reset
 supabase db lint --local --level warning --fail-on error
 
