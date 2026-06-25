@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   shellCopy,
@@ -12,6 +13,11 @@ import {
   type TrainingLandingCopy,
   type TrainingShellState,
 } from "../training/trainingLandingCopy";
+=======
+import { useState, type ReactNode } from "react";
+import { ShellLogo } from "./ShellLogo";
+import { shellCopy, type ShellLocale } from "./translations";
+>>>>>>> e5725b8 (feat: integrate ShellLogo component and enhance application shell styles)
 import "./application-shell.css";
 import "../training/training-landing.css";
 
@@ -104,6 +110,7 @@ export function ApplicationShell() {
 
   return (
     <div className="phekong-canvas">
+<<<<<<< HEAD
       <a className="phekong-skip-link" href="#main-content">
         {copy.skip}
       </a>
@@ -162,6 +169,14 @@ export function ApplicationShell() {
               <strong>Phekong</strong>
               <span>{copy.wellnessCentre}</span>
             </span>
+=======
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <header className="site-header">
+        <div className="header-inner">
+          <a className="brand" href="#" aria-label={`Phekong ${t.centre}`}>
+            <ShellLogo />
+            <span className="brand-copy"><strong>Phekong</strong><span>{t.centre}</span></span>
+>>>>>>> e5725b8 (feat: integrate ShellLogo component and enhance application shell styles)
           </a>
 
           <nav className="phekong-desktop-nav" aria-label={copy.navAria}>
