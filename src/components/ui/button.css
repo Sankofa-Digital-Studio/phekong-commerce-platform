@@ -1,5 +1,6 @@
 .phekong-button {
   min-height: 44px;
+<<<<<<< HEAD
   border-radius: 999px;
   padding: 0 1.25rem;
   border: 1px solid transparent;
@@ -16,3 +17,58 @@
 .phekong-button-medium { min-height: 44px; padding: 0 1.25rem; font-size: 1rem; }
 .phekong-button-large { min-height: 52px; padding: 0 1.5rem; font-size: 1.05rem; }
 .phekong-button:disabled { opacity: .55; cursor: not-allowed; }
+=======
+  border-radius: var(--radius-pill);
+  padding: 0 1.25rem;
+  border: 1px solid transparent;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.phekong-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.phekong-button-primary {
+  background: var(--brand);
+  color: var(--surface);
+}
+
+.phekong-button-secondary {
+  background: var(--accent-soft);
+  color: var(--brand-strong);
+}
+
+.phekong-button-ghost {
+  background: transparent;
+  color: var(--brand-strong);
+  border-color: var(--border);
+}
+
+.phekong-button-small {
+  min-height: 38px;
+  padding: 0 1rem;
+  font-size: 0.95rem;
+}
+
+.phekong-button-medium {
+  min-height: 44px;
+  padding: 0 1.25rem;
+  font-size: 1rem;
+}
+
+.phekong-button-large {
+  min-height: 52px;
+  padding: 0 1.5rem;
+  font-size: 1.05rem;
+}
+
+.phekong-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+>>>>>>> 63c29ea (feat: add Button and Section components with responsive design and update FeatureCard)
