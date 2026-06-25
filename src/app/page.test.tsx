@@ -18,6 +18,7 @@ describe("official training landing page", () => {
         name: /a calm shell built for trust, clarity and growth/i,
       }),
     ).toBeInTheDocument();
+<<<<<<< HEAD
     expect(screen.getByRole("heading", { name: /what the shell owns/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /shell state laboratory/i })).toBeInTheDocument();
     expect(screen.getByRole("contentinfo")).toBeInTheDocument();
@@ -77,5 +78,19 @@ describe("official training landing page", () => {
     });
 
     expect(screen.getByRole("heading", { name: /外壳负责什么/ })).toBeInTheDocument();
+=======
+    expect(
+      screen.getAllByRole("link", { name: /contact phekong/i }),
+    ).toHaveLength(2);
+    expect(
+      screen.getByRole("heading", { name: /commerce and booking platform/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/A modern MVP foundation that makes service discovery, booking, and operations clear for wellness studios./i),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Start strong with responsive navigation, product storytelling, and a growth-ready experience./i),
+    ).toBeInTheDocument();
+>>>>>>> 92a5cd4 (feat: enhance HomePage layout with responsive sections and update styles)
   });
 });
