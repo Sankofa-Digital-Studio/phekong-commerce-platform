@@ -56,6 +56,7 @@ Before changing anything, read these files:
 - `package.json`
 - `package-lock.json`
 - `docs/m1-intern-quick-start.md`
+- `docs/npm-workflow.md`
 
 The repository currently declares these scripts in `package.json`:
 
@@ -68,7 +69,7 @@ npm run build
 npm run dev
 ```
 
-Use the package manager already used by the repository. Because `package-lock.json` exists, use npm unless the project lead explicitly changes the standard.
+Use the package manager already used by the repository. Because `package-lock.json` exists, use npm unless the project lead explicitly changes the standard. The normal setup command is `npm ci`; use `npm install` only when a task intentionally changes dependencies.
 
 ## 5. Environment file setup
 
@@ -91,7 +92,7 @@ The example file separates browser-safe Supabase values from server-only values.
 ## 6. Install dependencies
 
 ```bash
-npm install
+npm ci
 ```
 
 Expected result:
@@ -100,7 +101,7 @@ Expected result:
 - `package-lock.json` should not change unexpectedly
 - No production secrets are requested
 
-If `package-lock.json` changes unexpectedly, stop and comment on issue #31 with the command you ran and the diff summary.
+If `package-lock.json` changes unexpectedly, stop and comment on issue #31 with the command you ran and the diff summary. Do not commit lockfile churn into a documentation-only PR.
 
 ## 7. Start local Supabase
 
@@ -173,7 +174,7 @@ Example evidence format:
 OS: Windows 11
 Node: v20.x.x
 Supabase CLI: x.x.x
-npm install: passed
+npm ci: passed
 npm run lint: passed
 npm run typecheck: passed
 npm run test:run: passed

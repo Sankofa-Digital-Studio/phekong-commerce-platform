@@ -6,6 +6,8 @@ The Supabase baseline is merged into `main`. This gate validates `main` and ever
 
 The exact Supabase CLI version is pinned once in `package.json` and resolved by `package-lock.json`. Local commands and CI use the executable from `node_modules/.bin`; do not add a second CLI version to the GitHub Actions workflow or depend on a globally installed CLI.
 
+Follow `docs/npm-workflow.md` for dependency installation. This gate assumes dependencies were installed with `npm ci`, not an ad hoc `npm install`.
+
 Confirm the installed version with:
 
 ```shell
