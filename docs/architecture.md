@@ -11,7 +11,7 @@ Record approved technical decisions for the Phekong MVP.
 ## Approved stack
 - Repository: GitHub
 - Project tracking: GitHub Projects
-- Design: Figma
+- Design: PenPot
 - Application framework: Next.js with TypeScript
 - Database and authentication: Supabase
 - Deployment: Vercel
