@@ -11,13 +11,15 @@ export interface ApplicationShellProps {
   locale?: ShellLocale;
   state?: ShellState;
   activeRoute?: "home" | "about" | "products" | "services" | "contact";
+  showStatePanel?: boolean;
 }
 
 export function ApplicationShell({
   children,
   locale = "en",
   state = "ready",
-  activeRoute = "home"
+  activeRoute = "home",
+  showStatePanel = true,
 }: ApplicationShellProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const t = shellCopy[locale];
@@ -68,8 +70,18 @@ export function ApplicationShell({
         )}
       </header>
 
-      <main id="main-content" className="shell-main">
-        <ShellStatePanel state={state} locale={locale} />
+      <main
+        id="main-content"
+        className="shell-main"
+        aria-busy={state === "loading" ? "true" : "false"}
+      >
+        {showStatePanel && (
+          <ShellStatePanel
+            state={state}
+            locale={locale}
+          />
+        )}
+
         {children}
       </main>
 
