@@ -16,7 +16,7 @@ function Invoke-CheckedCommand {
 }
 
 try {
-    Invoke-CheckedCommand supabase start
+    Invoke-CheckedCommand supabase start --ignore-health-check --exclude analytics,vector
     Invoke-CheckedCommand supabase db reset
     Invoke-CheckedCommand supabase db lint --local --level warning --fail-on error
 

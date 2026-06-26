@@ -10,7 +10,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-supabase start
+supabase start --ignore-health-check --exclude analytics,vector
 supabase db reset
 supabase db lint --local --level warning --fail-on error
 
