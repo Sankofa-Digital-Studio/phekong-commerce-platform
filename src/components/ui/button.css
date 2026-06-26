@@ -1,5 +1,17 @@
-.phekong-button { min-height:44px; border-radius:999px; padding:.7rem 1rem; border:1px solid transparent; font-weight:800; }
-.phekong-button-primary { background:var(--brand); color:var(--surface); }
-.phekong-button-secondary { background:var(--accent-soft); color:var(--brand-strong); }
-.phekong-button-ghost { background:transparent; color:var(--brand-strong); border-color:var(--border); }
-.phekong-button:disabled { opacity:.55; cursor:not-allowed; }
+.phekong-button {
+  min-height: 44px;
+  border-radius: 999px;
+  padding: 0 1.25rem;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+.phekong-button-primary { background: var(--brand); color: var(--surface); }
+.phekong-button-secondary { background: var(--accent-soft); color: var(--brand-strong); }
+.phekong-button-ghost { background: transparent; color: var(--brand-strong); border-color: var(--border); }
+.phekong-button-small { min-height: 38px; padding: 0 1rem; font-size: .95rem; }
+.phekong-button-medium { min-height: 44px; padding: 0 1.25rem; font-size: 1rem; }
+.phekong-button-large { min-height: 52px; padding: 0 1.5rem; font-size: 1.05rem; }
+.phekong-button:disabled { opacity: .55; cursor: not-allowed; }
