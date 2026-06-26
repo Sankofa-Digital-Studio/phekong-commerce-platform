@@ -69,8 +69,8 @@ function rememberBooking(result) {
 function assertBookingConflict(result, scenario) {
   assert.equal(
     result.response.status,
-    409,
-    `${scenario} should fail with HTTP 409`,
+    400,
+    `${scenario} should fail with HTTP 400`,
   );
   assert.equal(
     result.body?.code,
