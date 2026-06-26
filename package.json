@@ -11,6 +11,7 @@
     "test": "vitest",
     "test:run": "vitest run",
     "supabase:version": "supabase --version",
+    "supabase:start": "supabase start --ignore-health-check --exclude analytics,vector",
     "supabase:m0:check": "node scripts/validate-supabase-m0.mjs",
     "supabase:m0:windows": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/validate-supabase-m0.ps1",
     "supabase:m0:unix": "bash ./scripts/validate-supabase-m0.sh",
