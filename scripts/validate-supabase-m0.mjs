@@ -45,11 +45,15 @@ function jsonHeaders(apiKey, token = apiKey) {
   };
 }
 
+function serviceRoleHeaders() {
+  return jsonHeaders(serviceRoleKey, serviceRoleKey);
+}
+
 async function createBooking(payload) {
   return request("/rest/v1/bookings", {
     method: "POST",
     headers: {
-      ...jsonHeaders(serviceRoleKey),
+      ...serviceRoleHeaders(),
       Prefer: "return=representation",
     },
     body: JSON.stringify(payload),
@@ -78,7 +82,7 @@ function assertBookingConflict(result, scenario) {
 try {
   const created = await request("/auth/v1/admin/users", {
     method: "POST",
-    headers: jsonHeaders(serviceRoleKey),
+    headers: serviceRoleHeaders(),
     body: JSON.stringify({
       email,
       password,
@@ -248,14 +252,14 @@ try {
   for (const bookingId of bookingIds) {
     await request(`/rest/v1/bookings?id=eq.${encodeURIComponent(bookingId)}`, {
       method: "DELETE",
-      headers: jsonHeaders(serviceRoleKey),
+      headers: serviceRoleHeaders(),
     }).catch(() => undefined);
   }
 
   if (userId) {
     await request(`/auth/v1/admin/users/${encodeURIComponent(userId)}`, {
       method: "DELETE",
-      headers: jsonHeaders(serviceRoleKey),
+      headers: serviceRoleHeaders(),
     }).catch(() => undefined);
   }
 }
