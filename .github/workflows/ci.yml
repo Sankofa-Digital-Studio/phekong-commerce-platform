@@ -22,10 +22,11 @@ jobs:
           cache: npm
       - name: Regenerate lockfile with CI npm
         run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
-      - uses: actions/upload-artifact@v4
-        with:
-          name: regenerated-package-lock
-          path: package-lock.json
+      - name: Emit regenerated lockfile
+        run: |
+          echo LOCKFILE_BEGIN
+          base64 package-lock.json
+          echo LOCKFILE_END
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
