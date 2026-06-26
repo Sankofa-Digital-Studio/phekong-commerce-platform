@@ -20,16 +20,11 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Regenerate lockfile with CI npm
-        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
-      - name: Emit regenerated lockfile
-        run: |
-          echo LOCKFILE_BEGIN
-          base64 package-lock.json
-          echo LOCKFILE_END
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
+      - name: Install Chromium for browser tests
+        run: npx playwright install --with-deps chromium
       - run: npm run test:run
       - run: npm run build
 
@@ -43,8 +38,6 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Regenerate lockfile with CI npm
-        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
       - run: npm ci
       - name: Confirm repository-pinned Supabase CLI
         run: npm run supabase:version
