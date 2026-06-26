@@ -23,6 +23,7 @@ export function ApplicationShell({
 }: ApplicationShellProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const t = shellCopy[locale];
+  const shellContent = children ?? (!showStatePanel ? <PublicMvpContent /> : null);
 
   const links = [
     ["home", t.home],
@@ -54,7 +55,7 @@ export function ApplicationShell({
             <button className="menu-button" type="button"
               aria-expanded={menuOpen} aria-controls="mobile-navigation"
               onClick={() => setMenuOpen(value => !value)}>
-              {menuOpen ? "✕" : "☰"}
+              {menuOpen ? "x" : "menu"}
             </button>
           </div>
         </div>
@@ -82,7 +83,7 @@ export function ApplicationShell({
           />
         )}
 
-        {children}
+        {shellContent}
       </main>
 
       <footer className="site-footer">
@@ -90,6 +91,23 @@ export function ApplicationShell({
         <span>© 2026 · Sankofa Digital</span>
       </footer>
     </div>
+  );
+}
+
+function PublicMvpContent() {
+  return (
+    <section className="home-hero" id="home">
+      <p className="eyebrow">PHEKONG WELLNESS CENTRE</p>
+      <h1>Commerce and booking platform</h1>
+      <p className="intro">
+        The Sankofa Digital MVP foundation is active. Product discovery, bookings,
+        inventory and administrative tools will be delivered through controlled milestones.
+      </p>
+      <div className="status-card">
+        <strong>Project status</strong>
+        <span>Architecture approved. Application scaffold in progress.</span>
+      </div>
+    </section>
   );
 }
 
