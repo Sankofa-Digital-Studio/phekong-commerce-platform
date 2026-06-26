@@ -53,9 +53,22 @@ function getPreferenceSnapshot() {
   }
 }
 
+<<<<<<< HEAD
 function subscribeToPreferences(onStoreChange: () => void) {
   window.addEventListener("storage", onStoreChange);
   window.addEventListener(PREFERENCE_EVENT, onStoreChange);
+=======
+export function ApplicationShell({
+  children,
+  locale = "en",
+  state = "ready",
+  activeRoute = "home",
+  showStatePanel = true,
+}: ApplicationShellProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const t = shellCopy[locale];
+  const shellContent = children ?? (!showStatePanel ? <PublicMvpContent /> : null);
+>>>>>>> 77a3722 (feat: wire home page to application shell)
 
   return () => {
     window.removeEventListener("storage", onStoreChange);
@@ -195,6 +208,7 @@ export function ApplicationShell() {
             </ul>
           </nav>
 
+<<<<<<< HEAD
           <div className="phekong-header-actions">
             <a className="phekong-button phekong-button--primary" href="#footer">
               {copy.contactPhekong}
@@ -208,6 +222,14 @@ export function ApplicationShell() {
               onClick={() => setMenuOpen((open) => !open)}
             >
               <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
+=======
+          <div className="header-actions">
+            <a className="button button-primary" href="#contact">{t.cta}</a>
+            <button className="menu-button" type="button"
+              aria-expanded={menuOpen} aria-controls="mobile-navigation"
+              onClick={() => setMenuOpen(value => !value)}>
+              {menuOpen ? "x" : "menu"}
+>>>>>>> 77a3722 (feat: wire home page to application shell)
             </button>
           </div>
         </div>
@@ -253,6 +275,7 @@ export function ApplicationShell() {
               }
             }}
           />
+<<<<<<< HEAD
           <ShellAnatomy copy={landingCopy} />
           <ShellStateLab
             copy={landingCopy}
@@ -261,6 +284,11 @@ export function ApplicationShell() {
           />
         </div>
         <ReviewChecklist copy={landingCopy} />
+=======
+        )}
+
+        {shellContent}
+>>>>>>> 77a3722 (feat: wire home page to application shell)
       </main>
 
       <footer className="phekong-footer" id="footer">
@@ -305,6 +333,7 @@ export function ApplicationShell() {
   );
 }
 
+<<<<<<< HEAD
 export function TrainingHero({
   copy,
   onPreviewError,
@@ -312,6 +341,34 @@ export function TrainingHero({
   copy: TrainingLandingCopy;
   onPreviewError?: () => void;
 }) {
+=======
+function PublicMvpContent() {
+  return (
+    <section className="home-hero" id="home">
+      <p className="eyebrow">PHEKONG WELLNESS CENTRE</p>
+      <h1>Commerce and booking platform</h1>
+      <p className="intro">
+        The Sankofa Digital MVP foundation is active. Product discovery, bookings,
+        inventory and administrative tools will be delivered through controlled milestones.
+      </p>
+      <div className="status-card">
+        <strong>Project status</strong>
+        <span>Architecture approved. Application scaffold in progress.</span>
+      </div>
+    </section>
+  );
+}
+
+function ShellStatePanel({ state, locale }: { state: ShellState; locale: ShellLocale }) {
+  const t = shellCopy[locale];
+  const copy = {
+    ready: [t.readyTitle, t.readyBody],
+    loading: [t.loadingTitle, t.loadingBody],
+    empty: [t.emptyTitle, t.emptyBody],
+    error: [t.errorTitle, t.errorBody]
+  }[state];
+
+>>>>>>> 77a3722 (feat: wire home page to application shell)
   return (
     <section className="training-hero" aria-labelledby="training-hero-title">
       <div>

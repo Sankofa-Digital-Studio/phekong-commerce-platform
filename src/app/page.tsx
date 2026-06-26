@@ -5,6 +5,7 @@ import { landingPageContent } from "../components/ui/objects/siteContent";
 
 export default function HomePage() {
 <<<<<<< HEAD
+<<<<<<< HEAD
   return <ApplicationShell />;
 =======
   const { hero, features, about, services, contact } = landingPageContent;
@@ -52,4 +53,7 @@ export default function HomePage() {
     </ApplicationShell>
   );
 >>>>>>> 92a5cd4 (feat: enhance HomePage layout with responsive sections and update styles)
+=======
+  return <ApplicationShell activeRoute="home" showStatePanel={false} />;
+>>>>>>> 77a3722 (feat: wire home page to application shell)
 }

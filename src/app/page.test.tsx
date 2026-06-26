@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor, within } from "@testing-library/rea
 import { beforeEach, describe, expect, it } from "vitest";
 import HomePage from "./page";
 
+<<<<<<< HEAD
 describe("official training landing page", () => {
   beforeEach(() => {
     window.localStorage.clear();
@@ -11,6 +12,10 @@ describe("official training landing page", () => {
   });
 
   it("renders the approved public shell content at the home route", () => {
+=======
+describe("HomePage", () => {
+  it("renders the Storybook application shell with the current public MVP messaging", () => {
+>>>>>>> 77a3722 (feat: wire home page to application shell)
     render(<HomePage />);
 
     expect(
@@ -80,8 +85,16 @@ describe("official training landing page", () => {
     expect(screen.getByRole("heading", { name: /外壳负责什么/ })).toBeInTheDocument();
 =======
     expect(
+<<<<<<< HEAD
       screen.getAllByRole("link", { name: /contact phekong/i }),
     ).toHaveLength(2);
+=======
+      screen.queryByRole("heading", { name: /public experience ready/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /contact phekong/i }),
+    ).toBeInTheDocument();
+>>>>>>> 77a3722 (feat: wire home page to application shell)
     expect(
       screen.getByRole("heading", { name: /commerce and booking platform/i }),
     ).toBeInTheDocument();
