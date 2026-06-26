@@ -6,11 +6,13 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  root: dirname,
   test: {
     coverage: {
       reporter: ["text", "json", "html"]
     },
-    workspace: [{
+    testTimeout: 10000,
+    projects: [{
       extends: true,
       test: {
         environment: "jsdom",
