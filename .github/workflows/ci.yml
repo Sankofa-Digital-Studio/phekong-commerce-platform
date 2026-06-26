@@ -20,6 +20,12 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Regenerate lockfile with CI npm
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - uses: actions/upload-artifact@v4
+        with:
+          name: regenerated-package-lock
+          path: package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
@@ -36,6 +42,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Regenerate lockfile with CI npm
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
       - run: npm ci
       - name: Confirm repository-pinned Supabase CLI
         run: npm run supabase:version
