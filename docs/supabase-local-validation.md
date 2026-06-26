@@ -24,7 +24,7 @@ npm run supabase:version
 
 ## Run the complete gate
 
-The OS-specific wrappers start the local stack, rebuild the database from migrations, create a temporary local authentication user, exercise the access boundaries, remove the user, and stop the stack.
+The OS-specific wrappers start the local stack with `supabase start --ignore-health-check --exclude analytics,vector`, rebuild the database from migrations, create a temporary local authentication user, exercise the access boundaries, remove the user, and stop the stack. The excluded services are not required for the M0 database contract and should not mask validation failures in Auth, PostgREST, migrations, or RLS checks.
 
 ### Windows PowerShell
 
@@ -73,7 +73,7 @@ Orders, bookings, inventory movements, and audit logs remain closed until role-s
 For migration diagnosis:
 
 ```shell
-npm exec -- supabase start
+npm run supabase:start
 npm exec -- supabase db reset
 npm exec -- supabase db lint --local --level warning --fail-on error
 npm exec -- supabase status
