@@ -8,7 +8,7 @@ The M1 public experience uses `ApplicationShell` as the shared frame for public 
 
 | Path | Role |
 | --- | --- |
-| `src/components/shell/ApplicationShell.tsx` | Shared shell component, state panel, mobile navigation, and current public MVP default content. |
+| `src/components/shell/ApplicationShell.tsx` | Single production landing-page component: shell, preferences, content sections, state laboratory, mobile navigation, and footer. |
 | `src/components/shell/translations.ts` | Shell navigation labels, CTA text, and state-panel copy for supported locales. |
 | `src/components/shell/application-shell.css` | Shell layout, header, footer, navigation, state-panel, and responsive mobile menu styling. |
 | `src/components/shell/ApplicationShell.stories.tsx` | Storybook states for shell review outside the integrated route. |
@@ -21,18 +21,10 @@ The M1 public experience uses `ApplicationShell` as the shared frame for public 
 The home route is intentionally thin:
 
 ```tsx
-return <ApplicationShell activeRoute="home" showStatePanel={false} />;
+return <ApplicationShell />;
 ```
 
-When `showStatePanel={false}` and no children are passed, the shell renders the current public MVP scaffold copy. This keeps the live route aligned with the same shell that Storybook documents while preserving the existing public message.
-
-When a future page needs custom content, pass children into `ApplicationShell`:
-
-```tsx
-<ApplicationShell activeRoute="products">
-  <ProductCatalogue />
-</ApplicationShell>
-```
+The component owns the complete approved landing page. There is no parallel `TrainingLanding` page wrapper, so the live route, interaction state, and Storybook full-page story cannot drift between two implementations.
 
 ## State Model
 
@@ -45,7 +37,7 @@ When a future page needs custom content, pass children into `ApplicationShell`:
 | `empty` | Empty-but-valid page state. |
 | `error` | Recoverable page-level error state. |
 
-Public routes that render real page content can hide the state panel with `showStatePanel={false}`.
+The landing page exposes these states through its state laboratory without replacing its production content.
 
 ## Navigation Behaviour
 
@@ -71,8 +63,8 @@ Current verification:
 
 ## Contributor Rules
 
-1. Mount public pages inside `ApplicationShell`; do not duplicate header/footer chrome in routes.
-2. Add route-specific content as children unless the page intentionally uses the shell default public MVP content.
+1. Keep the home landing page in `ApplicationShell`; do not introduce a second page wrapper with duplicate header/footer chrome.
+2. Give future routes their own route component and extract shared chrome only when a second production route actually requires it.
 3. Add translations in `translations.ts` when shell-owned labels change.
 4. Keep shell visual changes in `application-shell.css` and token values in `phekong-tokens.css`.
 5. Update Storybook stories for new shell states or props.

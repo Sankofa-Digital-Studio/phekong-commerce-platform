@@ -1,85 +1,150 @@
 :root {
-  --radius-sm: .6rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
-  --content: 1180px;
-  --header-h: 78px;
+  --phekong-radius-sm: 0.6rem;
+  --phekong-radius-md: 1rem;
+  --phekong-radius-lg: 1.5rem;
+  --phekong-radius-xl: 2rem;
+  --phekong-content-width: 73.75rem;
+  --phekong-header-height: 4.875rem;
+  --phekong-space-page: 1.25rem;
+  --phekong-font-sans: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --phekong-font-display: Georgia, "Songti SC", serif;
+  --phekong-motion-fast: 180ms;
+  --phekong-motion-standard: 200ms;
+  --phekong-white: #ffffff;
 }
 
-html[data-palette="earth"][data-mode="light"], :root {
-  --bg: #f7f3ec;
-  --surface: #fffdf8;
-  --surface-2: #efe7da;
-  --ink: #201b16;
-  --muted: #6c6258;
-  --brand: #715341;
-  --brand-strong: #50372a;
-  --accent: #d4a75f;
-  --accent-soft: #f3e4c4;
-  --success: #2f6b4d;
-  --danger: #9f3f3f;
-  --border: #d8ccbf;
-  --focus: #1d5fd1;
+html[data-palette="earth"][data-mode="light"],
+:root {
+  --phekong-bg: #f7f3ec;
+  --phekong-surface: #fffdf8;
+  --phekong-surface-2: #efe7da;
+  --phekong-ink: #201b16;
+  --phekong-muted: #6c6258;
+  --phekong-brand: #715341;
+  --phekong-brand-strong: #50372a;
+  --phekong-accent: #d4a75f;
+  --phekong-accent-soft: #f3e4c4;
+  --phekong-success: #2f6b4d;
+  --phekong-danger: #9f3f3f;
+  --phekong-border: #d8ccbf;
+  --phekong-focus: #1d5fd1;
+  --phekong-shadow: 0 1.125rem 3.125rem rgb(63 42 29 / 12%);
+  --phekong-card-shadow: 0 0.5rem 1.875rem rgb(0 0 0 / 6%);
+  --phekong-header-bg: rgb(255 253 248 / 94%);
+  --phekong-footer-bg: #2d211a;
+  --phekong-footer-text: #f5ece3;
+  --phekong-footer-muted: #ddcfc5;
+  --phekong-visual-a: #f8dda4;
+  --phekong-visual-b: #d8b994;
+  --phekong-visual-c: #8d6a54;
+  --phekong-visual-d: #4f382d;
+  color-scheme: light;
 }
 
 html[data-palette="ocean"][data-mode="light"] {
-  --bg: #eef7f8;
-  --surface: #ffffff;
-  --surface-2: #dcecef;
-  --ink: #10282d;
-  --muted: #526b70;
-  --brand: #146b73;
-  --brand-strong: #0b4f57;
-  --accent: #e4a94f;
-  --accent-soft: #f7e7bd;
-  --success: #23724e;
-  --danger: #a53f4c;
-  --border: #bfd6da;
-  --focus: #005fcc;
+  --phekong-bg: #eef7f8;
+  --phekong-surface: #ffffff;
+  --phekong-surface-2: #dcecef;
+  --phekong-ink: #10282d;
+  --phekong-muted: #526b70;
+  --phekong-brand: #146b73;
+  --phekong-brand-strong: #0b4f57;
+  --phekong-accent: #e4a94f;
+  --phekong-accent-soft: #f7e7bd;
+  --phekong-success: #23724e;
+  --phekong-danger: #a53f4c;
+  --phekong-border: #bfd6da;
+  --phekong-focus: #005fcc;
+  --phekong-shadow: 0 1.125rem 3.125rem rgb(10 79 87 / 14%);
+  --phekong-header-bg: rgb(255 255 255 / 94%);
+  --phekong-footer-bg: #0d3439;
+  --phekong-footer-text: #eefafa;
+  --phekong-footer-muted: #bfd9dc;
+  --phekong-visual-a: #a7e0df;
+  --phekong-visual-b: #65b7bc;
+  --phekong-visual-c: #267b85;
+  --phekong-visual-d: #0d4650;
 }
 
 html[data-palette="botanical"][data-mode="light"] {
-  --bg: #f3f7ef;
-  --surface: #fffef9;
-  --surface-2: #e5eddc;
-  --ink: #1c271a;
-  --muted: #5e6d58;
-  --brand: #4f6d45;
-  --brand-strong: #334b2d;
-  --accent: #c99152;
-  --accent-soft: #f1dfc1;
-  --success: #3e7651;
-  --danger: #9a403e;
-  --border: #cbd8c2;
-  --focus: #1b61cf;
+  --phekong-bg: #f3f7ef;
+  --phekong-surface: #fffef9;
+  --phekong-surface-2: #e5eddc;
+  --phekong-ink: #1c271a;
+  --phekong-muted: #5e6d58;
+  --phekong-brand: #4f6d45;
+  --phekong-brand-strong: #334b2d;
+  --phekong-accent: #c99152;
+  --phekong-accent-soft: #f1dfc1;
+  --phekong-success: #3e7651;
+  --phekong-danger: #9a403e;
+  --phekong-border: #cbd8c2;
+  --phekong-focus: #1b61cf;
+  --phekong-shadow: 0 1.125rem 3.125rem rgb(51 75 45 / 13%);
+  --phekong-header-bg: rgb(255 254 249 / 94%);
+  --phekong-footer-bg: #263524;
+  --phekong-footer-text: #f2f7ef;
+  --phekong-footer-muted: #cad8c4;
+  --phekong-visual-a: #dceabf;
+  --phekong-visual-b: #a8bf83;
+  --phekong-visual-c: #6e8a58;
+  --phekong-visual-d: #3b5234;
 }
 
 html[data-mode="dark"] {
-  --bg: #111416;
-  --surface: #1a1f22;
-  --surface-2: #232a2e;
-  --ink: #f4f1ea;
-  --muted: #b6b2aa;
-  --border: #374147;
-  --focus: #80b5ff;
-}
-html[data-palette="earth"][data-mode="dark"] {
-  --brand: #c79b79; --brand-strong: #e4b995; --accent: #efc46f;
-  --accent-soft: #3d3127; --success: #70b98f; --danger: #ef8d8d;
-}
-html[data-palette="ocean"][data-mode="dark"] {
-  --brand: #68c8d1; --brand-strong: #9ae6ec; --accent: #efbd69;
-  --accent-soft: #19363b; --success: #6cc99b; --danger: #f08b98;
-}
-html[data-palette="botanical"][data-mode="dark"] {
-  --brand: #9fc18d; --brand-strong: #c2dfb4; --accent: #dfad6d;
-  --accent-soft: #2d3828; --success: #79c28d; --danger: #eb8d89;
+  --phekong-bg: #111416;
+  --phekong-surface: #1a1f22;
+  --phekong-surface-2: #232a2e;
+  --phekong-ink: #f4f1ea;
+  --phekong-muted: #b6b2aa;
+  --phekong-border: #374147;
+  --phekong-shadow: 0 1.125rem 3.125rem rgb(0 0 0 / 38%);
+  --phekong-header-bg: rgb(20 24 27 / 92%);
+  --phekong-footer-bg: #090b0c;
+  --phekong-footer-text: #f3f3ef;
+  --phekong-footer-muted: #b8c0c3;
+  color-scheme: dark;
 }
 
-.phekong-canvas {
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+html[data-palette="earth"][data-mode="dark"] {
+  --phekong-brand: #c79b79;
+  --phekong-brand-strong: #e4b995;
+  --phekong-accent: #efc46f;
+  --phekong-accent-soft: #3d3127;
+  --phekong-success: #70b98f;
+  --phekong-danger: #ef8d8d;
+  --phekong-focus: #80b5ff;
+  --phekong-visual-a: #8d6b3f;
+  --phekong-visual-b: #6d4f39;
+  --phekong-visual-c: #49362d;
+  --phekong-visual-d: #251c18;
 }
-*:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+html[data-palette="ocean"][data-mode="dark"] {
+  --phekong-brand: #68c8d1;
+  --phekong-brand-strong: #9ae6ec;
+  --phekong-accent: #efbd69;
+  --phekong-accent-soft: #19363b;
+  --phekong-success: #6cc99b;
+  --phekong-danger: #f08b98;
+  --phekong-focus: #7bb4ff;
+  --phekong-visual-a: #35777e;
+  --phekong-visual-b: #245e66;
+  --phekong-visual-c: #173f46;
+  --phekong-visual-d: #0d2529;
+}
+
+html[data-palette="botanical"][data-mode="dark"] {
+  --phekong-brand: #9fc18d;
+  --phekong-brand-strong: #c2dfb4;
+  --phekong-accent: #dfad6d;
+  --phekong-accent-soft: #2d3828;
+  --phekong-success: #79c28d;
+  --phekong-danger: #eb8d89;
+  --phekong-focus: #7db1ff;
+  --phekong-visual-a: #61784d;
+  --phekong-visual-b: #4a603d;
+  --phekong-visual-c: #31442b;
+  --phekong-visual-d: #1a2818;
+}

@@ -1,51 +1,43 @@
-:root {
-  color-scheme: light;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f7f2e8;
-  color: #183529;
-}
+@import "../styles/phekong-tokens.css";
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(180deg, #f7f2e8 0%, #eef3ef 100%);
+  background: var(--phekong-bg);
+  color: var(--phekong-ink);
+  font-family: var(--phekong-font-sans);
 }
 
-.home-hero {
-  width: min(760px, 100%);
+button,
+input,
+select {
+  font: inherit;
 }
 
-.eyebrow {
-  margin: 0 0 1rem;
-  color: #9b792e;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+button {
+  cursor: pointer;
 }
 
-h1 {
-  margin: 0;
-  max-width: 14ch;
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  line-height: 0.98;
+:focus-visible {
+  outline: 3px solid var(--phekong-focus);
+  outline-offset: 3px;
 }
 
-.intro {
-  max-width: 62ch;
-  margin: 1.5rem 0;
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-
-.status-card {
-  display: grid;
-  gap: 0.35rem;
-  padding: 1.1rem 1.25rem;
-  border: 1px solid #c8a454;
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.72);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
