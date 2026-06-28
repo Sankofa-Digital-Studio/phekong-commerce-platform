@@ -1,0 +1,27 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="M1/Workflow/Penpot to Storybook" />
+
+# Penpot to Storybook
+
+Penpot is the source of approved design intent. Storybook records the implemented component states and behaviour. The Next.js application proves how those components behave together on real routes.
+
+## Contributor workflow
+
+1. Confirm the approved Penpot frame, component state, breakpoint and token names.
+2. Map colours, typography, spacing, radii and shadows to `--phekong-*` tokens in `src/styles/phekong-tokens.css`.
+3. Implement the component under `src/components` without copying raw Penpot-generated markup.
+4. Add stories for meaningful states, including disabled, loading, empty and error states where applicable.
+5. Review at **Mobile 390** and **Desktop 1440** using the Storybook viewport toolbar.
+6. Run keyboard and Accessibility-panel checks, then run `npm run storybook:ci` before review.
+
+## Shared configuration
+
+- Global application styles and tokens load through `.storybook/preview.ts`.
+- The `@/*` alias resolves from `src/*` in both Next.js and Storybook.
+- `--phekong-font-sans` and `--phekong-font-display` define the approved font stacks.
+- Accessibility violations fail Storybook component tests.
+
+## Scope boundary
+
+Stories must not contain production credentials, deployment secrets, real customer data, checkout calls or authenticated server actions. Use deterministic component props and local interaction state.
