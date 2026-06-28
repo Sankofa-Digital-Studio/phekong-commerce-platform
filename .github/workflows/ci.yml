@@ -27,6 +27,8 @@ jobs:
         run: npx playwright install --with-deps chromium
       - run: npm run test:run
       - run: npm run build
+      - name: Build static Storybook
+        run: npm run build-storybook
 
   supabase-baseline:
     name: Supabase M0 validation

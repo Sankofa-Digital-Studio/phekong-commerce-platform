@@ -2,14 +2,12 @@ import type { Preview } from "@storybook/nextjs-vite";
 import "../src/app/globals.css";
 import "../src/styles/phekong-tokens.css";
 
-
 const preview: Preview = {
- 
   parameters: {
     layout: "fullscreen",
     nextjs: {
-    appDirectory: true
-  },
+      appDirectory: true
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -29,13 +27,13 @@ const preview: Preview = {
       }
     },
     a11y: {
-      test: "todo"
+      test: "error"
     },
     backgrounds: {
       default: "Phekong surface",
       values: [
-        { name: "Phekong surface", value: "#fffdf8" },
-        { name: "Dark surface", value: "#111416" }
+        { name: "Phekong surface", value: "var(--phekong-surface)" },
+        { name: "Dark surface", value: "var(--phekong-footer-bg)" }
       ]
     }
   },
