@@ -1,28 +1,38 @@
-# Phekong Storybook bootstrap
+# Phekong Storybook workflow
 
 **Sankofa Digital proprietary and confidential. Not for distribution.**
 
-This pack converts the approved M1 shell concept into a reviewable Storybook foundation.
-
-## Integration
-
-1. Copy `.storybook`, `src/styles`, and `src/components` into the repository.
-2. Merge the scripts and devDependencies from `package.storybook.json` into `package.json`.
-3. Run `npm install`.
-4. Run `npm run storybook`.
-5. Run `npm run build-storybook` before opening the pull request.
+Storybook is the isolated implementation and review environment for Phekong frontend components.
 
 ## Authority chain
 
-- Penpot approves design intent.
-- Storybook proves component states and accessibility.
-- The application proves integrated route behaviour.
-- Figma may be used as a visual reference only.
+- Penpot approves design intent and token decisions.
+- Storybook proves implemented component states, responsiveness, interaction and accessibility.
+- The Next.js application proves integrated route behaviour.
 
-## Initial review
+## Commands
 
-Verify all three palettes, light/dark mode, English/Chinese copy, 390px mobile viewport, 1440px desktop viewport, keyboard navigation, focus visibility, loading, empty and error states.
+```text
+npm run storybook
+npm run test-storybook
+npm run build-storybook
+npm run storybook:ci
+```
+
+`storybook:ci` runs Storybook browser tests followed by the full static build. CI installs Chromium before running component tests.
+
+## Shared application configuration
+
+- `.storybook/preview.ts` imports `src/app/globals.css` and `src/styles/phekong-tokens.css`.
+- Components use the approved `--phekong-*` token namespace and shared font stacks.
+- TypeScript resolves `@/*` from `src/*`; the Next.js/Vite Storybook framework consumes the same alias.
+- Viewport presets are `Mobile 390` (390 x 844) and `Desktop 1440` (1440 x 900).
+- Accessibility checks use `@storybook/addon-a11y` and fail browser tests on violations.
+
+## Penpot handoff
+
+Open the **M1 / Workflow / Penpot to Storybook** documentation page in Storybook for the contributor checklist. Review components at both approved viewports and verify keyboard focus before requesting review.
 
 ## Scope boundary
 
-This pack contains no authentication, booking, cart, checkout, payment, database or production environment logic.
+Stories contain no authentication, booking, cart, checkout, payment, database, production environment or deployment-secret logic.
