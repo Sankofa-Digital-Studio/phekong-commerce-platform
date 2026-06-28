@@ -1,0 +1,350 @@
+.training-content {
+  max-width: var(--phekong-content-width);
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 5rem) var(--phekong-space-page);
+}
+
+.training-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.training-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--phekong-brand);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.training-eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 2px;
+  background: var(--phekong-accent);
+}
+
+.training-hero h1,
+.training-section-heading h2,
+.training-anatomy h3,
+.training-state-lab h2,
+.training-state-preview h3 {
+  font-family: var(--phekong-font-display);
+  line-height: 1.1;
+}
+
+.training-hero h1 {
+  max-width: 13ch;
+  margin: 1rem 0;
+  font-size: clamp(2.5rem, 7vw, 5.6rem);
+  letter-spacing: -0.04em;
+}
+
+.training-hero > div > p {
+  max-width: 58ch;
+  color: var(--phekong-muted);
+  font-size: 1.08rem;
+}
+
+.training-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.training-hero .training-micro-note {
+  margin-top: 0.8rem;
+  font-size: 0.78rem;
+}
+
+.training-hero__visual {
+  position: relative;
+  min-height: 29.375rem;
+  overflow: hidden;
+  border-radius: var(--phekong-radius-xl);
+  background:
+    linear-gradient(180deg, rgb(40 27 18 / 5%), rgb(40 27 18 / 22%)),
+    radial-gradient(circle at 25% 15%, var(--phekong-visual-a), transparent 23%),
+    linear-gradient(
+      145deg,
+      var(--phekong-visual-b) 0 42%,
+      var(--phekong-visual-c) 42% 72%,
+      var(--phekong-visual-d) 72%
+    );
+  box-shadow: var(--phekong-shadow);
+}
+
+.training-hero__visual::before {
+  content: "";
+  position: absolute;
+  right: -2.8125rem;
+  top: -2.8125rem;
+  width: 13.75rem;
+  height: 13.75rem;
+  border: 2.25rem solid color-mix(in srgb, var(--phekong-surface) 22%, transparent);
+  border-radius: 50%;
+}
+
+.training-hero__card {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid color-mix(in srgb, var(--phekong-surface) 60%, transparent);
+  border-radius: 1.2rem;
+  background: color-mix(in srgb, var(--phekong-surface) 92%, transparent);
+  padding: 1rem;
+  backdrop-filter: blur(0.625rem);
+}
+
+.training-hero__card strong,
+.training-hero__card span {
+  display: block;
+}
+
+.training-hero__card span {
+  color: var(--phekong-muted);
+  font-size: 0.86rem;
+}
+
+.training-status-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--phekong-success);
+  box-shadow: 0 0 0 0.4375rem color-mix(in srgb, var(--phekong-success) 12%, transparent);
+}
+
+.training-anatomy {
+  margin-top: clamp(4rem, 9vw, 8rem);
+}
+
+.training-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.training-section-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+}
+
+.training-section-heading p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--phekong-muted);
+}
+
+.training-anatomy__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.training-anatomy__card {
+  min-height: 13.125rem;
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-lg);
+  background: var(--phekong-surface);
+  padding: 1.25rem;
+  box-shadow: var(--phekong-card-shadow);
+}
+
+.training-anatomy__card > span {
+  color: var(--phekong-accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.training-anatomy__card h3 {
+  margin: 1rem 0 0.55rem;
+  font-size: 1.35rem;
+}
+
+.training-anatomy__card p {
+  margin: 0;
+  color: var(--phekong-muted);
+  font-size: 0.92rem;
+}
+
+.training-state-lab {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 4rem;
+  border-radius: var(--phekong-radius-xl);
+  background: var(--phekong-brand-strong);
+  color: var(--phekong-surface);
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+}
+
+.training-state-lab h2 {
+  margin-top: 0;
+  font-size: 2.2rem;
+}
+
+.training-state-lab > div:first-child > p {
+  color: color-mix(in srgb, var(--phekong-surface) 78%, transparent);
+}
+
+.training-state-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.training-state-controls button {
+  border: 0;
+  border-radius: 999px;
+  background: var(--phekong-surface);
+  color: var(--phekong-brand-strong);
+  padding: 0.75rem 1rem;
+  font-weight: 800;
+}
+
+.training-state-controls button[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 3px var(--phekong-accent);
+}
+
+.training-state-preview {
+  display: grid;
+  place-items: center;
+  min-height: 11.875rem;
+  border-radius: 1.2rem;
+  background: var(--phekong-surface);
+  color: var(--phekong-ink);
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.training-state-preview h3 {
+  margin: 0 0 0.5rem;
+}
+
+.training-state-preview p {
+  color: var(--phekong-muted);
+}
+
+.training-state-preview__error {
+  color: var(--phekong-danger);
+}
+
+.training-spinner {
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  margin: auto auto 0.75rem;
+  border: 4px solid var(--phekong-border);
+  border-top-color: var(--phekong-brand);
+  border-radius: 50%;
+  animation: training-spin 1s linear infinite;
+}
+
+@keyframes training-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.training-review {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 70;
+  width: min(22.5rem, calc(100vw - 2rem));
+  overflow: hidden;
+  border: 1px solid var(--phekong-border);
+  border-radius: 1.2rem;
+  background: var(--phekong-surface);
+  box-shadow: var(--phekong-shadow);
+}
+
+.training-review__toggle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 0;
+  background: var(--phekong-accent-soft);
+  color: var(--phekong-brand-strong);
+  padding: 0.9rem 1rem;
+  font-weight: 850;
+  text-align: left;
+}
+
+.training-review__body {
+  padding: 1rem;
+  font-size: 0.86rem;
+}
+
+.training-review ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.training-review li + li {
+  margin-top: 0.55rem;
+}
+
+@media (max-width: 60rem) {
+  .training-hero,
+  .training-state-lab {
+    grid-template-columns: 1fr;
+  }
+
+  .training-hero__visual {
+    min-height: 24.375rem;
+  }
+
+  .training-anatomy__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 38.75rem) {
+  .training-content {
+    padding-inline: 1rem;
+  }
+
+  .training-hero h1 {
+    font-size: clamp(2.45rem, 15vw, 4rem);
+  }
+
+  .training-hero__actions {
+    display: grid;
+  }
+
+  .training-hero__actions .phekong-button {
+    width: 100%;
+  }
+
+  .training-hero__visual {
+    min-height: 20.625rem;
+    border-radius: 1.4rem;
+  }
+
+  .training-section-heading,
+  .training-anatomy__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .training-review {
+    position: static;
+    width: auto;
+    margin: 1rem;
+  }
+}
