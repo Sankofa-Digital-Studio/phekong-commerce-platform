@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Phekong Wellness Centre",
-  description: "Commerce, wellness services, bookings and business operations.",
+  title: "Phekong M1 Application Shell Vision",
+  description:
+    "Phekong Wellness Centre's public M1 commerce foundation for accessible, responsive customer journeys.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
