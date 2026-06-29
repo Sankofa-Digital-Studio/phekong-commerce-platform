@@ -17,8 +17,9 @@
     "supabase:m0:unix": "bash ./scripts/validate-supabase-m0.sh",
     "supabase:m0:ci": "bash ./scripts/validate-supabase-m0.sh",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "test-storybook": "test-storybook"
+    "build-storybook": "call scripts\\build-storybook.cmd",
+    "test-storybook": "vitest run --configLoader runner --project=storybook",
+    "storybook:ci": "npm run test-storybook && npm run build-storybook"
   },
   "dependencies": {
     "@supabase/ssr": "^0.6.1",

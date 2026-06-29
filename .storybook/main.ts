@@ -1,4 +1,11 @@
+import { mkdirSync } from "node:fs";
+import { resolve } from "node:path";
 import type { StorybookConfig } from "@storybook/nextjs-vite";
+
+const cacheDir = process.env.CACHE_DIR || resolve(process.cwd(), "tmp", "storybook-cache");
+
+mkdirSync(cacheDir, { recursive: true });
+process.env.CACHE_DIR = cacheDir;
 
 const config: StorybookConfig = {
   stories: [
@@ -13,6 +20,12 @@ const config: StorybookConfig = {
   framework: {
     name: "@storybook/nextjs-vite",
     options: {}
+  },
+  core: {
+    disableTelemetry: true
+  },
+  typescript: {
+    check: false
   },
   // staticDirs: ["../public"]
 };

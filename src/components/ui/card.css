@@ -1,0 +1,47 @@
+.phekong-card {
+  display: grid;
+  gap: 0.75rem;
+  width: min(100%, 24rem);
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-lg);
+  background: var(--phekong-surface);
+  color: var(--phekong-ink);
+  padding: 1.5rem;
+  box-shadow: var(--phekong-card-shadow);
+  font-family: var(--phekong-font-sans);
+}
+
+.phekong-card-accent {
+  background: var(--phekong-accent-soft);
+}
+
+.phekong-card__eyebrow {
+  color: var(--phekong-brand);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.phekong-card__title {
+  margin: 0;
+  font-family: var(--phekong-font-display);
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+
+.phekong-card__body {
+  color: var(--phekong-muted);
+  line-height: 1.6;
+}
+
+.phekong-card__body > :first-child,
+.phekong-card__body > :last-child {
+  margin-block: 0;
+}
+
+.phekong-card__footer {
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--phekong-border);
+  padding-top: 1rem;
+}
