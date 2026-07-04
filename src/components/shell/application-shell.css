@@ -1,404 +1,40 @@
-<<<<<<< HEAD
-@import "../../styles/phekong-tokens.css";
-
-.phekong-canvas {
-  min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at 10% 0%,
-      color-mix(in srgb, var(--phekong-accent) 18%, transparent),
-      transparent 28%
-    ),
-    var(--phekong-bg);
-  color: var(--phekong-ink);
-  font-family: var(--phekong-font-sans);
-  line-height: 1.55;
-  transition:
-    background-color var(--phekong-motion-standard) ease,
-    color var(--phekong-motion-standard) ease;
-}
-
-.phekong-canvas a {
-  color: inherit;
-}
-
-.phekong-sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.phekong-skip-link {
-  position: fixed;
-  left: 1rem;
-  top: -5rem;
-  z-index: 1000;
-  border-radius: 0.5rem;
-  background: var(--phekong-focus);
-  color: var(--phekong-white) !important;
-  padding: 0.75rem 1rem;
-  text-decoration: none;
-  transition: top var(--phekong-motion-fast) ease;
-}
-
-.phekong-skip-link:focus {
-  top: 1rem;
-}
-
-.phekong-prototype-bar {
-  background: var(--phekong-brand-strong);
-  color: var(--phekong-bg);
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-}
-
-html[data-mode="dark"] .phekong-prototype-bar {
-  color: var(--phekong-bg);
-}
-
-.phekong-prototype-bar__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  max-width: var(--phekong-content-width);
-  margin: auto;
-  padding: 0.55rem var(--phekong-space-page);
-}
-
-.phekong-prototype-bar strong {
-  color: var(--phekong-accent-soft);
-}
-
-.phekong-utility-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.phekong-utility-control {
-  min-height: 2.25rem;
-  border: 1px solid color-mix(in srgb, currentColor 28%, transparent);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--phekong-surface) 92%, transparent);
-  color: var(--phekong-ink);
-  padding: 0.4rem 0.75rem;
-  font-size: 0.78rem;
-  font-weight: 750;
-}
-
-.phekong-icon-toggle {
-  min-width: 2.625rem;
-  padding-inline: 0.65rem;
-}
-
-.phekong-site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  border-bottom: 1px solid color-mix(in srgb, var(--phekong-brand) 18%, transparent);
-  background: var(--phekong-header-bg);
-  backdrop-filter: blur(0.875rem);
-}
-
-.phekong-header-inner {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 2rem;
-  min-height: var(--phekong-header-height);
-  max-width: var(--phekong-content-width);
-  margin: auto;
-  padding: 0.75rem var(--phekong-space-page);
-}
-
-.phekong-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  min-width: max-content;
-  text-decoration: none;
-}
-
-.phekong-brand-mark {
-  position: relative;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50% 50% 44% 56% / 48% 44% 56% 52%;
-  background:
-    radial-gradient(circle at 55% 38%, var(--phekong-accent-soft) 0 11%, transparent 12%),
-    linear-gradient(145deg, var(--phekong-accent), var(--phekong-brand));
-  box-shadow: inset 0 0 0 3px color-mix(in srgb, var(--phekong-surface) 45%, transparent);
-}
-
-.phekong-brand-mark::after {
-  content: "";
-  position: absolute;
-  left: 0.8125rem;
-  top: 1.4375rem;
-  width: 1.0625rem;
-  height: 0.5625rem;
-  transform: rotate(-8deg);
-  border: 2px solid color-mix(in srgb, var(--phekong-surface) 86%, transparent);
-  border-top: 0;
-  border-radius: 0 0 50% 50%;
-}
-
-.phekong-brand-copy {
-  display: grid;
-  line-height: 1.04;
-}
-
-.phekong-brand-copy strong {
-  font-family: var(--phekong-font-display);
-  font-size: 1.15rem;
-}
-
-.phekong-brand-copy span {
-  margin-top: 0.25rem;
-  color: var(--phekong-muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.phekong-desktop-nav {
-  justify-self: center;
-}
-
-.phekong-desktop-nav ul,
-.phekong-mobile-drawer ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.phekong-desktop-nav ul {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.phekong-nav-link {
-  display: inline-flex;
-  border-radius: 999px;
-  color: var(--phekong-muted) !important;
-  padding: 0.7rem 0.85rem;
-  font-size: 0.92rem;
-  font-weight: 650;
-  text-decoration: none;
-}
-
-.phekong-nav-link:hover,
-.phekong-nav-link[aria-current="page"] {
-  background: var(--phekong-accent-soft);
-  color: var(--phekong-brand-strong) !important;
-}
-
-.phekong-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-.phekong-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 2.75rem;
-  border-radius: 999px;
-  padding: 0.7rem 1rem;
-  font-size: 0.94rem;
-  font-weight: 750;
-  text-decoration: none;
-}
-
-.phekong-button--primary {
-  border: 0;
-  background: var(--phekong-brand);
-  color: var(--phekong-surface) !important;
-}
-
-.phekong-button--primary:hover {
-  background: var(--phekong-brand-strong);
-}
-
-.phekong-button--ghost {
-  border: 1px solid var(--phekong-border);
-  background: transparent;
-  color: var(--phekong-brand-strong);
-}
-
-.phekong-menu-button {
-  display: none;
-  width: 2.75rem;
-  padding: 0;
-}
-
-.phekong-mobile-drawer {
-  display: none;
-  border-top: 1px solid var(--phekong-border);
-  background: var(--phekong-surface);
-}
-
-.phekong-mobile-drawer nav {
-  max-width: var(--phekong-content-width);
-  margin: auto;
-  padding: 1rem var(--phekong-space-page) 1.4rem;
-}
-
-.phekong-mobile-drawer ul {
-  display: grid;
-  gap: 0.35rem;
-  margin-bottom: 1rem;
-}
-
-.phekong-mobile-drawer .phekong-nav-link {
-  display: flex;
-  border-radius: 0.7rem;
-}
-
-.phekong-footer {
-  margin-top: 5rem;
-  background: var(--phekong-footer-bg);
-  color: var(--phekong-footer-text);
-}
-
-.phekong-footer__inner {
-  display: grid;
-  grid-template-columns: 1.2fr repeat(3, 0.8fr);
-  gap: 2rem;
-  max-width: var(--phekong-content-width);
-  margin: auto;
-  padding: 3rem var(--phekong-space-page) 1.5rem;
-}
-
-.phekong-footer h2 {
-  margin-top: 0;
-  font-family: var(--phekong-font-display);
-  font-size: 1.17rem;
-}
-
-.phekong-footer__intro {
-  max-width: 34ch;
-  color: var(--phekong-footer-muted);
-}
-
-.phekong-footer__list {
-  display: grid;
-  gap: 0.55rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.phekong-footer a {
-  color: var(--phekong-footer-muted);
-  text-decoration: none;
-}
-
-.phekong-footer a:hover {
-  color: var(--phekong-footer-text);
-  text-decoration: underline;
-}
-
-.phekong-footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  max-width: var(--phekong-content-width);
-  margin: auto;
-  border-top: 1px solid color-mix(in srgb, var(--phekong-white) 12%, transparent);
-  color: var(--phekong-footer-muted);
-  padding: 1rem var(--phekong-space-page) 1.5rem;
-  font-size: 0.78rem;
-}
-
-@media (max-width: 60rem) {
-  .phekong-desktop-nav,
-  .phekong-header-actions > .phekong-button--primary {
-    display: none;
-  }
-
-  .phekong-header-inner {
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
-  }
-
-  .phekong-menu-button,
-  .phekong-mobile-drawer {
-    display: flex;
-  }
-
-  .phekong-mobile-drawer {
-    display: block;
-  }
-
-  .phekong-footer__inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 38.75rem) {
-  .phekong-prototype-bar__inner {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-
-  .phekong-utility-controls {
-    width: 100%;
-  }
-
-  .phekong-utility-controls label,
-  .phekong-utility-controls select {
-    min-width: 0;
-    flex: 1;
-  }
-
-  .phekong-brand-copy span {
-    display: none;
-  }
-
-  .phekong-footer__inner {
-    grid-template-columns: 1fr;
-  }
-
-  .phekong-footer__bottom {
-    flex-direction: column;
-=======
 .skip-link {
   position: fixed;
   left: 1rem;
   top: -5rem;
   z-index: 100;
-  background: var(--focus);
-  color: var(--surface);
-  padding: 0.8rem 1rem;
+  background: var(--phekong-focus);
+  color: var(--phekong-white);
+  padding: 0.75rem 1rem;
+  text-decoration: none;
 }
 
 .skip-link:focus {
   top: 1rem;
 }
 
+.phekong-canvas {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--phekong-accent) 16%, transparent), transparent 28%),
+    var(--phekong-bg);
+  color: var(--phekong-ink);
+  font-family: var(--phekong-font-sans);
+  line-height: 1.55;
+}
+
 .site-header {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: color-mix(in srgb, var(--surface) 94%, transparent);
-  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--phekong-surface) 94%, transparent);
+  border-bottom: 1px solid var(--phekong-border);
+  backdrop-filter: blur(0.75rem);
 }
 
 .header-inner {
-  max-width: var(--content);
-  min-height: var(--header-h);
+  max-width: var(--phekong-content-width);
+  min-height: var(--phekong-header-height);
   margin: auto;
   padding: 1rem 1.25rem;
   display: grid;
@@ -411,16 +47,34 @@ html[data-mode="dark"] .phekong-prototype-bar {
   display: inline-flex;
   gap: 0.75rem;
   align-items: center;
-  color: var(--ink);
+  color: var(--phekong-ink);
   text-decoration: none;
 }
 
 .brand-mark {
+  position: relative;
   width: 46px;
   height: 46px;
   display: grid;
   place-items: center;
-  color: var(--brand);
+  border-radius: 50% 50% 44% 56% / 48% 44% 56% 52%;
+  background:
+    radial-gradient(circle at 55% 38%, var(--phekong-accent-soft) 0 11%, transparent 12%),
+    linear-gradient(145deg, var(--phekong-accent), var(--phekong-brand));
+  box-shadow: inset 0 0 0 3px color-mix(in srgb, var(--phekong-surface) 45%, transparent);
+}
+
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  left: 0.8125rem;
+  top: 1.4375rem;
+  width: 1.0625rem;
+  height: 0.5625rem;
+  transform: rotate(-8deg);
+  border: 2px solid color-mix(in srgb, var(--phekong-surface) 86%, transparent);
+  border-top: 0;
+  border-radius: 0 0 50% 50%;
 }
 
 .brand-copy {
@@ -429,7 +83,7 @@ html[data-mode="dark"] .phekong-prototype-bar {
 }
 
 .brand-copy span {
-  color: var(--muted);
+  color: var(--phekong-muted);
   font-size: 0.8rem;
 }
 
@@ -440,18 +94,17 @@ html[data-mode="dark"] .phekong-prototype-bar {
 }
 
 .nav-link {
-  color: var(--muted);
+  color: var(--phekong-muted);
   text-decoration: none;
   padding: 0.75rem 1rem;
   border-radius: var(--radius-pill);
   font-weight: 700;
-  transition: background-color 160ms ease, color 160ms ease;
 }
 
 .nav-link:hover,
 .nav-link[aria-current="page"] {
-  color: var(--brand-strong);
-  background: var(--accent-soft);
+  color: var(--phekong-brand-strong);
+  background: var(--phekong-accent-soft);
 }
 
 .header-actions {
@@ -467,38 +120,141 @@ html[data-mode="dark"] .phekong-prototype-bar {
   border: 0;
   padding: 0.7rem 1rem;
   font-weight: 800;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .button-primary {
-  background: var(--brand);
-  color: var(--surface);
+  background: var(--phekong-brand);
+  color: var(--phekong-surface);
   text-decoration: none;
-}
-
-.button-ghost {
-  background: transparent;
-  color: var(--brand-strong);
-  border: 1px solid var(--border);
 }
 
 .menu-button {
   display: none;
-  background: var(--surface-2);
-  color: var(--ink);
+  background: var(--phekong-surface-2);
+  color: var(--phekong-ink);
 }
 
 .mobile-nav {
   display: none;
   padding: 1rem;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
+  background: var(--phekong-surface);
+  border-top: 1px solid var(--phekong-border);
 }
 
 .shell-main {
-  max-width: var(--content);
-  min-height: 70vh;
+  max-width: var(--phekong-content-width);
   margin: auto;
-  padding: clamp(2rem, 5vw, 5rem) 1.25rem;
+  padding: clamp(2rem, 5vw, 5rem) 1.25rem 4rem;
+}
+
+.shell-surface {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.shell-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.9fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.shell-hero__copy {
+  padding-right: 1rem;
+}
+
+.shell-hero__eyebrow {
+  margin: 0 0 1rem;
+  color: var(--phekong-brand);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.shell-hero h1 {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--phekong-font-display);
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  line-height: 0.96;
+}
+
+.shell-hero__intro {
+  max-width: 58ch;
+  margin: 1.5rem 0 0;
+  color: var(--phekong-muted);
+  font-size: 1.05rem;
+}
+
+.shell-hero__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+
+.shell-hero__panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  padding: 1.5rem;
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--phekong-surface) 96%, transparent), var(--phekong-surface)),
+    var(--phekong-surface);
+  box-shadow: var(--phekong-card-shadow);
+}
+
+.shell-hero__panel-label {
+  margin: 0;
+  color: var(--phekong-brand);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.shell-hero__panel h2 {
+  margin: 0;
+  font-family: var(--phekong-font-display);
+  font-size: 1.55rem;
+  line-height: 1.08;
+}
+
+.shell-hero__panel p {
+  margin: 0;
+  color: var(--phekong-muted);
+}
+
+.shell-hero__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.shell-hero__metrics div {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-md);
+  background: var(--phekong-surface-2);
+}
+
+.shell-hero__metrics dt {
+  color: var(--phekong-muted);
+  font-size: 0.8rem;
+}
+
+.shell-hero__metrics dd {
+  margin: 0;
+  color: var(--phekong-ink);
+  font-size: 1.15rem;
+  font-weight: 800;
 }
 
 .state-panel {
@@ -507,32 +263,32 @@ html[data-mode="dark"] .phekong-prototype-bar {
   place-content: center;
   text-align: center;
   padding: 2rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  background: var(--phekong-surface);
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-lg);
 }
 
 .state-panel h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(2rem, 5vw, 4rem);
   margin: 0 0 0.75rem;
+  font-family: var(--phekong-font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
 }
 
 .state-panel p {
-  color: var(--muted);
+  color: var(--phekong-muted);
   max-width: 48ch;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .state-error h1 {
-  color: var(--danger);
+  color: var(--phekong-danger);
 }
 
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid var(--border);
-  border-top-color: var(--brand);
+  border: 4px solid var(--phekong-border);
+  border-top-color: var(--phekong-brand);
   border-radius: 50%;
   margin: 0 auto 1rem;
   animation: spin 1s linear infinite;
@@ -549,9 +305,9 @@ html[data-mode="dark"] .phekong-prototype-bar {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  padding: 2rem max(1.25rem, calc((100vw - var(--content)) / 2));
-  background: #101416;
-  color: #f4f1ea;
+  padding: 2rem max(1.25rem, calc((100vw - var(--phekong-content-width)) / 2));
+  background: var(--phekong-footer-bg);
+  color: var(--phekong-footer-text);
 }
 
 @media (max-width: 900px) {
@@ -575,6 +331,23 @@ html[data-mode="dark"] .phekong-prototype-bar {
 
   .mobile-nav .nav-link {
     border-radius: 0.75rem;
->>>>>>> e5725b8 (feat: integrate ShellLogo component and enhance application shell styles)
+  }
+
+  .shell-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell-hero__copy {
+    padding-right: 0;
+  }
+
+  .shell-hero__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    flex-direction: column;
   }
 }

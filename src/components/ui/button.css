@@ -1,23 +1,5 @@
 .phekong-button {
   min-height: 44px;
-<<<<<<< HEAD
-  border-radius: 999px;
-  padding: 0 1.25rem;
-  border: 1px solid transparent;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--phekong-font-sans);
-  font-weight: 800;
-}
-.phekong-button-primary { background: var(--phekong-brand); color: var(--phekong-surface); }
-.phekong-button-secondary { background: var(--phekong-accent-soft); color: var(--phekong-brand-strong); }
-.phekong-button-ghost { background: transparent; color: var(--phekong-brand-strong); border-color: var(--phekong-border); }
-.phekong-button-small { min-height: 38px; padding: 0 1rem; font-size: .95rem; }
-.phekong-button-medium { min-height: 44px; padding: 0 1.25rem; font-size: 1rem; }
-.phekong-button-large { min-height: 52px; padding: 0 1.5rem; font-size: 1.05rem; }
-.phekong-button:disabled { opacity: .55; cursor: not-allowed; }
-=======
   border-radius: var(--radius-pill);
   padding: 0 1.25rem;
   border: 1px solid transparent;
@@ -71,4 +53,3 @@
   opacity: 0.55;
   cursor: not-allowed;
 }
->>>>>>> 63c29ea (feat: add Button and Section components with responsive design and update FeatureCard)
