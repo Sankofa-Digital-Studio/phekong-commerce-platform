@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import Image from "next/image";
 import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/ProductCatalogue";
 import { shellCopy, type ShellLocale } from "./translations";
 import "./application-shell.css";
@@ -169,10 +170,13 @@ function HomeSurface({
         <aside className="shell-hero__visual" aria-label="Editor's pick">
           <div className="shell-hero__glow shell-hero__glow--large" aria-hidden="true" />
           <div className="shell-hero__glow shell-hero__glow--small" aria-hidden="true" />
-          <img
+          <Image
             className="shell-hero__image"
             src="/images/phekong-hero-reference.png"
             alt="Phekong restorative body oil arranged with ritual ingredients on a dark surface."
+            width={1200}
+            height={900}
+            priority
           />
           <article className="shell-hero__card">
             <p className="shell-hero__card-label">EDITOR&apos;S PICK</p>

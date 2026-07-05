@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import Image from "next/image";
 import "./product-catalogue.css";
 
 export type ProductCatalogueState = "ready" | "loading" | "empty" | "error";
@@ -134,7 +135,14 @@ function ProductCatalogueReady({
           return (
             <article className="product-card" key={product.slug}>
               <div className="product-card__media">
-                <img className="product-card__image" src={product.imageSrc} alt={product.imageAlt} />
+                <Image
+                  className="product-card__image"
+                  src={product.imageSrc}
+                  alt={product.imageAlt}
+                  width={720}
+                  height={720}
+                  loading="eager"
+                />
                 <span className={`product-card__status ${availabilityClassName}`}>{availability}</span>
                 <button className="product-card__favorite" type="button" aria-label={`Save ${product.name}`}>
                   <HeartIcon />
