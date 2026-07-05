@@ -4,6 +4,7 @@ import { ProductCatalogue } from "./ProductCatalogue";
 const meta = {
   title: "M1/Catalogue/ProductCatalogue",
   component: ProductCatalogue,
+  parameters: { layout: "fullscreen" },
   tags: ["autodocs"],
 } satisfies Meta<typeof ProductCatalogue>;
 

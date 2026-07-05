@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { Button } from "@/components/ui/Button";
-import { catalogueProducts, ProductCatalogue, type ProductCatalogueState } from "../catalogue/ProductCatalogue";
+import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/ProductCatalogue";
 import { shellCopy, type ShellLocale } from "./translations";
 import "./application-shell.css";
 
@@ -34,24 +33,26 @@ export function ApplicationShell({
 
   const links = [
     ["home", t.home],
+    ["shop", "Shop"],
+    ["collections", "Collections"],
     ["about", t.about],
-    ["products", t.products],
-    ["services", t.services],
+    ["rituals", "Rituals"],
     ["contact", t.contact],
   ] as const;
 
   return (
-    <div className="phekong-canvas">
+    <div className="phekong-canvas phekong-canvas--luxury">
       <a className="skip-link" href="#main-content">
         {t.skip}
       </a>
       <header className="site-header">
         <div className="header-inner">
           <a className="brand" href="#main-content" aria-label={t.brandAria}>
-            <span className="brand-mark" aria-hidden="true" />
+            <span className="brand-mark" aria-hidden="true">
+              <LeafMark />
+            </span>
             <span className="brand-copy">
-              <strong>Phekong</strong>
-              <span>{t.wellnessCentre}</span>
+              <strong>PHEKONG</strong>
             </span>
           </a>
 
@@ -69,8 +70,18 @@ export function ApplicationShell({
           </nav>
 
           <div className="header-actions">
-            <a className="button button-primary" href="#contact">
-              {t.contactPhekong}
+            <button className="icon-button" type="button" aria-label="Search">
+              <SearchIcon />
+            </button>
+            <button className="icon-button" type="button" aria-label="Account">
+              <UserIcon />
+            </button>
+            <button className="icon-button icon-button--bag" type="button" aria-label="Cart">
+              <BagIcon />
+              <span className="icon-badge">2</span>
+            </button>
+            <a className="shell-header-cta" href="#contact">
+              Ask About a Product
             </a>
             <button
               className="menu-button"
@@ -79,7 +90,7 @@ export function ApplicationShell({
               aria-controls="mobile-navigation"
               onClick={() => setMenuOpen((value) => !value)}
             >
-              {menuOpen ? "Close" : "Menu"}
+              {menuOpen ? t.menuClose : t.menuOpen}
             </button>
           </div>
         </div>
@@ -101,11 +112,7 @@ export function ApplicationShell({
         )}
       </header>
 
-      <main
-        id="main-content"
-        className="shell-main"
-        aria-busy={state === "loading" ? "true" : "false"}
-      >
+      <main id="main-content" className="shell-main" aria-busy={state === "loading" ? "true" : "false"}>
         {showStatePanel && <ShellStatePanel state={state} />}
 
         {shellContent}
@@ -126,76 +133,145 @@ function HomeSurface({
   catalogueState: ProductCatalogueState;
   onRetry?: () => void;
 }) {
-  const activeProducts = catalogueProducts.filter((product) => product.active);
-  const lowStockCount = activeProducts.filter(
-    (product) => product.stockQuantity > 0 && product.stockQuantity <= product.lowStockThreshold,
-  ).length;
-  const outOfStockCount = activeProducts.filter((product) => product.stockQuantity === 0).length;
-
   return (
     <div className="shell-surface">
       <section className="shell-hero" id="home">
         <div className="shell-hero__copy">
-          <p className="shell-hero__eyebrow">PHEKONG WELLNESS CENTRE</p>
-          <h1>Commerce and booking platform</h1>
+          <p className="shell-hero__kicker">ROOTED IN NATURE, MADE FOR YOU</p>
+          <h1>Rituals that restore balance.</h1>
           <p className="shell-hero__intro">
-            The public shell is live. Browse active products, keep stock visibility clear, and
-            preserve room for future booking and checkout milestones.
+            Phekong crafts natural body and hair care with intention. Pure ingredients.
+            Conscious rituals. Real results.
           </p>
           <div className="shell-hero__actions">
-            <Button
-              size="medium"
-              variant="primary"
-              type="button"
-              onClick={() => {
-                window.location.hash = "#products";
-              }}
-            >
-              Browse products
-            </Button>
-            <Button
-              size="medium"
-              variant="secondary"
-              type="button"
-              onClick={() => {
-                window.location.hash = "#contact";
-              }}
-            >
-              Contact Phekong
-            </Button>
+            <a className="shell-cta" href="#products">
+              Explore Our Products
+              <ArrowRightIcon />
+            </a>
+          </div>
+
+          <div className="shell-trust">
+            <div className="shell-trust__avatars" aria-label="Trusted by 1,200+ customers">
+              <span className="shell-avatar shell-avatar--one">A</span>
+              <span className="shell-avatar shell-avatar--two">K</span>
+              <span className="shell-avatar shell-avatar--three">M</span>
+            </div>
+            <div className="shell-trust__copy">
+              <span>Trusted by 1,200+ customers</span>
+              <div className="shell-trust__rating">
+                <StarsRow />
+                <span>4.9/5</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <aside className="shell-hero__panel" aria-label="Public read model summary">
-          <p className="shell-hero__panel-label">Public read model</p>
-          <h2>Ready for active product browsing</h2>
-          <p>
-            Product prices and stock signals are visible without exposing checkout or admin
-            controls.
-          </p>
-          <dl className="shell-hero__metrics">
-            <div>
-              <dt>Active products</dt>
-              <dd>{activeProducts.length}</dd>
+        <aside className="shell-hero__visual" aria-label="Editor's pick">
+          <div className="shell-hero__glow shell-hero__glow--large" aria-hidden="true" />
+          <div className="shell-hero__glow shell-hero__glow--small" aria-hidden="true" />
+          <img
+            className="shell-hero__image"
+            src="/images/phekong-hero-reference.png"
+            alt="Phekong restorative body oil arranged with ritual ingredients on a dark surface."
+          />
+          <article className="shell-hero__card">
+            <p className="shell-hero__card-label">EDITOR&apos;S PICK</p>
+            <h2>Restorative Body Oil</h2>
+            <p className="shell-hero__card-copy">
+              A deeply nourishing blend that restores, softens and renews. Infused with marula,
+              baobab and vitamin E.
+            </p>
+            <strong className="shell-hero__price">R 320.00</strong>
+            <p className="shell-hero__stock">
+              <span className="shell-hero__stock-dot" aria-hidden="true" />
+              In Stock <span aria-hidden="true">•</span> Ready to Ship
+            </p>
+            <div className="shell-hero__card-actions">
+              <a className="shell-card-cta" href="#products">
+                View Product
+              </a>
+              <button className="shell-round-button" type="button" aria-label="Ask about this product">
+                +
+              </button>
             </div>
-            <div>
-              <dt>Low stock alerts</dt>
-              <dd>{lowStockCount}</dd>
+          </article>
+          <div className="shell-hero__pager" aria-label="Hero navigation">
+            <button type="button" className="shell-pager__button" aria-label="Previous slide">
+              <ChevronLeftIcon />
+            </button>
+            <div className="shell-pager__dots" aria-hidden="true">
+              <span className="is-active" />
+              <span />
+              <span />
+              <span />
             </div>
-            <div>
-              <dt>Out of stock</dt>
-              <dd>{outOfStockCount}</dd>
-            </div>
-            <div>
-              <dt>Recovery path</dt>
-              <dd>Contact</dd>
-            </div>
-          </dl>
+            <button type="button" className="shell-pager__button" aria-label="Next slide">
+              <ChevronRightIcon />
+            </button>
+          </div>
         </aside>
       </section>
 
+      <section className="shell-feature-strip" aria-label="Key brand commitments">
+        <FeatureItem icon={<LeafIcon />} title="Clean Ingredients" copy="No nasties. Ever." />
+        <FeatureItem icon={<BowlIcon />} title="Made in Small Batches" copy="Quality over quantity." />
+        <FeatureItem icon={<RabbitIcon />} title="Cruelty Free" copy="Kind to animals." />
+        <FeatureItem icon={<RecycleIcon />} title="Sustainable Packaging" copy="Good for you & the planet." />
+      </section>
+
       <ProductCatalogue state={catalogueState} onRetry={onRetry} />
+
+      <section className="shell-metrics" aria-label="Trust metrics">
+        <MetricItem icon={<LeafBadgeIcon />} value="100%" label="Natural Ingredients" />
+        <MetricItem icon={<UsersIcon />} value="1,200+" label="Happy Customers" />
+        <MetricItem icon={<StarBadgeIcon />} value="4.9/5" label="Average Rating" />
+        <MetricItem icon={<ShieldIcon />} value="30-Day" label="Love It or Return It Guarantee" />
+      </section>
     </div>
+  );
+}
+
+function FeatureItem({
+  icon,
+  title,
+  copy,
+}: {
+  icon: ReactNode;
+  title: string;
+  copy: string;
+}) {
+  return (
+    <article className="shell-feature">
+      <span className="shell-feature__icon" aria-hidden="true">
+        {icon}
+      </span>
+      <div>
+        <h3>{title}</h3>
+        <p>{copy}</p>
+      </div>
+    </article>
+  );
+}
+
+function MetricItem({
+  icon,
+  value,
+  label,
+}: {
+  icon: ReactNode;
+  value: string;
+  label: string;
+}) {
+  return (
+    <article className="shell-metric">
+      <span className="shell-metric__icon" aria-hidden="true">
+        {icon}
+      </span>
+      <div>
+        <strong>{value}</strong>
+        <span>{label}</span>
+      </div>
+    </article>
   );
 }
 
@@ -213,5 +289,145 @@ function ShellStatePanel({ state }: { state: ShellState }) {
       <h1>{copy[0]}</h1>
       <p>{copy[1]}</p>
     </section>
+  );
+}
+
+function LeafMark() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18.75 4.8c-4.8-.8-8.42.55-10.82 2.88C5.24 10.35 4.5 14.08 4.5 17.8c3.76 0 7.47-.72 10.12-3.38 2.33-2.33 3.68-5.94 2.88-9.62-1.26 3.22-3.24 5.92-6.21 8.03-1.58 1.13-3.42 2.03-5.53 2.67 2.49-1.47 4.63-3.28 6.42-5.45 1.61-1.96 2.9-4.24 3.57-7.25Z" />
+    </svg>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M10.5 4a6.5 6.5 0 1 0 4.12 11.54l4.42 4.42 1.41-1.41-4.42-4.42A6.5 6.5 0 0 0 10.5 4Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" />
+    </svg>
+  );
+}
+
+function UserIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 12.25A4.25 4.25 0 1 0 12 3.75a4.25 4.25 0 0 0 0 8.5Zm0 1.75c-4.4 0-8 2.56-8 5.71V21h16v-1.29c0-3.15-3.6-5.71-8-5.71Z" />
+    </svg>
+  );
+}
+
+function BagIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 8V7a5 5 0 0 1 10 0v1h2.1c.99 0 1.8.76 1.9 1.74l.84 8.48A2.75 2.75 0 0 1 19.1 21H4.9a2.75 2.75 0 0 1-2.74-2.78L3 9.74A1.9 1.9 0 0 1 4.9 8H7Zm2 0h6V7a3 3 0 0 0-6 0v1Z" />
+    </svg>
+  );
+}
+
+function ArrowRightIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M13 4.5 20.5 12 13 19.5l-1.42-1.42 5.08-5.08H3.5v-2h13.16l-5.08-5.08L13 4.5Z" />
+    </svg>
+  );
+}
+
+function ChevronLeftIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m14.5 5-7 7 7 7 1.4-1.4L10.8 12l5.1-5.6L14.5 5Z" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m9.5 5 7 7-7 7-1.4-1.4L13.2 12 8.1 6.4 9.5 5Z" />
+    </svg>
+  );
+}
+
+function StarsRow() {
+  return (
+    <span className="shell-stars" aria-hidden="true">
+      <StarIcon />
+      <StarIcon />
+      <StarIcon />
+      <StarIcon />
+      <StarIcon />
+    </span>
+  );
+}
+
+function StarIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m12 3 2.93 5.93 6.55.95-4.74 4.62 1.12 6.53L12 17.95 6.14 21.03l1.12-6.53L2.52 9.88l6.55-.95L12 3Z" />
+    </svg>
+  );
+}
+
+function LeafIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18.4 5.3c-4.88.1-8.67 1.85-11.02 4.4C5 12.41 4.38 15.67 4.5 19c3.31.11 6.57-.5 9.31-2.88 2.54-2.22 4.29-6 4.4-10.82-.89 2.17-2.3 4.05-4.26 5.7-1.8 1.52-4.01 2.69-6.7 3.43 2.8-1.71 5.14-3.77 7.01-6.2 1.36-1.77 2.42-3.73 4.14-7.93Z" />
+    </svg>
+  );
+}
+
+function BowlIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 10h16a8 8 0 0 1-16 0Zm2 0a6 6 0 0 0 12 0H6Zm1.4 9.5h9.2v1.5H7.4v-1.5Z" />
+    </svg>
+  );
+}
+
+function RabbitIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8.2 6.7c-.7-2-.3-4.8 1.8-5.7.9 1.7 1.1 3.7.6 5.5-.4 1.5-1.3 2.8-2.4 4 .2-.9.2-2.1 0-3.8Zm7.8-.2c1.8 1 2.6 3.3 2 5.2-.8 2.5-3 4.6-5.7 5.2-3.9.9-7.7-1.3-8.2-4.7-.3-2.1.7-4.2 2.4-5.6.8-.7 1.7-1.2 2.7-1.5 1.8-.5 3.8-.3 5.4.4.5.2 1 .6 1.4 1Zm-4.2 2.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" />
+    </svg>
+  );
+}
+
+function RecycleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m8.6 4.8 2.1 3.7H6.7l1.9-3.7Zm4.7 0 2.1 3.7h-4.1l2-3.7Zm1.4 4.8 3.6 6.2H14l2.2-6.2ZM5 11.2l3.7 6.4H5.1a2.2 2.2 0 0 1-1.9-3.3l1.8-3.1Zm11.2 6.4-3.5-6.1 2.2-3.8 4 6.8a2.2 2.2 0 0 1-1.9 3.1h-.8Z" />
+    </svg>
+  );
+}
+
+function LeafBadgeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18.6 4.9c-4.7.1-8.4 1.8-10.7 4.2C5.2 11.8 4.6 15 4.7 18.2c3.2.1 6.4-.5 9.1-2.8 2.4-2.1 4.1-5.7 4.2-10.5-.9 2.1-2.3 3.9-4.2 5.4-1.7 1.4-3.8 2.5-6.3 3.2 2.6-1.6 4.9-3.5 6.7-5.8 1.3-1.7 2.3-3.6 4.4-7.8Z" />
+    </svg>
+  );
+}
+
+function UsersIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8.5 12.25a3.1 3.1 0 1 0 0-6.2 3.1 3.1 0 0 0 0 6.2Zm7.2.1a2.7 2.7 0 1 0 0-5.4 2.7 2.7 0 0 0 0 5.4ZM2.7 19v-.8c0-2.4 2.9-4.4 5.8-4.4S14.2 15.8 14.2 18.2v.8H2.7Zm10.5 0v-.6c0-.9-.2-1.7-.6-2.4 1 .1 2 .4 2.8.9.8.6 1.4 1.4 1.4 2.1v0H13.2Z" />
+    </svg>
+  );
+}
+
+function StarBadgeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m12 3 2.8 5.7 6.3.9-4.6 4.4 1.1 6.4L12 17.9 6.4 20.4l1.1-6.4L2.9 9.6l6.3-.9L12 3Z" />
+    </svg>
+  );
+}
+
+function ShieldIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3.5 19 6.3v5.1c0 4.6-3.1 8.7-7 9.8-3.9-1.1-7-5.2-7-9.8V6.3L12 3.5Zm-1 10.7 4.8-4.8-1.4-1.4-3.4 3.4-1.5-1.5-1.4 1.4 2.9 2.9Z" />
+    </svg>
   );
 }
