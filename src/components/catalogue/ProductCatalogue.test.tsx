@@ -6,10 +6,15 @@ describe("ProductCatalogue", () => {
   it("renders the ready catalogue with active products", () => {
     render(<ProductCatalogue />);
 
-    expect(screen.getByRole("heading", { name: /browse active products at a glance/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /restorative body oil/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /calming foot soak/i })).toBeInTheDocument();
-    expect(screen.getAllByText(/out of stock/i)).toHaveLength(2);
+    expect(screen.getByRole("heading", { name: /featured essentials for the page/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /care for your ritual, daily/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /nourishing shea butter/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /growth & strength oil/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /exfoliating sugar scrub/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /turmeric & honey soap/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/in stock/i)).toHaveLength(2);
+    expect(screen.getByText(/low stock/i)).toBeInTheDocument();
+    expect(screen.getByText(/out of stock/i)).toBeInTheDocument();
   });
 
   it("renders the loading state", () => {

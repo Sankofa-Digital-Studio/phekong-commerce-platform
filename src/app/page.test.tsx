@@ -7,11 +7,9 @@ describe("HomePage", () => {
     render(<HomePage />);
 
     expect(screen.getByRole("navigation", { name: /primary navigation/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /contact phekong/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /commerce and booking platform/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: /browse active products at a glance/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /ask about a product/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /rituals that restore balance/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /featured essentials for the page/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /restorative body oil/i })).toBeInTheDocument();
   });
 });
