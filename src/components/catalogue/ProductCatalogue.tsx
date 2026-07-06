@@ -128,39 +128,45 @@ function ProductCatalogueReady({
         </Button>
       </aside>
 
-      <div className="product-catalogue__grid" aria-label="Featured products">
-        {products.map((product) => {
-          const [availability, availabilityClassName] = getAvailabilityLabel(product);
+      <div className="product-catalogue__carousel">
+        <div className="product-catalogue__grid" aria-label="Featured products">
+          {products.map((product) => {
+            const [availability, availabilityClassName] = getAvailabilityLabel(product);
 
-          return (
-            <article className="product-card" key={product.slug}>
-              <div className="product-card__media">
-                <Image
-                  className="product-card__image"
-                  src={product.imageSrc}
-                  alt={product.imageAlt}
-                  width={720}
-                  height={720}
-                  loading="eager"
-                />
-                <span className={`product-card__status ${availabilityClassName}`}>{availability}</span>
-                <button className="product-card__favorite" type="button" aria-label={`Save ${product.name}`}>
-                  <HeartIcon />
-                </button>
-              </div>
-              <div className="product-card__content">
-                <p className="product-card__category">{product.category}</p>
-                <h3>{product.name}</h3>
-                <div className="product-card__footer">
-                  <strong className="product-card__price">{formatCurrency(product.priceCents)}</strong>
-                  <span className="product-card__rating">
-                    <StarIcon /> {product.rating.toFixed(1)}
-                  </span>
+            return (
+              <article className="product-card" key={product.slug}>
+                <div className="product-card__media">
+                  <Image
+                    className="product-card__image"
+                    src={product.imageSrc}
+                    alt={product.imageAlt}
+                    width={720}
+                    height={720}
+                    loading="eager"
+                  />
+                  <span className={`product-card__status ${availabilityClassName}`}>{availability}</span>
+                  <button className="product-card__favorite" type="button" aria-label={`Save ${product.name}`}>
+                    <HeartIcon />
+                  </button>
                 </div>
-              </div>
-            </article>
-          );
-        })}
+                <div className="product-card__content">
+                  <p className="product-card__category">{product.category}</p>
+                  <h3>{product.name}</h3>
+                  <div className="product-card__footer">
+                    <strong className="product-card__price">{formatCurrency(product.priceCents)}</strong>
+                    <span className="product-card__rating">
+                      <StarIcon /> {product.rating.toFixed(1)}
+                    </span>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <button className="product-catalogue__next" type="button" aria-label="Next products">
+          <ArrowRightIcon />
+        </button>
       </div>
     </div>
   );
@@ -287,6 +293,14 @@ function StarIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="m12 3 2.93 5.93 6.55.95-4.74 4.62 1.12 6.53L12 17.95 6.14 21.03l1.12-6.53L2.52 9.88l6.55-.95L12 3Z" />
+    </svg>
+  );
+}
+
+function ArrowRightIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M13 4.5 20.5 12 13 19.5l-1.42-1.42 5.08-5.08H3.5v-2h13.16l-5.08-5.08L13 4.5Z" />
     </svg>
   );
 }
