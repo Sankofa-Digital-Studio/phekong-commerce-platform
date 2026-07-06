@@ -11,6 +11,16 @@ Custom commerce, booking, inventory, seller-tracking and business intelligence M
 - Pull Requests: review and acceptance evidence
 - `/docs`: architecture and operational documentation
 
+## Issue 23
+
+- `docs/issue-23-draft-pr-summary.md`: PR-ready summary of the shipped slice
+- `docs/issue-23-implementation-walkthrough.md`: three-pass implementation and token walkthrough
+- `docs/issue-23-storybook-alignment.md`: Storybook alignment notes for the live shell and catalogue
+
+## Git reference
+
+- `docs/git-cheatsheet.md`: practical Git cheat sheet with when/why/how notes and before/after state examples
+
 ## Issue naming convention
 
 Issue titles must follow the established Sankofa milestone naming pattern:
