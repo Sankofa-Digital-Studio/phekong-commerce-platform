@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { getRobotsMeta, getSiteOrigin } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Phekong M1 Application Shell Vision",
-  description:
-    "Phekong Wellness Centre's public M1 commerce foundation for accessible, responsive customer journeys.",
+  metadataBase: new URL(getSiteOrigin()),
+  title: {
+    default: "Phekong Wellness Centre",
+    template: "%s | Phekong Wellness Centre",
+  },
+  description: "Approved public product catalogue and product detail pages for Phekong Wellness Centre.",
+  robots: getRobotsMeta(),
   icons: {
     icon: "/icon.svg",
   },
