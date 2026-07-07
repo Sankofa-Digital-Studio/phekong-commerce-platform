@@ -1,43 +1,74 @@
 @import "../styles/phekong-tokens.css";
+@import "../styles/design-system.css";
+
+:root {
+  --content: var(--phekong-content-width);
+  --header-h: var(--phekong-header-height);
+  --surface: var(--phekong-surface);
+  --surface-2: var(--phekong-surface-2);
+  --ink: var(--phekong-ink);
+  --muted: var(--phekong-muted);
+  --brand: var(--phekong-brand);
+  --brand-strong: var(--phekong-brand-strong);
+  --accent: var(--phekong-accent);
+  --accent-soft: var(--phekong-accent-soft);
+  --border: var(--phekong-border);
+  --focus: var(--phekong-focus);
+  --success: var(--phekong-success);
+  --danger: var(--phekong-danger);
+  --font-sans: var(--phekong-font-sans);
+  --font-display: var(--phekong-font-display);
+  --radius-sm: var(--phekong-radius-sm);
+  --radius-md: var(--phekong-radius-md);
+  --radius-lg: var(--phekong-radius-lg);
+  --radius-pill: var(--phekong-radius-pill);
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f2e8;
+  color: #183529;
+}
 
 * {
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--phekong-bg);
-  color: var(--phekong-ink);
-  font-family: var(--phekong-font-sans);
+  background: linear-gradient(180deg, #f7f2e8 0%, #eef3ef 100%);
 }
 
-button,
-input,
-select {
-  font: inherit;
+.home-hero {
+  width: min(760px, 100%);
 }
 
-button {
-  cursor: pointer;
+.eyebrow {
+  margin: 0 0 1rem;
+  color: #9b792e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
 }
 
-:focus-visible {
-  outline: 3px solid var(--phekong-focus);
-  outline-offset: 3px;
+h1 {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 0.98;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+.intro {
+  max-width: 62ch;
+  margin: 1.5rem 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.status-card {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid #c8a454;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.72);
 }

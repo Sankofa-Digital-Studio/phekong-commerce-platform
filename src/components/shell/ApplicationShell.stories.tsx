@@ -1,44 +1,38 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import {
-  ApplicationShell,
-  ShellAnatomy,
-  ShellStateLab,
-  TrainingHero,
-} from "./ApplicationShell";
-import { trainingLandingCopy } from "../training/trainingLandingCopy";
+import { ApplicationShell } from "./ApplicationShell";
 
 const meta = {
   title: "M1/Shell/ApplicationShell",
   component: ApplicationShell,
   parameters: { layout: "fullscreen" },
+  args: {
+    showStatePanel: false,
+  },
   tags: ["autodocs"],
 } satisfies Meta<typeof ApplicationShell>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const FullPage: Story = {};
 
-export const Hero: Story = {
-  render: () => (
-    <div className="training-content">
-      <TrainingHero copy={trainingLandingCopy.en} />
-    </div>
-  ),
+export const LoadingCatalogue: Story = {
+  args: {
+    catalogueState: "loading",
+  },
 };
 
-export const Anatomy: Story = {
-  render: () => (
-    <div className="training-content">
-      <ShellAnatomy copy={trainingLandingCopy.en} />
-    </div>
-  ),
+export const EmptyCatalogue: Story = {
+  args: {
+    catalogueState: "empty",
+    catalogueOnRetry: () => undefined,
+  },
 };
 
-export const StateLaboratory: Story = {
-  render: () => (
-    <div className="training-content">
-      <ShellStateLab copy={trainingLandingCopy.en} />
-    </div>
-  ),
+export const ErrorCatalogue: Story = {
+  args: {
+    catalogueState: "error",
+    catalogueOnRetry: () => undefined,
+  },
 };
