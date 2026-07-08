@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import Image from "next/image";
 import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/ProductCatalogue";
 import { shellCopy, type ShellLocale } from "./translations";
 import "./application-shell.css";
@@ -33,9 +34,10 @@ export function ApplicationShell({
 
   const links = [
     ["home", t.home],
-    ["products", t.products],
+    ["shop", "Shop"],
+    ["collections", "Collections"],
     ["about", t.about],
-    ["services", t.services],
+    ["rituals", "Rituals"],
     ["contact", t.contact],
   ] as const;
 
@@ -145,9 +147,14 @@ function HomeSurface({
         <div className="shell-hero__copy">
           <p className="shell-hero__kicker">ROOTED IN NATURE, MADE FOR YOU</p>
           <h1>Rituals that restore balance.</h1>
+          <div className="shell-hero__rule" aria-hidden="true">
+            <span />
+            <LeafDividerIcon />
+            <span />
+          </div>
           <p className="shell-hero__intro">
-            Phekong crafts natural body and hair care with intention. Pure ingredients.
-            Conscious rituals. Real results.
+            Phekong crafts natural body and hair care with intention. Pure ingredients. Conscious rituals.
+            Real results.
           </p>
           <div className="shell-hero__actions">
             <a className="shell-cta" href="#products">
@@ -173,48 +180,15 @@ function HomeSurface({
         </div>
 
         <aside className="shell-hero__visual" aria-label="Editor's pick">
-          <div className="shell-hero__glow shell-hero__glow--large" aria-hidden="true" />
-          <div className="shell-hero__glow shell-hero__glow--small" aria-hidden="true" />
-          <img
+          <h2 className="visually-hidden">Restorative Body Oil</h2>
+          <Image
             className="shell-hero__image"
             src="/images/phekong-hero-reference.png"
             alt="Phekong restorative body oil arranged with ritual ingredients on a dark surface."
+            width={1200}
+            height={900}
+            priority
           />
-          <article className="shell-hero__card">
-            <p className="shell-hero__card-label">EDITOR&apos;S PICK</p>
-            <h2>Restorative Body Oil</h2>
-            <p className="shell-hero__card-copy">
-              A deeply nourishing blend that restores, softens and renews. Infused with marula,
-              baobab and vitamin E.
-            </p>
-            <strong className="shell-hero__price">R 320.00</strong>
-            <p className="shell-hero__stock">
-              <span className="shell-hero__stock-dot" aria-hidden="true" />
-              In Stock <span aria-hidden="true">•</span> Ready to Ship
-            </p>
-            <div className="shell-hero__card-actions">
-              <a className="shell-card-cta" href="#products">
-                View Product
-              </a>
-              <button className="shell-round-button" type="button" aria-label="Ask about this product">
-                +
-              </button>
-            </div>
-          </article>
-          <div className="shell-hero__pager" aria-label="Hero navigation">
-            <button type="button" className="shell-pager__button" aria-label="Previous slide">
-              <ChevronLeftIcon />
-            </button>
-            <div className="shell-pager__dots" aria-hidden="true">
-              <span className="is-active" />
-              <span />
-              <span />
-              <span />
-            </div>
-            <button type="button" className="shell-pager__button" aria-label="Next slide">
-              <ChevronRightIcon />
-            </button>
-          </div>
         </aside>
       </section>
 
@@ -338,22 +312,6 @@ function ArrowRightIcon() {
   );
 }
 
-function ChevronLeftIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="m14.5 5-7 7 7 7 1.4-1.4L10.8 12l5.1-5.6L14.5 5Z" />
-    </svg>
-  );
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="m9.5 5 7 7-7 7-1.4-1.4L13.2 12 8.1 6.4 9.5 5Z" />
-    </svg>
-  );
-}
-
 function StarsRow() {
   return (
     <span className="shell-stars" aria-hidden="true">
@@ -363,6 +321,14 @@ function StarsRow() {
       <StarIcon />
       <StarIcon />
     </span>
+  );
+}
+
+function LeafDividerIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 4c2.5 0 4.7.8 6.4 2.3-1.7 4.2-4.1 7.1-7.3 8.7-1.3.7-2.7 1.1-4.2 1.3.5-1.4 1.1-2.8 2-4.1 1.4-2.1 3.1-3.9 5.1-5.5-2.5 1.1-4.8 2.7-6.8 4.7-.8-.7-1.4-1.6-1.8-2.7C6.6 6.6 9 4 12 4Z" />
+    </svg>
   );
 }
 
