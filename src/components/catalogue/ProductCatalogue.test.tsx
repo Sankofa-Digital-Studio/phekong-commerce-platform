@@ -17,6 +17,19 @@ describe("ProductCatalogue", () => {
     expect(screen.getByText(/out of stock/i)).toBeInTheDocument();
   });
 
+  it("links each product card to its detail page", () => {
+    render(<ProductCatalogue />);
+
+    expect(screen.getByRole("link", { name: /view details for nourishing shea butter/i })).toHaveAttribute(
+      "href",
+      "/products/nourishing-shea-butter",
+    );
+    expect(screen.getByRole("link", { name: /view details for growth & strength oil/i })).toHaveAttribute(
+      "href",
+      "/products/growth-strength-oil",
+    );
+  });
+
   it("renders the loading state", () => {
     render(<ProductCatalogue state="loading" />);
 

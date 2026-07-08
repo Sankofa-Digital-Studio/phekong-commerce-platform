@@ -187,12 +187,30 @@
   background: linear-gradient(180deg, transparent, rgb(18 13 10 / 44%));
 }
 
+.product-card__media-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
 .product-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   mix-blend-mode: normal;
+}
+
+.product-card__title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-card__title-link:hover,
+.product-card__title-link:focus-visible {
+  color: var(--phekong-brand);
 }
 
 .product-card__favorite {

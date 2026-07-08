@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import Image from "next/image";
+import Link from "next/link";
 import "./product-catalogue.css";
 import { getProductAvailability } from "@/lib/products/repository";
 
@@ -130,14 +131,20 @@ function ProductCatalogueReady({
             return (
               <article className="product-card" key={product.slug}>
                 <div className="product-card__media">
-                  <Image
-                    className="product-card__image"
-                    src={product.imageSrc}
-                    alt={product.imageAlt}
-                    width={720}
-                    height={720}
-                    loading="eager"
-                  />
+                  <Link
+                    className="product-card__media-link"
+                    href={`/products/${product.slug}`}
+                    aria-label={`Open ${product.name}`}
+                  >
+                    <Image
+                      className="product-card__image"
+                      src={product.imageSrc}
+                      alt={product.imageAlt}
+                      width={720}
+                      height={720}
+                      loading="eager"
+                    />
+                  </Link>
                   <span className={`product-card__status ${availabilityClassName}`}>{availability}</span>
                   <button className="product-card__favorite" type="button" aria-label={`Save ${product.name}`}>
                     <HeartIcon />
@@ -145,7 +152,15 @@ function ProductCatalogueReady({
                 </div>
                 <div className="product-card__content">
                   <p className="product-card__category">{product.category}</p>
-                  <h3>{product.name}</h3>
+                  <h3>
+                    <Link
+                      className="product-card__title-link"
+                      href={`/products/${product.slug}`}
+                      aria-label={`View details for ${product.name}`}
+                    >
+                      {product.name}
+                    </Link>
+                  </h3>
                   <div className="product-card__footer">
                     <strong className="product-card__price">{formatCurrency(product.priceCents)}</strong>
                     <span className="product-card__rating">
