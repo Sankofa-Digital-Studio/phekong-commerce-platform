@@ -21,10 +21,21 @@ describe("product repository helpers", () => {
   });
 
   it("falls back to the fixture repository when live data is unavailable", async () => {
-    const product = await resolveProductBySlug("nourishing-shea-butter");
+    const originalUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const originalKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    expect(product?.source).toBe("fixture");
-    expect(product?.fallbackReason).toBe("live-unavailable");
-    expect(product?.product.slug).toBe("nourishing-shea-butter");
+    delete process.env.NEXT_PUBLIC_SUPABASE_URL;
+    delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    try {
+      const product = await resolveProductBySlug("nourishing-shea-butter");
+
+      expect(product?.source).toBe("fixture");
+      expect(product?.fallbackReason).toBe("live-unavailable");
+      expect(product?.product.slug).toBe("nourishing-shea-butter");
+    } finally {
+      process.env.NEXT_PUBLIC_SUPABASE_URL = originalUrl;
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = originalKey;
+    }
   });
 });

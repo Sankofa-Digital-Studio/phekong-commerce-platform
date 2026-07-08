@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import Image from "next/image";
 import "./product-catalogue.css";
+import { getProductAvailability } from "@/lib/products/repository";
 
 export type ProductCatalogueState = "ready" | "loading" | "empty" | "error";
 
@@ -91,15 +92,8 @@ function formatCurrency(priceCents: number) {
 }
 
 function getAvailabilityLabel(product: ProductCatalogueItem) {
-  if (product.stockQuantity === 0) {
-    return ["Out of stock", "product-card__status--out"] as const;
-  }
-
-  if (product.stockQuantity <= product.lowStockThreshold) {
-    return ["Low stock", "product-card__status--low"] as const;
-  }
-
-  return ["In stock", "product-card__status--ready"] as const;
+  const availability = getProductAvailability(product);
+  return [availability.label, `product-card__status--${availability.tone}`] as const;
 }
 
 function ProductCatalogueReady({

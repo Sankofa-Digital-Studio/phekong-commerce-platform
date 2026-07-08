@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/ProductCatalogue";
 import { shellCopy, type ShellLocale } from "./translations";
 import "./application-shell.css";
@@ -41,6 +42,19 @@ export function ApplicationShell({
     ["contact", t.contact],
   ] as const;
 
+  const routeHref = (route: string) => {
+    switch (route) {
+      case "home":
+        return "/";
+      case "shop":
+        return "/#products";
+      case "contact":
+        return "/#contact";
+      default:
+        return "/";
+    }
+  };
+
   return (
     <div className="phekong-canvas phekong-canvas--luxury">
       <a className="skip-link" href="#main-content">
@@ -59,14 +73,9 @@ export function ApplicationShell({
 
           <nav className="desktop-nav" aria-label={t.navAria}>
             {links.map(([route, label]) => (
-              <a
-                key={route}
-                className="nav-link"
-                href={`#${route}`}
-                aria-current={route === activeRoute ? "page" : undefined}
-              >
+              <Link key={route} className="nav-link" href={routeHref(route)} aria-current={route === activeRoute ? "page" : undefined}>
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -81,9 +90,9 @@ export function ApplicationShell({
               <BagIcon />
               <span className="icon-badge">2</span>
             </button>
-            <a className="shell-header-cta" href="#contact">
+            <Link className="shell-header-cta" href="/#contact">
               Ask About a Product
-            </a>
+            </Link>
             <button
               className="menu-button"
               type="button"
@@ -99,15 +108,15 @@ export function ApplicationShell({
         {menuOpen && (
           <nav id="mobile-navigation" className="mobile-nav" aria-label={t.mobileNavAria}>
             {links.map(([route, label]) => (
-              <a
+              <Link
                 key={route}
                 className="nav-link"
-                href={`#${route}`}
+                href={routeHref(route)}
                 aria-current={route === activeRoute ? "page" : undefined}
                 onClick={() => setMenuOpen(false)}
               >
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
         )}

@@ -152,16 +152,19 @@
   text-transform: uppercase;
 }
 
+.product-card__status--in-stock,
 .product-card__status--ready {
   color: #eff7e8;
   background: rgb(88 129 61 / 88%);
 }
 
+.product-card__status--low-stock,
 .product-card__status--low {
   color: #fff6e8;
   background: rgb(192 120 33 / 90%);
 }
 
+.product-card__status--out-of-stock,
 .product-card__status--out {
   color: #fff1f1;
   background: rgb(152 72 72 / 92%);
