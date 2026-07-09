@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/ProductCatalogue";
+import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedback";
 import { shellCopy, type ShellLocale } from "./translations";
 import "./application-shell.css";
 
@@ -13,7 +14,7 @@ export interface ApplicationShellProps {
   children?: ReactNode;
   locale?: ShellLocale;
   state?: ShellState;
-  activeRoute?: "home" | "products" | "about" | "services" | "contact" | "account" | "cart";
+  activeRoute?: "home" | "products" | "rituals" | "about" | "services" | "contact" | "account" | "cart";
   showStatePanel?: boolean;
   catalogueState?: ProductCatalogueState;
   catalogueOnRetry?: () => void;
@@ -29,19 +30,32 @@ export function ApplicationShell({
   catalogueOnRetry,
 }: ApplicationShellProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [feedback, setFeedback] = useState<FeedbackState | null>(null);
   const t = shellCopy[locale];
   const shellContent =
-    children ?? (!showStatePanel ? <HomeSurface catalogueState={catalogueState} onRetry={catalogueOnRetry} /> : null);
+    children ?? (!showStatePanel ? <HomeSurface catalogueState={catalogueState} onRetry={catalogueOnRetry} onNotify={announce} /> : null);
 
   const links = [
-    { route: 'home', label: t.home, href: '/' },
-    { route: 'products', label: t.products, href: '/products' },
-    { route: 'about', label: t.about, href: '/about' },
-    { route: 'services', label: t.services, href: '/services' },
-    { route: 'contact', label: t.contact, href: '/contact' },
+    { route: "home", label: t.home, href: "/" },
+    { route: "products", label: t.products, href: "/products" },
+    { route: "rituals", label: t.rituals, href: "/rituals" },
+    { route: "about", label: t.about, href: "/about" },
+    { route: "services", label: t.services, href: "/services" },
+    { route: "contact", label: t.contact, href: "/contact" },
   ] as const;
 
+  useEffect(() => {
+    if (!feedback) {
+      return;
+    }
 
+    const timeout = window.setTimeout(() => setFeedback(null), feedback.tone === "loading" ? 900 : 2200);
+    return () => window.clearTimeout(timeout);
+  }, [feedback]);
+
+  function announce(tone: FeedbackState["tone"], message: string) {
+    setFeedback({ tone, message });
+  }
 
   return (
     <div className="phekong-canvas phekong-canvas--luxury">
@@ -50,7 +64,7 @@ export function ApplicationShell({
       </a>
       <header className="site-header">
         <div className="header-inner">
-          <a className="brand" href="#main-content" aria-label={t.brandAria}>
+          <a className="brand" href="#main-content" aria-label={t.brandAria} onClick={() => announce("success", "Returned to the main content.") }>
             <span className="brand-mark" aria-hidden="true">
               <LeafMark />
             </span>
@@ -61,23 +75,29 @@ export function ApplicationShell({
 
           <nav className="desktop-nav" aria-label={t.navAria}>
             {links.map(({ route, label, href }) => (
-              <Link key={route} className="nav-link" href={href} aria-current={route === activeRoute ? "page" : undefined}>
+              <Link
+                key={route}
+                className="nav-link"
+                href={href}
+                aria-current={route === activeRoute ? "page" : undefined}
+                onClick={() => announce("success", `Opened ${label.toLowerCase()}.`)}
+              >
                 {label}
               </Link>
             ))}
           </nav>
 
           <div className="header-actions">
-            <Link className="icon-button" href="/products" aria-label="Browse products">
+            <Link className="icon-button" href="/products" aria-label="Browse products" onClick={() => announce("success", "Opening products.")}>
               <SearchIcon />
             </Link>
-            <Link className="icon-button" href="/account" aria-label="Account">
+            <Link className="icon-button" href="/account" aria-label="Account" onClick={() => announce("blocked", "Account is blocked until sign-in ships.")}>
               <UserIcon />
             </Link>
-            <Link className="icon-button icon-button--bag" href="/cart" aria-label="Cart">
+            <Link className="icon-button icon-button--bag" href="/cart" aria-label="Cart" onClick={() => announce("blocked", "Cart is currently a preview-only route.")}>
               <BagIcon />
             </Link>
-            <Link className="shell-header-cta" href="/contact">
+            <Link className="shell-header-cta" href="/contact" onClick={() => announce("loading", "Opening contact route...")}>
               Ask About a Product
             </Link>
             <button
@@ -85,7 +105,11 @@ export function ApplicationShell({
               type="button"
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
-              onClick={() => setMenuOpen((value) => !value)}
+              onClick={() => {
+                const next = !menuOpen;
+                setMenuOpen(next);
+                announce("success", next ? "Navigation opened." : "Navigation closed.");
+              }}
             >
               {menuOpen ? t.menuClose : t.menuOpen}
             </button>
@@ -100,7 +124,10 @@ export function ApplicationShell({
                 className="nav-link"
                 href={href}
                 aria-current={route === activeRoute ? "page" : undefined}
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  setMenuOpen(false);
+                  announce("success", `Opened ${label.toLowerCase()}.`);
+                }}
               >
                 {label}
               </Link>
@@ -108,6 +135,8 @@ export function ApplicationShell({
           </nav>
         )}
       </header>
+
+      <ActionFeedback state={feedback} />
 
       <main id="main-content" className="shell-main" aria-busy={state === "loading" ? "true" : "false"}>
         {showStatePanel && <ShellStatePanel state={state} />}
@@ -126,9 +155,11 @@ export function ApplicationShell({
 function HomeSurface({
   catalogueState,
   onRetry,
+  onNotify,
 }: {
   catalogueState: ProductCatalogueState;
   onRetry?: () => void;
+  onNotify: (tone: FeedbackState["tone"], message: string) => void;
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -163,9 +194,18 @@ function HomeSurface({
     },
   ];
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  const goToSlide = (index: number) => setCurrentSlide(index);
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    onNotify("success", "Moved to the next hero slide.");
+  };
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    onNotify("success", "Moved to the previous hero slide.");
+  };
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    onNotify("success", `Showing slide ${index + 1} of ${slides.length}.`);
+  };
 
   const slide = slides[currentSlide];
 
@@ -176,6 +216,7 @@ function HomeSurface({
           {slides.map((_, index) => (
             <button
               key={index}
+              type="button"
               className={`shell-hero__dot ${index === currentSlide ? "is-active" : ""}`}
               onClick={() => goToSlide(index)}
               aria-label={`Go to slide ${index + 1}`}
@@ -196,7 +237,7 @@ function HomeSurface({
             Real results.
           </p>
           <div className="shell-hero__actions">
-            <a className="shell-cta" href="#products">
+            <a className="shell-cta" href="#products" onClick={() => onNotify("success", "Jumped to the product catalogue.")}>
               Explore Our Products
               <ArrowRightIcon />
             </a>
@@ -230,7 +271,7 @@ function HomeSurface({
               priority
             />
             <div className="shell-hero__product-card">
-              <p className="shell-hero__product-eyebrow">EDITOR'S PICK</p>
+              <p className="shell-hero__product-eyebrow">EDITOR&apos;S PICK</p>
               <h3>{slide.product}</h3>
               <p>A deeply nourishing blend that restores, softens and renews. Infused with marula, baobab and vitamin E.</p>
               <p className="shell-hero__product-price">R 320.00</p>
@@ -240,10 +281,10 @@ function HomeSurface({
               </Link>
             </div>
           </div>
-          <button className="shell-hero__nav shell-hero__nav--prev" onClick={prevSlide} aria-label="Previous slide">
+          <button type="button" className="shell-hero__nav shell-hero__nav--prev" onClick={prevSlide} aria-label="Previous slide">
             <ArrowLeftIcon />
           </button>
-          <button className="shell-hero__nav shell-hero__nav--next" onClick={nextSlide} aria-label="Next slide">
+          <button type="button" className="shell-hero__nav shell-hero__nav--next" onClick={nextSlide} aria-label="Next slide">
             <ArrowRightIcon />
           </button>
         </aside>
@@ -468,3 +509,5 @@ function ShieldIcon() {
     </svg>
   );
 }
+
+

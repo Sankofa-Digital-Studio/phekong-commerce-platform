@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { ProductCatalogue } from "./ProductCatalogue";
 
@@ -48,5 +48,16 @@ describe("ProductCatalogue", () => {
     expect(screen.getByRole("heading", { name: heading })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: buttonLabel }));
     expect(retry).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows feedback when a product is saved", async () => {
+    render(<ProductCatalogue />);
+
+    fireEvent.click(screen.getByRole("button", { name: /save nourishing shea butter/i }));
+    expect(screen.getByText(/saving nourishing shea butter/i)).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByText(/saved for later/i)).toBeInTheDocument();
+    });
   });
 });

@@ -14,7 +14,7 @@ describe("product repository helpers", () => {
     delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   });
   it("validates approved product slugs", async () => {
-    const { formatCurrency, getProductAvailability, isValidProductSlug } = await import("./repository");
+    const { isValidProductSlug } = await import("./repository");
 
     expect(isValidProductSlug("nourishing-shea-butter")).toBe(true);
     expect(isValidProductSlug("Nourishing Shea Butter")).toBe(false);
