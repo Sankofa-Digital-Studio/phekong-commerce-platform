@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/ProductCatalogue";
 import { shellCopy, type ShellLocale } from "./translations";
 import "./application-shell.css";
@@ -12,7 +13,7 @@ export interface ApplicationShellProps {
   children?: ReactNode;
   locale?: ShellLocale;
   state?: ShellState;
-  activeRoute?: "home" | "about" | "products" | "services" | "contact";
+  activeRoute?: "home" | "products" | "about" | "services" | "contact" | "account" | "cart";
   showStatePanel?: boolean;
   catalogueState?: ProductCatalogueState;
   catalogueOnRetry?: () => void;
@@ -33,13 +34,14 @@ export function ApplicationShell({
     children ?? (!showStatePanel ? <HomeSurface catalogueState={catalogueState} onRetry={catalogueOnRetry} /> : null);
 
   const links = [
-    ["home", t.home],
-    ["shop", "Shop"],
-    ["collections", "Collections"],
-    ["about", t.about],
-    ["rituals", "Rituals"],
-    ["contact", t.contact],
+    { route: 'home', label: t.home, href: '/' },
+    { route: 'products', label: t.products, href: '/products' },
+    { route: 'about', label: t.about, href: '/about' },
+    { route: 'services', label: t.services, href: '/services' },
+    { route: 'contact', label: t.contact, href: '/contact' },
   ] as const;
+
+
 
   return (
     <div className="phekong-canvas phekong-canvas--luxury">
@@ -58,32 +60,26 @@ export function ApplicationShell({
           </a>
 
           <nav className="desktop-nav" aria-label={t.navAria}>
-            {links.map(([route, label]) => (
-              <a
-                key={route}
-                className="nav-link"
-                href={`#${route}`}
-                aria-current={route === activeRoute ? "page" : undefined}
-              >
+            {links.map(({ route, label, href }) => (
+              <Link key={route} className="nav-link" href={href} aria-current={route === activeRoute ? "page" : undefined}>
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           <div className="header-actions">
-            <button className="icon-button" type="button" aria-label="Search">
+            <Link className="icon-button" href="/products" aria-label="Browse products">
               <SearchIcon />
-            </button>
-            <button className="icon-button" type="button" aria-label="Account">
+            </Link>
+            <Link className="icon-button" href="/account" aria-label="Account">
               <UserIcon />
-            </button>
-            <button className="icon-button icon-button--bag" type="button" aria-label="Cart">
+            </Link>
+            <Link className="icon-button icon-button--bag" href="/cart" aria-label="Cart">
               <BagIcon />
-              <span className="icon-badge">2</span>
-            </button>
-            <a className="shell-header-cta" href="#contact">
+            </Link>
+            <Link className="shell-header-cta" href="/contact">
               Ask About a Product
-            </a>
+            </Link>
             <button
               className="menu-button"
               type="button"
@@ -98,16 +94,16 @@ export function ApplicationShell({
 
         {menuOpen && (
           <nav id="mobile-navigation" className="mobile-nav" aria-label={t.mobileNavAria}>
-            {links.map(([route, label]) => (
-              <a
+            {links.map(({ route, label, href }) => (
+              <Link
                 key={route}
                 className="nav-link"
-                href={`#${route}`}
+                href={href}
                 aria-current={route === activeRoute ? "page" : undefined}
                 onClick={() => setMenuOpen(false)}
               >
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
         )}
@@ -134,19 +130,62 @@ function HomeSurface({
   catalogueState: ProductCatalogueState;
   onRetry?: () => void;
 }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      title: "Rituals that restore balance.",
+      product: "Restorative Body Oil",
+      image: "/images/phekong-hero-reference.png",
+      alt: "Phekong restorative body oil arranged with ritual ingredients on a dark surface.",
+      slug: "growth-strength-oil",
+    },
+    {
+      title: "Nourish your daily ritual.",
+      product: "Nourishing Shea Butter",
+      image: "/images/product-shea-butter.png",
+      alt: "A creamy shea butter jar on a stone pedestal with botanical leaves.",
+      slug: "nourishing-shea-butter",
+    },
+    {
+      title: "Exfoliate with intention.",
+      product: "Exfoliating Sugar Scrub",
+      image: "/images/product-sugar-scrub.png",
+      alt: "A warm amber scrub jar with botanical accents on stone and wood.",
+      slug: "exfoliating-sugar-scrub",
+    },
+    {
+      title: "Craft your wellness.",
+      product: "Turmeric & Honey Soap",
+      image: "/images/product-turmeric-soap.png",
+      alt: "Stacked turmeric soap bars beside a kraft box with honey accents and leaves.",
+      slug: "turmeric-honey-soap",
+    },
+  ];
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const goToSlide = (index: number) => setCurrentSlide(index);
+
+  const slide = slides[currentSlide];
+
   return (
     <div className="shell-surface">
       <section className="shell-hero" id="home">
         <div className="shell-hero__dots" aria-hidden="true">
-          <span className="is-active" />
-          <span />
-          <span />
-          <span />
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              className={`shell-hero__dot ${index === currentSlide ? "is-active" : ""}`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
 
         <div className="shell-hero__copy">
           <p className="shell-hero__kicker">ROOTED IN NATURE, MADE FOR YOU</p>
-          <h1>Rituals that restore balance.</h1>
+          <h1>{slide.title}</h1>
           <div className="shell-hero__rule" aria-hidden="true">
             <span />
             <LeafDividerIcon />
@@ -179,16 +218,34 @@ function HomeSurface({
           </div>
         </div>
 
-        <aside className="shell-hero__visual" aria-label="Editor's pick">
-          <h2 className="visually-hidden">Restorative Body Oil</h2>
-          <Image
-            className="shell-hero__image"
-            src="/images/phekong-hero-reference.png"
-            alt="Phekong restorative body oil arranged with ritual ingredients on a dark surface."
-            width={1200}
-            height={900}
-            priority
-          />
+        <aside className="shell-hero__visual" aria-label={`Editor's pick: ${slide.product}`}>
+          <h2 className="visually-hidden">{slide.product}</h2>
+          <div className="shell-hero__carousel">
+            <Image
+              className="shell-hero__image"
+              src={slide.image}
+              alt={slide.alt}
+              width={1200}
+              height={900}
+              priority
+            />
+            <div className="shell-hero__product-card">
+              <p className="shell-hero__product-eyebrow">EDITOR'S PICK</p>
+              <h3>{slide.product}</h3>
+              <p>A deeply nourishing blend that restores, softens and renews. Infused with marula, baobab and vitamin E.</p>
+              <p className="shell-hero__product-price">R 320.00</p>
+              <p className="shell-hero__product-status">● In Stock • Ready to Ship</p>
+              <Link href={`/products/${slide.slug}`} className="shell-hero__product-link">
+                View Product
+              </Link>
+            </div>
+          </div>
+          <button className="shell-hero__nav shell-hero__nav--prev" onClick={prevSlide} aria-label="Previous slide">
+            <ArrowLeftIcon />
+          </button>
+          <button className="shell-hero__nav shell-hero__nav--next" onClick={nextSlide} aria-label="Next slide">
+            <ArrowRightIcon />
+          </button>
         </aside>
       </section>
 
@@ -308,6 +365,14 @@ function ArrowRightIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M13 4.5 20.5 12 13 19.5l-1.42-1.42 5.08-5.08H3.5v-2h13.16l-5.08-5.08L13 4.5Z" />
+    </svg>
+  );
+}
+
+function ArrowLeftIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M11 19.5 3.5 12 11 4.5l1.42 1.42-5.08 5.08H20.5v2H8.34l5.08 5.08L11 19.5Z" />
     </svg>
   );
 }

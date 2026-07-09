@@ -102,13 +102,28 @@ export function getProductAvailability(product: Pick<ProductCatalogueItem, "stoc
 }
 
 const readLiveProduct = cache(async (slug: string) => {
+  if (!hasSupabaseEnv()) {
+    return {
+      product: null as ProductLiveRow | null,
+      liveSourceAvailable: false,
+    };
+  }
+
   const reader = await createSupabaseProductReader();
 
   if (!reader) {
-    return null;
+    return {
+      product: null as ProductLiveRow | null,
+      liveSourceAvailable: false,
+    };
   }
 
-  return reader.findBySlug(slug);
+  const product = await reader.findBySlug(slug);
+
+  return {
+    product,
+    liveSourceAvailable: true,
+  };
 });
 
 export async function resolveProductBySlug(slug: string): Promise<ProductResolution | null> {
@@ -122,11 +137,15 @@ export async function resolveProductBySlug(slug: string): Promise<ProductResolut
   }
 
   const liveProduct = await readLiveProduct(slug);
-  if (liveProduct) {
-    return {
-      product: mergeLiveRowWithFixture(liveProduct, fixtureProduct),
-      source: "live",
-    };
+  if (liveProduct.liveSourceAvailable) {
+    if (liveProduct.product) {
+      return {
+        product: mergeLiveRowWithFixture(liveProduct.product, fixtureProduct),
+        source: "live",
+      };
+    }
+
+    return null;
   }
 
   return {

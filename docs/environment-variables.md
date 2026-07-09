@@ -36,6 +36,9 @@ The service-role key must only be used in trusted server code. It must not be pl
 
 Store hosted values separately for Development, Preview and Production. Production service-role access remains restricted to approved leads. Interns and client-view users must not receive production secrets.
 
+Set 'NEXT_PUBLIC_SITE_URL' to the deployed public origin in Preview and Production when you want an explicit canonical base. If that variable is omitted, the app falls back to the Vercel-provided project or deployment URL env vars for canonical and sitemap generation.
+
 ## Rotation rule
 
 Rotate a secret immediately if it is pasted into an issue, pull request, chat, screenshot, build log or committed file. Removing the text later does not make the exposed credential safe again.
+

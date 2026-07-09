@@ -152,16 +152,19 @@
   text-transform: uppercase;
 }
 
+.product-card__status--in-stock,
 .product-card__status--ready {
   color: #eff7e8;
   background: rgb(88 129 61 / 88%);
 }
 
+.product-card__status--low-stock,
 .product-card__status--low {
   color: #fff6e8;
   background: rgb(192 120 33 / 90%);
 }
 
+.product-card__status--out-of-stock,
 .product-card__status--out {
   color: #fff1f1;
   background: rgb(152 72 72 / 92%);
@@ -184,12 +187,30 @@
   background: linear-gradient(180deg, transparent, rgb(18 13 10 / 44%));
 }
 
+.product-card__media-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
 .product-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   mix-blend-mode: normal;
+}
+
+.product-card__title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-card__title-link:hover,
+.product-card__title-link:focus-visible {
+  color: var(--phekong-brand);
 }
 
 .product-card__favorite {

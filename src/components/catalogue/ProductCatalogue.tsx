@@ -1,19 +1,100 @@
-﻿"use client";
+"use client";
 
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import Image from "next/image";
-import { catalogueProducts } from "@/lib/products/fixture-repository";
-import { formatCurrency, getProductAvailability } from "@/lib/products/repository";
-import type { ProductCatalogueItem } from "@/lib/products/types";
+import Link from "next/link";
 import "./product-catalogue.css";
+import { getProductAvailability } from "@/lib/products/repository";
 
 export type ProductCatalogueState = "ready" | "loading" | "empty" | "error";
+
+export interface ProductCatalogueItem {
+  slug: string;
+  category: string;
+  name: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  priceCents: number;
+  rating: number;
+  stockQuantity: number;
+  lowStockThreshold: number;
+  active: boolean;
+}
 
 export interface ProductCatalogueProps {
   state?: ProductCatalogueState;
   products?: ReadonlyArray<ProductCatalogueItem>;
   onRetry?: () => void;
+}
+
+export const catalogueProducts: ReadonlyArray<ProductCatalogueItem> = [
+  {
+    slug: "nourishing-shea-butter",
+    category: "Body Butter",
+    name: "Nourishing Shea Butter",
+    description: "Rich, slow-melting moisture for dry skin and polished daily care rituals.",
+    imageSrc: "/images/product-shea-butter.png",
+    imageAlt: "A creamy shea butter jar on a stone pedestal with botanical leaves.",
+    priceCents: 26000,
+    rating: 4.8,
+    stockQuantity: 18,
+    lowStockThreshold: 5,
+    active: true,
+  },
+  {
+    slug: "growth-strength-oil",
+    category: "Hair Oil",
+    name: "Growth & Strength Oil",
+    description: "A concentrated leave-in formula with a warm finish and a premium shelf presence.",
+    imageSrc: "/images/product-hair-oil.png",
+    imageAlt: "An amber dropper bottle of hair oil on a stone pedestal with dried botanicals.",
+    priceCents: 28000,
+    rating: 4.7,
+    stockQuantity: 4,
+    lowStockThreshold: 5,
+    active: true,
+  },
+  {
+    slug: "exfoliating-sugar-scrub",
+    category: "Body Scrub",
+    name: "Exfoliating Sugar Scrub",
+    description: "A tactile polish that reads luxurious, warm, and immediately giftable.",
+    imageSrc: "/images/product-sugar-scrub.png",
+    imageAlt: "A warm amber scrub jar with botanical accents on stone and wood.",
+    priceCents: 24000,
+    rating: 4.9,
+    stockQuantity: 0,
+    lowStockThreshold: 5,
+    active: true,
+  },
+  {
+    slug: "turmeric-honey-soap",
+    category: "Handmade Soap",
+    name: "Turmeric & Honey Soap",
+    description: "A crafted everyday essential with an earthy golden tone and clean finish.",
+    imageSrc: "/images/product-turmeric-soap.png",
+    imageAlt: "Stacked turmeric soap bars beside a kraft box with honey accents and leaves.",
+    priceCents: 9000,
+    rating: 4.8,
+    stockQuantity: 12,
+    lowStockThreshold: 5,
+    active: true,
+  },
+] as const;
+
+function formatCurrency(priceCents: number) {
+  return new Intl.NumberFormat("en-ZA", {
+    style: "currency",
+    currency: "ZAR",
+    maximumFractionDigits: 0,
+  }).format(priceCents / 100);
+}
+
+function getAvailabilityLabel(product: ProductCatalogueItem) {
+  const availability = getProductAvailability(product);
+  return [availability.label, `product-card__status--${availability.tone}`] as const;
 }
 
 function ProductCatalogueReady({
@@ -45,29 +126,41 @@ function ProductCatalogueReady({
       <div className="product-catalogue__carousel">
         <div className="product-catalogue__grid" aria-label="Featured products">
           {products.map((product) => {
-            const availability = getProductAvailability(product);
+            const [availability, availabilityClassName] = getAvailabilityLabel(product);
 
             return (
               <article className="product-card" key={product.slug}>
                 <div className="product-card__media">
-                  <Image
-                    className="product-card__image"
-                    src={product.imageSrc}
-                    alt={product.imageAlt}
-                    width={720}
-                    height={720}
-                    loading="eager"
-                  />
-                  <span className={`product-card__status product-card__status--${availability.tone}`}>
-                    {availability.label}
-                  </span>
+                  <Link
+                    className="product-card__media-link"
+                    href={`/products/${product.slug}`}
+                    aria-label={`Open ${product.name}`}
+                  >
+                    <Image
+                      className="product-card__image"
+                      src={product.imageSrc}
+                      alt={product.imageAlt}
+                      width={720}
+                      height={720}
+                      loading="eager"
+                    />
+                  </Link>
+                  <span className={`product-card__status ${availabilityClassName}`}>{availability}</span>
                   <button className="product-card__favorite" type="button" aria-label={`Save ${product.name}`}>
                     <HeartIcon />
                   </button>
                 </div>
                 <div className="product-card__content">
                   <p className="product-card__category">{product.category}</p>
-                  <h3>{product.name}</h3>
+                  <h3>
+                    <Link
+                      className="product-card__title-link"
+                      href={`/products/${product.slug}`}
+                      aria-label={`View details for ${product.name}`}
+                    >
+                      {product.name}
+                    </Link>
+                  </h3>
                   <div className="product-card__footer">
                     <strong className="product-card__price">{formatCurrency(product.priceCents)}</strong>
                     <span className="product-card__rating">

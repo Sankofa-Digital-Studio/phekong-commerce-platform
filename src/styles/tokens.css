@@ -1,0 +1,50 @@
+:root {
+  --forest-950: #080d08;
+  --forest-900: #0f180f;
+  --forest-800: #182416;
+  --forest-700: #22301e;
+
+  --earth-950: #120b06;
+  --earth-800: #2a180d;
+  --earth-600: #6f421d;
+
+  --gold-600: #a86f24;
+  --gold-500: #c69243;
+  --gold-400: #d9aa5c;
+  --gold-300: #edc77d;
+
+  --cream-50: #fff8ed;
+  --cream-100: #f8ecd8;
+  --cream-200: #ead6ba;
+
+  --success: #3d8b35;
+  --warning: #c27a16;
+  --danger: #a03a2f;
+
+  --text-light: #f8ecd8;
+  --text-soft: #d6c5aa;
+  --text-muted: #a9997f;
+  --text-dark: #15120d;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --container: 1440px;
+  --header-height: 76px;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 18px 44px rgba(0, 0, 0, 0.26);
+  --shadow-card: 0 20px 60px rgba(8, 13, 8, 0.22);
+
+  --border-gold: 1px solid rgba(217, 170, 92, 0.42);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fast: 180ms;
+  --medium: 320ms;
+  --slow: 700ms;
+}
