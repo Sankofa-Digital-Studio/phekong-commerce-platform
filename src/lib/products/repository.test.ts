@@ -1,4 +1,4 @@
-﻿import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { catalogueProducts } from "./fixture-repository";
 
 const createClientMock = vi.fn();

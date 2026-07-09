@@ -13,7 +13,7 @@ export interface ApplicationShellProps {
   children?: ReactNode;
   locale?: ShellLocale;
   state?: ShellState;
-  activeRoute?: "home" | "about" | "products" | "services" | "contact";
+  activeRoute?: "home" | "products" | "about" | "services" | "contact" | "account" | "cart";
   showStatePanel?: boolean;
   catalogueState?: ProductCatalogueState;
   catalogueOnRetry?: () => void;
@@ -34,26 +34,14 @@ export function ApplicationShell({
     children ?? (!showStatePanel ? <HomeSurface catalogueState={catalogueState} onRetry={catalogueOnRetry} /> : null);
 
   const links = [
-    ["home", t.home],
-    ["shop", "Shop"],
-    ["collections", "Collections"],
-    ["about", t.about],
-    ["rituals", "Rituals"],
-    ["contact", t.contact],
+    { route: 'home', label: t.home, href: '/' },
+    { route: 'products', label: t.products, href: '/products' },
+    { route: 'about', label: t.about, href: '/about' },
+    { route: 'services', label: t.services, href: '/services' },
+    { route: 'contact', label: t.contact, href: '/contact' },
   ] as const;
 
-  const routeHref = (route: string) => {
-    switch (route) {
-      case "home":
-        return "/";
-      case "shop":
-        return "/#products";
-      case "contact":
-        return "/#contact";
-      default:
-        return "/";
-    }
-  };
+
 
   return (
     <div className="phekong-canvas phekong-canvas--luxury">
@@ -72,25 +60,24 @@ export function ApplicationShell({
           </a>
 
           <nav className="desktop-nav" aria-label={t.navAria}>
-            {links.map(([route, label]) => (
-              <Link key={route} className="nav-link" href={routeHref(route)} aria-current={route === activeRoute ? "page" : undefined}>
+            {links.map(({ route, label, href }) => (
+              <Link key={route} className="nav-link" href={href} aria-current={route === activeRoute ? "page" : undefined}>
                 {label}
               </Link>
             ))}
           </nav>
 
           <div className="header-actions">
-            <button className="icon-button" type="button" aria-label="Search" onClick={() => window.location.hash = "#products"}>
+            <Link className="icon-button" href="/products" aria-label="Browse products">
               <SearchIcon />
-            </button>
-            <button className="icon-button" type="button" aria-label="Account" onClick={() => window.location.href = "/account"}>
+            </Link>
+            <Link className="icon-button" href="/account" aria-label="Account">
               <UserIcon />
-            </button>
-            <button className="icon-button icon-button--bag" type="button" aria-label="Cart" onClick={() => window.location.href = "/cart"}>
+            </Link>
+            <Link className="icon-button icon-button--bag" href="/cart" aria-label="Cart">
               <BagIcon />
-              <span className="icon-badge">2</span>
-            </button>
-            <Link className="shell-header-cta" href="/#contact">
+            </Link>
+            <Link className="shell-header-cta" href="/contact">
               Ask About a Product
             </Link>
             <button
@@ -107,11 +94,11 @@ export function ApplicationShell({
 
         {menuOpen && (
           <nav id="mobile-navigation" className="mobile-nav" aria-label={t.mobileNavAria}>
-            {links.map(([route, label]) => (
+            {links.map(({ route, label, href }) => (
               <Link
                 key={route}
                 className="nav-link"
-                href={routeHref(route)}
+                href={href}
                 aria-current={route === activeRoute ? "page" : undefined}
                 onClick={() => setMenuOpen(false)}
               >
