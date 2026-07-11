@@ -1,0 +1,72 @@
+.flow {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.serviceGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.serviceCard {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 22px;
+  border: 1px solid rgb(var(--border));
+  background: rgb(var(--card));
+}
+
+.serviceTag {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.32rem 0.65rem;
+  border-radius: 999px;
+  background: rgb(var(--accent) / 0.12);
+  color: rgb(var(--accent-foreground));
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.serviceTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.serviceText {
+  margin: 0;
+  color: rgb(var(--muted-foreground));
+  line-height: 1.7;
+}
+
+.serviceMatrix {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.matrixCard {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border-radius: 20px;
+  border: 1px solid rgb(var(--border));
+  background: linear-gradient(180deg, rgb(var(--card)) 0%, color-mix(in srgb, rgb(var(--background)) 90%, rgb(var(--card))) 100%);
+}
+
+.matrixHeading {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.matrixText {
+  margin: 0;
+  color: rgb(var(--muted-foreground));
+  line-height: 1.7;
+}
+
