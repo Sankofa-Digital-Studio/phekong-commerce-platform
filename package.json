@@ -39,7 +39,7 @@
     "eslint-config-next": "^16.2.1",
     "jsdom": "^26.0.0",
     "supabase": "2.109.0",
-    "typescript": "^5.8.2",
+    "typescript": "^7.0.2",
     "vitest": "3.2.6",
     "storybook": "^10.4.6",
     "@storybook/nextjs-vite": "^10.4.6",
