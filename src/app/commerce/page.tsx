@@ -3,7 +3,7 @@ import { ApplicationShell } from "@/components/shell/ApplicationShell";
 import { CommercePreview } from "@/components/commerce/CommercePreview";
 
 export const metadata: Metadata = {
-  title: "Cart and Checkout Preview",
+  title: "Commerce Preview",
   description: "Visual cart, payment, favorites, and profile preview for the public Phekong shell.",
   robots: {
     index: false,
@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CartPage() {
+export default function CommercePreviewPage() {
   return (
     <ApplicationShell activeRoute="cart" showStatePanel={false}>
-      <CommercePreview initialStep="cart" />
+      <CommercePreview />
     </ApplicationShell>
   );
 }

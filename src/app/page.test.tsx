@@ -10,6 +10,6 @@ describe("HomePage", () => {
     expect(screen.getByRole("link", { name: /ask about a product/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /rituals that restore balance/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /featured essentials for the page/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /restorative body oil/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /restorative body oil/i, level: 3 })).toBeInTheDocument();
   });
 });

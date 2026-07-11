@@ -1,11 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedback";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import Image from "next/image";
-import Link from "next/link";
-import "./product-catalogue.css";
 import { getProductAvailability } from "@/lib/products/repository";
+import "./product-catalogue.css";
 
 export type ProductCatalogueState = "ready" | "loading" | "empty" | "error";
 
@@ -99,8 +101,18 @@ function getAvailabilityLabel(product: ProductCatalogueItem) {
 
 function ProductCatalogueReady({
   products,
+  onFavorite,
+  onNext,
+  savedSlugs,
+  featuredSlug,
+  busySlug,
 }: {
   products: ReadonlyArray<ProductCatalogueItem>;
+  onFavorite: (product: ProductCatalogueItem) => void;
+  onNext: () => void;
+  savedSlugs: Set<string>;
+  featuredSlug: string;
+  busySlug: string | null;
 }) {
   return (
     <div className="product-catalogue__ready">
@@ -111,25 +123,21 @@ function ProductCatalogueReady({
           Explore handcrafted essentials for body, hair, and soul. Each piece is built to read
           premium at a glance and stay clear on smaller screens.
         </p>
-        <Button
-          size="medium"
-          variant="ghost"
-          type="button"
-          onClick={() => {
-            window.location.hash = "#contact";
-          }}
-        >
+        <Link className="phekong-button phekong-button-ghost phekong-button-medium" href="/products">
           View all products
-        </Button>
+        </Link>
       </aside>
 
       <div className="product-catalogue__carousel">
         <div className="product-catalogue__grid" aria-label="Featured products">
           {products.map((product) => {
             const [availability, availabilityClassName] = getAvailabilityLabel(product);
+            const isSaved = savedSlugs.has(product.slug);
+            const isFeatured = product.slug === featuredSlug;
+            const isBusy = busySlug === product.slug;
 
             return (
-              <article className="product-card" key={product.slug}>
+              <article className={`product-card ${isFeatured ? "product-card--featured" : ""}`.trim()} key={product.slug}>
                 <div className="product-card__media">
                   <Link
                     className="product-card__media-link"
@@ -142,11 +150,18 @@ function ProductCatalogueReady({
                       alt={product.imageAlt}
                       width={720}
                       height={720}
-                      loading="eager"
+                      loading={isFeatured ? "eager" : "lazy"}
                     />
                   </Link>
                   <span className={`product-card__status ${availabilityClassName}`}>{availability}</span>
-                  <button className="product-card__favorite" type="button" aria-label={`Save ${product.name}`}>
+                  <button
+                    className={`product-card__favorite ${isSaved ? "product-card__favorite--saved" : ""}`.trim()}
+                    type="button"
+                    aria-label={isSaved ? `Remove ${product.name} from saved items` : `Save ${product.name}`}
+                    aria-pressed={isSaved}
+                    aria-busy={isBusy}
+                    onClick={() => onFavorite(product)}
+                  >
                     <HeartIcon />
                   </button>
                 </div>
@@ -173,7 +188,7 @@ function ProductCatalogueReady({
           })}
         </div>
 
-        <button className="product-catalogue__next" type="button" aria-label="Next products">
+        <button className="product-catalogue__next" type="button" aria-label="Next featured product" onClick={onNext}>
           <ArrowRightIcon />
         </button>
       </div>
@@ -266,6 +281,68 @@ export function ProductCatalogue({
 }: ProductCatalogueProps) {
   const activeProducts = products.filter((product) => product.active);
   const visibleState = state === "ready" && activeProducts.length === 0 ? "empty" : state;
+  const [savedSlugs, setSavedSlugs] = useState<Set<string>>(new Set());
+  const [featuredSlug, setFeaturedSlug] = useState(activeProducts[0]?.slug ?? products[0]?.slug ?? "");
+  const [busySlug, setBusySlug] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<FeedbackState | null>(null);
+
+  useEffect(() => {
+    if (!feedback) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => setFeedback(null), feedback.tone === "loading" ? 900 : 2200);
+    return () => window.clearTimeout(timeout);
+  }, [feedback]);
+
+
+  function announce(nextFeedback: FeedbackState) {
+    setFeedback(nextFeedback);
+  }
+
+  async function saveProduct(product: ProductCatalogueItem) {
+    if (busySlug) {
+      return;
+    }
+
+    setBusySlug(product.slug);
+    announce({ tone: "loading", message: `Saving ${product.name}...` });
+
+    try {
+      await new Promise<void>((resolve) => window.setTimeout(resolve, 280));
+      setSavedSlugs((current) => {
+        const next = new Set(current);
+        if (next.has(product.slug)) {
+          next.delete(product.slug);
+          announce({ tone: "success", message: `${product.name} removed from saved items.` });
+        } else {
+          next.add(product.slug);
+          announce({ tone: "success", message: `${product.name} saved for later.` });
+        }
+        return next;
+      });
+    } catch {
+      announce({ tone: "error", message: `Could not update saved items for ${product.name}.` });
+    } finally {
+      setBusySlug(null);
+    }
+  }
+
+  async function goToNextFeatured() {
+    if (activeProducts.length === 0) {
+      announce({ tone: "blocked", message: "No active products are available to feature." });
+      return;
+    }
+
+    announce({ tone: "loading", message: "Moving to the next featured product..." });
+    await new Promise<void>((resolve) => window.setTimeout(resolve, 220));
+
+    const currentIndex = activeProducts.findIndex((product) => product.slug === featuredSlug);
+    const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % activeProducts.length;
+    const nextProduct = activeProducts[nextIndex];
+    setFeaturedSlug(nextProduct.slug);
+    announce({ tone: "success", message: `Featured ${nextProduct.name}.` });
+  }
 
   return (
     <section className="product-catalogue" id="products" aria-labelledby="product-catalogue-title">
@@ -282,10 +359,21 @@ export function ProductCatalogue({
         </div>
       </div>
 
+      <ActionFeedback state={feedback} />
+
       {visibleState === "loading" ? <LoadingCatalogue /> : null}
       {visibleState === "empty" ? <EmptyCatalogue onRetry={onRetry} /> : null}
       {visibleState === "error" ? <ErrorCatalogue onRetry={onRetry} /> : null}
-      {visibleState === "ready" ? <ProductCatalogueReady products={activeProducts} /> : null}
+      {visibleState === "ready" ? (
+        <ProductCatalogueReady
+          products={activeProducts}
+          onFavorite={saveProduct}
+          onNext={goToNextFeatured}
+          savedSlugs={savedSlugs}
+          featuredSlug={featuredSlug}
+          busySlug={busySlug}
+        />
+      ) : null}
     </section>
   );
 }
@@ -313,3 +401,4 @@ function ArrowRightIcon() {
     </svg>
   );
 }
+

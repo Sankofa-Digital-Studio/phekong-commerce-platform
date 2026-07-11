@@ -1,0 +1,113 @@
+.commerce-preview {
+  display: grid;
+  gap: 1rem;
+}
+
+.commerce-preview__hero,
+.commerce-preview__panel,
+.commerce-preview__mini-card {
+  width: 100%;
+  max-width: none;
+}
+
+.commerce-preview__lede,
+.commerce-preview__description,
+.commerce-preview__boundary {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--phekong-muted);
+}
+
+.commerce-preview__tabs,
+.commerce-preview__actions,
+.commerce-preview__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.commerce-preview__tab {
+  border: 1px solid var(--phekong-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--phekong-text);
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+}
+
+.commerce-preview__tab.is-active {
+  background: var(--phekong-accent);
+  color: #111;
+  border-color: transparent;
+}
+
+.commerce-preview__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.9fr);
+  gap: 1rem;
+}
+
+.commerce-preview__stack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.commerce-preview__item,
+.commerce-preview__wishlist-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--phekong-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.commerce-preview__item p,
+.commerce-preview__wishlist-item p {
+  margin: 0.25rem 0 0;
+  color: var(--phekong-muted);
+}
+
+.commerce-preview__summary {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.commerce-preview__summary > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commerce-preview__card-surface {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--phekong-border);
+  background: linear-gradient(180deg, rgba(226, 183, 94, 0.12), rgba(255, 255, 255, 0.03));
+}
+
+.commerce-preview__eyebrow {
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  color: var(--phekong-accent);
+}
+
+.commerce-preview__checklist {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.65rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .commerce-preview__grid {
+    grid-template-columns: 1fr;
+  }
+}

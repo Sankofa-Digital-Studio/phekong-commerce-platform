@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedback";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { formatCurrency, getProductAvailability } from "@/lib/products/repository";
@@ -16,6 +18,40 @@ export interface ProductDetailProps {
 
 export function ProductDetail({ product, source, fallbackReason }: ProductDetailProps) {
   const availability = getProductAvailability(product);
+  const [isAdding, setIsAdding] = useState(false);
+  const [feedback, setFeedback] = useState<FeedbackState | null>(
+    availability.tone === "out-of-stock"
+      ? { tone: "blocked", message: "This product is currently out of stock and cannot be added to the cart." }
+      : null,
+  );
+
+  useEffect(() => {
+    if (!feedback) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => setFeedback(null), feedback.tone === "loading" ? 900 : 2400);
+    return () => window.clearTimeout(timeout);
+  }, [feedback]);
+
+  async function addToCart() {
+    if (availability.tone === "out-of-stock") {
+      setFeedback({ tone: "blocked", message: "This product is currently unavailable and cannot be added." });
+      return;
+    }
+
+    setIsAdding(true);
+    setFeedback({ tone: "loading", message: `Adding ${product.name} to the cart preview...` });
+
+    try {
+      await new Promise<void>((resolve) => window.setTimeout(resolve, 420));
+      setFeedback({ tone: "success", message: `${product.name} added to the cart preview.` });
+    } catch {
+      setFeedback({ tone: "error", message: `Could not add ${product.name} to the cart preview.` });
+    } finally {
+      setIsAdding(false);
+    }
+  }
 
   return (
     <article className="product-detail">
@@ -46,13 +82,22 @@ export function ProductDetail({ product, source, fallbackReason }: ProductDetail
           </div>
 
           <div className="product-detail__actions">
-            <Button size="medium" variant="primary" type="button" disabled={availability.tone === "out-of-stock"}>
+            <Button
+              size="medium"
+              variant="primary"
+              type="button"
+              disabled={availability.tone === "out-of-stock"}
+              loading={isAdding}
+              onClick={() => void addToCart()}
+            >
               {availability.tone === "out-of-stock" ? "Unavailable" : "Add to cart"}
             </Button>
-            <Link className="product-detail__link" href="/#products">
+            <Link className="product-detail__link" href="/products#products">
               Back to catalogue
             </Link>
           </div>
+
+          <ActionFeedback state={feedback} />
 
           <Card
             className="product-detail__card"
@@ -81,4 +126,3 @@ export function ProductDetail({ product, source, fallbackReason }: ProductDetail
     </article>
   );
 }
-
