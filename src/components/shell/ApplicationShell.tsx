@@ -32,8 +32,14 @@ export function ApplicationShell({
   const [menuOpen, setMenuOpen] = useState(false);
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
   const t = shellCopy[locale];
+  const homeSurface = !showStatePanel ? <HomeSurface catalogueState={catalogueState} onRetry={catalogueOnRetry} onNotify={announce} /> : null;
   const shellContent =
-    children ?? (!showStatePanel ? <HomeSurface catalogueState={catalogueState} onRetry={catalogueOnRetry} onNotify={announce} /> : null);
+    activeRoute === "home" && children ? (
+      <>
+        {homeSurface}
+        {children}
+      </>
+    ) : children ?? homeSurface;
 
   const links = [
     { route: "home", label: t.home, href: "/" },
@@ -165,29 +171,29 @@ function HomeSurface({
 
   const slides = [
     {
-      title: "Rituals that restore balance.",
-      product: "Restorative Body Oil",
+      title: "Healing herbal teas for daily balance.",
+      product: "Aloe Herbal Juice",
       image: "/images/phekong-hero-reference.png",
       alt: "Phekong restorative body oil arranged with ritual ingredients on a dark surface.",
       slug: "growth-strength-oil",
     },
     {
-      title: "Nourish your daily ritual.",
-      product: "Nourishing Shea Butter",
+      title: "Fresh herbal juices with a clean finish.",
+      product: "Lengana Tea Blend",
       image: "/images/product-shea-butter.png",
       alt: "A creamy shea butter jar on a stone pedestal with botanical leaves.",
       slug: "nourishing-shea-butter",
     },
     {
-      title: "Exfoliate with intention.",
-      product: "Exfoliating Sugar Scrub",
+      title: "Therapy lab support for oral and topical care.",
+      product: "Herbal Therapy Gel",
       image: "/images/product-sugar-scrub.png",
       alt: "A warm amber scrub jar with botanical accents on stone and wood.",
       slug: "exfoliating-sugar-scrub",
     },
     {
-      title: "Craft your wellness.",
-      product: "Turmeric & Honey Soap",
+      title: "Beauty lab care for skin and body.",
+      product: "Shea Butter Cream",
       image: "/images/product-turmeric-soap.png",
       alt: "Stacked turmeric soap bars beside a kraft box with honey accents and leaves.",
       slug: "turmeric-honey-soap",
@@ -233,8 +239,7 @@ function HomeSurface({
             <span />
           </div>
           <p className="shell-hero__intro">
-            Phekong crafts natural body and hair care with intention. Pure ingredients. Conscious rituals.
-            Real results.
+            Phekong blends natural wellness products with a premium South African feel. Pure ingredients, clear categories, and a calmer path to purchase.
           </p>
           <div className="shell-hero__actions">
             <a className="shell-cta" href="#products" onClick={() => onNotify("success", "Jumped to the product catalogue.")}>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ApplicationShell } from "../components/shell/ApplicationShell";
+import { HomeExperience } from "@/components/home/HomeExperience";
 import { buildCanonicalUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,5 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <ApplicationShell activeRoute="home" showStatePanel={false} />;
+  return (
+    <ApplicationShell activeRoute="home" showStatePanel={false}>
+      <HomeExperience />
+    </ApplicationShell>
+  );
 }

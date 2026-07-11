@@ -1,0 +1,40 @@
+.flow {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.routeMap {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.routeMapCard {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 22px;
+  border: 1px solid rgb(var(--border));
+  background: rgb(var(--card));
+}
+
+.routeMapLabel {
+  margin: 0;
+  color: rgb(var(--muted-foreground));
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.routeMapValue {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.principles {
+  display: grid;
+  gap: 0.85rem;
+}
+
