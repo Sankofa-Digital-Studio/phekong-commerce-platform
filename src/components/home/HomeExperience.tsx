@@ -7,7 +7,7 @@ import "./home-experience.css";
 
 export function HomeExperience() {
   return (
-    <section className="home-experience" id="our-story" aria-label="The Phekong story">
+    <section className="home-experience" aria-label="Phekong home expansion">
       <div className="home-experience__story">
         <div className="home-experience__media">
           <Image
@@ -19,22 +19,26 @@ export function HomeExperience() {
           />
         </div>
         <div className="home-experience__copy">
-          <p className="home-experience__eyebrow">OUR BEGINNING</p>
-          <h2 className="home-experience__title">From Welkom, a quieter way back to yourself.</h2>
-          <p className="home-experience__lede">Phekong began in the Free State in 2006 with a simple belief: wellbeing should feel close to home, not out of reach.</p>
-          <p className="home-experience__lede">Every product is an invitation to pause—to turn an ordinary morning, bath or bedtime into a moment that belongs to you. Choose your ritual, carry the story forward, and make care part of the life you are building.</p>
+          <p className="home-experience__eyebrow">{wellnessThemeContent.hero.eyebrow}</p>
+          <h2 className="home-experience__title">{wellnessThemeContent.hero.heading}</h2>
+          <p className="home-experience__lede">{wellnessThemeContent.hero.description}</p>
+          <p className="home-experience__lede">{wellnessThemeContent.brandStory}</p>
           <div className="home-experience__actions">
             <Link className="home-experience__cta" href="/products">
-              Choose your first ritual
+              Shop best sellers
             </Link>
             <Link className="home-experience__secondary" href="/services">
-              Discover our care
+              Explore services
             </Link>
             <Link className="home-experience__secondary" href="/contact">
-              Speak with Phekong
+              Talk to us
             </Link>
           </div>
-          <blockquote className="home-experience__manifesto">“Healing is not a destination. It is the small act of returning to yourself.”</blockquote>
+          <div className="home-experience__chips">
+            {wellnessThemeContent.trustPoints.map((point) => (
+              <span key={point}>{point}</span>
+            ))}
+          </div>
         </div>
       </div>
 

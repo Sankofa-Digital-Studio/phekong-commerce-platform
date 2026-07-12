@@ -9,10 +9,10 @@ describe("adaptive homepage smoke", () => {
     cy.contains("button", "Enter now").click();
     cy.contains("Rooting your wellness journey").should("not.exist");
 
-    cy.contains("a", "Begin your ritual")
+    cy.contains("a", "Find your remedy")
       .should("be.visible")
       .and("have.attr", "href", "/#shop-by-need");
-    cy.contains("a", "Find your ritual")
+    cy.contains("a", "Shop by what you need")
       .should("have.attr", "href", "#shop-by-need");
     cy.get("#shop-by-need").should("exist");
     cy.get(".shell-hero__image").should(($image) => {

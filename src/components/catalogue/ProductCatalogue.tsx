@@ -350,7 +350,7 @@ export function ProductCatalogue({
         <p className="product-catalogue__eyebrow">Product catalogue</p>
         <div className="product-catalogue__lead">
           <div>
-            <h2 id="product-catalogue-title">Choose the ritual your day is asking for</h2>
+            <h2 id="product-catalogue-title">Featured essentials for the page</h2>
             <p className="product-catalogue__lede">
               Read-only browsing stays responsive on mobile and desktop while loading, empty, and
               error states keep the public journey clear.
