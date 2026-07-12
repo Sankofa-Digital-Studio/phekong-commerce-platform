@@ -17,8 +17,8 @@ const rituals = {
     action: "Build my restoring ritual",
     heading: "Restore your rhythm",
     productSlug: "growth-strength-oil",
-    image: "/images/ritual-restore.jpg",
-    alt: "Hands carefully preparing an amber botanical blend in a warm apothecary setting.",
+    image: "/images/phekong-hero-reference.png",
+    alt: "Phekong restorative body oil arranged with warm botanical ingredients.",
     steps: [
       ["Arrive", "Take one quiet minute. Let the day stop at the door."],
       ["Apply", "Warm a small amount between your hands and move with intention."],
@@ -31,8 +31,8 @@ const rituals = {
     action: "Build my grounding ritual",
     heading: "Come back to the present",
     productSlug: "turmeric-honey-soap",
-    image: "/images/ritual-ground.jpg",
-    alt: "Hands preparing herbal tea in a glass pot on a warm wooden surface.",
+    image: "/images/product-turmeric-soap.png",
+    alt: "Golden turmeric and honey soap beside leaves and natural textures.",
     steps: [
       ["Pause", "Let warm water mark the edge between the day and this moment."],
       ["Cleanse", "Work the soap slowly between your hands and breathe naturally."],
@@ -45,8 +45,8 @@ const rituals = {
     action: "Build my care ritual",
     heading: "Make room for softness",
     productSlug: "nourishing-shea-butter",
-    image: "/images/ritual-care.jpg",
-    alt: "A hand holding natural body butter beside woven fibres and fresh greenery.",
+    image: "/images/product-shea-butter.png",
+    alt: "Nourishing shea butter on stone among deep green botanical leaves.",
     steps: [
       ["Soften", "Begin after bathing, while your skin still holds a little warmth."],
       ["Nourish", "Take your time over the places asking for more attention."],
@@ -59,8 +59,8 @@ const rituals = {
     action: "Build my renewal ritual",
     heading: "Leave space for what comes next",
     productSlug: "exfoliating-sugar-scrub",
-    image: "/images/ritual-renew.jpg",
-    alt: "Hands holding a warm herbal infusion on a quiet wooden table.",
+    image: "/images/product-sugar-scrub.png",
+    alt: "Amber sugar scrub surrounded by wood, stone and botanical details.",
     steps: [
       ["Release", "Let the water settle you before reaching for anything else."],
       ["Renew", "Move gently and deliberately, giving attention rather than rushing."],
