@@ -13,3 +13,9 @@ Owner: Sankofa Digital Lead
 
 ## Pull request gate
 A change may not be merged when required checks fail or acceptance evidence is missing.
+
+
+## Homepage quality gate
+Run `npm run lint`, `npm run typecheck`, `npm run test:run`, `npm run storybook:ci`, `npm run test:e2e:cypress`, and `npm run build` before promoting `dev` to `preview`.
+
+The detailed adaptive-homepage contract, automated layers, and manual Vercel Preview checklist live in [`homepage-quality-coverage.md`](./homepage-quality-coverage.md).

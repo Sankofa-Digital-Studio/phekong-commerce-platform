@@ -30,7 +30,7 @@ export default function ServicesPage() {
           <p className={shared.eyebrow}>Services</p>
           <h1 className={shared.title}>Service lanes designed around the catalogue, not around noise.</h1>
           <p className={shared.lede}>
-            This page now mirrors the prototype's strongest service cues: product presentation, booking readiness, public trust, and a route structure that feels easy to follow.
+            This page now mirrors the prototype&apos;s strongest service cues: product presentation, booking readiness, public trust, and a route structure that feels easy to follow.
           </p>
           <div className={shared.metaRow}>
             <span className={shared.chip}>Implementation-ready</span>

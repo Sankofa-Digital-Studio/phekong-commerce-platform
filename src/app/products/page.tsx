@@ -21,7 +21,7 @@ export default function ProductsPage() {
       <PublicRouteSurface
         eyebrow="Products"
         title="Natural wellness categories that are easy to scan and easy to trust."
-        description="The live store now mirrors the prototype's stronger merchandising language: teas, juices, body care, oral care, energy, calm, and massage support, all presented through the existing catalogue."
+        description="The live store now mirrors the prototype&apos;s stronger merchandising language: teas, juices, body care, oral care, energy, calm, and massage support, all presented through the existing catalogue."
         summary="Use this route to browse approved products, compare intent-based categories, and move toward a product detail page without guessing what is live."
         actions={[
           { kind: "link", label: "Shop by need", href: "#category-grid", variant: "primary" },
@@ -35,7 +35,7 @@ export default function ProductsPage() {
               Shop by wellness need
             </h2>
             <p className={shared.sectionLead}>
-              The prototype's strongest idea was category-first discovery. The live catalogue now leans into that same approach while keeping the approved product list and existing backend baseline intact.
+              The prototype&apos;s strongest idea was category-first discovery. The live catalogue now leans into that same approach while keeping the approved product list and existing backend baseline intact.
             </p>
           </div>
 
@@ -55,7 +55,7 @@ export default function ProductsPage() {
               Why the live product page converts better now
             </h2>
             <p className={shared.sectionLead}>
-              The page keeps the live product catalogue, but now frames it with the prototype's natural-wellness story: South African origin, clear intent, and a calmer path to the right item.
+              The page keeps the live product catalogue, but now frames it with the prototype&apos;s natural-wellness story: South African origin, clear intent, and a calmer path to the right item.
             </p>
           </div>
 

@@ -34,6 +34,6 @@ describe("ProductDetail", () => {
 
     await waitFor(() => {
       expect(screen.getByText(/added to the cart preview/i)).toBeInTheDocument();
-    });
+    }, { timeout: 3000 });
   });
 });

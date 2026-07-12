@@ -46,7 +46,7 @@ export default function AboutPage() {
               What this page is really doing
             </h2>
             <p className={shared.sectionLead}>
-              This route now uses the prototype's strongest brand signals without importing the old code: a grounded origin story, community wellness, and a clear sense of what the live storefront is for.
+              This route now uses the prototype&apos;s strongest brand signals without importing the old code: a grounded origin story, community wellness, and a clear sense of what the live storefront is for.
             </p>
           </div>
 

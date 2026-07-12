@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { ApplicationShell } from "./ApplicationShell";
+import { expect, userEvent, within } from "storybook/test";
 
 const meta = {
   title: "M1/Shell/ApplicationShell",
@@ -34,5 +35,16 @@ export const ErrorCatalogue: Story = {
   args: {
     catalogueState: "error",
     catalogueOnRetry: () => undefined,
+  },
+};
+
+
+export const AdaptiveInteraction: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole("button", { name: "Enter now" }));
+    await expect(canvas.getByRole("link", { name: "Find your remedy" })).toHaveAttribute("href", "/#shop-by-need");
+    await userEvent.click(canvas.getByRole("button", { name: "Use less data" }));
+    await expect(canvas.getByRole("button", { name: "Use enhanced visuals" })).toHaveAttribute("aria-pressed", "true");
   },
 };
