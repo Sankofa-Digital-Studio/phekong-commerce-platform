@@ -8,6 +8,7 @@ import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedba
 import { shellCopy, type ShellLocale } from "./translations";
 import "./application-shell.css";
 import "./adaptive-hero.css";
+import "./narrative-home.css";
 
 export type ShellState = "ready" | "loading" | "empty" | "error";
 
@@ -105,7 +106,7 @@ export function ApplicationShell({
               <BagIcon />
             </Link>
             <Link className="shell-header-cta" href="/#shop-by-need" onClick={() => announce("success", "Opening guided product discovery.")}>
-              Find your remedy
+              Begin your ritual
             </Link>
             <button
               className="menu-button"
@@ -176,29 +177,33 @@ function HomeSurface({
 
   const slides = [
     {
-      title: "Healing herbal teas for daily balance.",
-      product: "Aloe Herbal Juice",
+      chapter: "Chapter one — Return",
+      title: "The earth remembers what the body needs.",
+      product: "Restorative Body Oil",
       image: "/images/phekong-hero-reference.png",
       alt: "Phekong restorative body oil arranged with ritual ingredients on a dark surface.",
       slug: "growth-strength-oil",
     },
     {
-      title: "Fresh herbal juices with a clean finish.",
-      product: "Lengana Tea Blend",
+      chapter: "Chapter two — Nourish",
+      title: "Make care a ritual, not another task.",
+      product: "Nourishing Shea Butter",
       image: "/images/product-shea-butter.png",
       alt: "A creamy shea butter jar on a stone pedestal with botanical leaves.",
       slug: "nourishing-shea-butter",
     },
     {
-      title: "Therapy lab support for oral and topical care.",
-      product: "Herbal Therapy Gel",
+      chapter: "Chapter three — Renew",
+      title: "Shed the day. Return to yourself.",
+      product: "Exfoliating Sugar Scrub",
       image: "/images/product-sugar-scrub.png",
       alt: "A warm amber scrub jar with botanical accents on stone and wood.",
       slug: "exfoliating-sugar-scrub",
     },
     {
-      title: "Beauty lab care for skin and body.",
-      product: "Shea Butter Cream",
+      chapter: "Chapter four — Carry forward",
+      title: "An everyday ritual, shaped by where we come from.",
+      product: "Turmeric & Honey Soap",
       image: "/images/product-turmeric-soap.png",
       alt: "Stacked turmeric soap bars beside a kraft box with honey accents and leaves.",
       slug: "turmeric-honey-soap",
@@ -300,7 +305,7 @@ function HomeSurface({
         </div>
 
         <div className="shell-hero__copy">
-          <p className="shell-hero__kicker">ROOTED IN NATURE, MADE FOR YOU</p>
+          <p className="shell-hero__kicker">{slide.chapter}</p>
           <h1>{slide.title}</h1>
           <div className="shell-hero__rule" aria-hidden="true">
             <span />
@@ -308,29 +313,18 @@ function HomeSurface({
             <span />
           </div>
           <p className="shell-hero__intro">
-            Phekong blends natural wellness products with a premium South African feel. Pure ingredients, clear categories, and a calmer path to purchase.
+            Born in Welkom in 2006, Phekong turns nature-led care into small, intentional moments. This is not simply something you buy. It is time you choose to give back to yourself.
           </p>
           <div className="shell-hero__actions">
             <a className="shell-cta" href="#shop-by-need" onClick={() => onNotify("success", "Opening guided product discovery.")}>
-              Shop by what you need
+              Find your ritual
               <ArrowRightIcon />
             </a>
-            <Link className="shell-cta-secondary" href="/products">Browse all products</Link>
+            <Link className="shell-cta-secondary" href="#our-story">Meet Phekong</Link>
           </div>
 
-          <div className="shell-trust">
-            <div className="shell-trust__avatars" aria-label="Trusted by 1,200+ customers">
-              <span className="shell-avatar shell-avatar--one">A</span>
-              <span className="shell-avatar shell-avatar--two">K</span>
-              <span className="shell-avatar shell-avatar--three">M</span>
-            </div>
-            <div className="shell-trust__copy">
-              <span>Trusted by 1,200+ customers</span>
-              <div className="shell-trust__rating">
-                <StarsRow />
-                <span>4.9/5</span>
-              </div>
-            </div>
+          <div className="shell-provenance" aria-label="Phekong provenance">
+            <span>Welkom, Free State</span><span>Established 2006</span><span>South African wellness</span>
           </div>
         </div>
 
@@ -347,13 +341,11 @@ function HomeSurface({
               sizes="(max-width: 760px) 100vw, (max-width: 1120px) 100vw, 55vw"
             />
             <div className="shell-hero__product-card">
-              <p className="shell-hero__product-eyebrow">EDITOR&apos;S PICK</p>
+              <p className="shell-hero__product-eyebrow">YOUR NEXT RITUAL</p>
               <h3>{slide.product}</h3>
-              <p>A deeply nourishing blend that restores, softens and renews. Infused with marula, baobab and vitamin E.</p>
-              <p className="shell-hero__product-price">R 320.00</p>
-              <p className="shell-hero__product-status">● In Stock • Ready to Ship</p>
+              <p>Begin with one considered act of care. Discover the texture, purpose and story behind this Phekong essential.</p>
               <Link href={`/products/${slide.slug}`} className="shell-hero__product-link">
-                View Product
+                Enter this chapter
               </Link>
             </div>
           </div>
@@ -373,20 +365,14 @@ function HomeSurface({
       </section>
 
       <section className="shell-feature-strip" aria-label="Key brand commitments">
-        <FeatureItem icon={<LeafIcon />} title="Clean Ingredients" copy="No nasties. Ever." />
-        <FeatureItem icon={<BowlIcon />} title="Made in Small Batches" copy="Quality over quantity." />
-        <FeatureItem icon={<RabbitIcon />} title="Cruelty Free" copy="Kind to animals." />
-        <FeatureItem icon={<RecycleIcon />} title="Sustainable Packaging" copy="Good for you & the planet." />
+        <FeatureItem icon={<LeafIcon />} title="Rooted here" copy="Born in Welkom, Free State." />
+        <FeatureItem icon={<BowlIcon />} title="Made with intention" copy="Care chosen over excess." />
+        <FeatureItem icon={<RabbitIcon />} title="Guided discovery" copy="Find a ritual that fits your day." />
+        <FeatureItem icon={<RecycleIcon />} title="A story to carry" copy="South African wellness, made personal." />
       </section>
 
       <ProductCatalogue state={catalogueState} onRetry={onRetry} />
 
-      <section className="shell-metrics" aria-label="Trust metrics">
-        <MetricItem icon={<LeafBadgeIcon />} value="100%" label="Natural Ingredients" />
-        <MetricItem icon={<UsersIcon />} value="1,200+" label="Happy Customers" />
-        <MetricItem icon={<StarBadgeIcon />} value="4.9/5" label="Average Rating" />
-        <MetricItem icon={<ShieldIcon />} value="30-Day" label="Love It or Return It Guarantee" />
-      </section>
     </div>
   );
 }

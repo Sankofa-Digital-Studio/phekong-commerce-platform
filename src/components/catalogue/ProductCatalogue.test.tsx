@@ -6,7 +6,7 @@ describe("ProductCatalogue", () => {
   it("renders the ready catalogue with active products", () => {
     render(<ProductCatalogue />);
 
-    expect(screen.getByRole("heading", { name: /featured essentials for the page/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /choose the ritual your day is asking for/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /care for your ritual, daily/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /nourishing shea butter/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /growth & strength oil/i })).toBeInTheDocument();

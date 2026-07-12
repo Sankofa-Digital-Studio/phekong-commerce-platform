@@ -111,7 +111,7 @@
 
 .product-catalogue__next {
   position: absolute;
-  right: -1.2rem;
+  right: 0.35rem;
   top: 50%;
   width: 3.25rem;
   height: 3.25rem;
@@ -236,7 +236,8 @@
 
 .product-card__media .product-card__status {
   position: absolute;
-  right: 0.8rem;
+  left: 0.8rem;
+  right: auto;
   top: 0.85rem;
   z-index: 2;
 }
