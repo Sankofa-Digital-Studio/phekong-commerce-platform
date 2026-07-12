@@ -7,6 +7,7 @@ import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/Produ
 import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedback";
 import { shellCopy, type ShellLocale } from "./translations";
 import "./application-shell.css";
+import "./adaptive-hero.css";
 
 export type ShellState = "ready" | "loading" | "empty" | "error";
 
@@ -103,8 +104,8 @@ export function ApplicationShell({
             <Link className="icon-button icon-button--bag" href="/cart" aria-label="Cart" onClick={() => announce("blocked", "Cart is currently a preview-only route.")}>
               <BagIcon />
             </Link>
-            <Link className="shell-header-cta" href="/contact" onClick={() => announce("loading", "Opening contact route...")}>
-              Ask About a Product
+            <Link className="shell-header-cta" href="/#shop-by-need" onClick={() => announce("success", "Opening guided product discovery.")}>
+              Find your remedy
             </Link>
             <button
               className="menu-button"
@@ -168,6 +169,10 @@ function HomeSurface({
   onNotify: (tone: FeedbackState["tone"], message: string) => void;
 }) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [dataSaver, setDataSaver] = useState(false);
+  const [networkLabel, setNetworkLabel] = useState("Adaptive");
+  const [experienceReady, setExperienceReady] = useState(false);
+  const [carouselPaused, setCarouselPaused] = useState(false);
 
   const slides = [
     {
@@ -200,6 +205,55 @@ function HomeSurface({
     },
   ];
 
+  useEffect(() => {
+    const connection = (navigator as Navigator & {
+      connection?: { effectiveType?: string; saveData?: boolean; downlink?: number };
+    }).connection;
+    const savedPreference = window.localStorage.getItem("phekong-data-saver");
+    const constrainedNetwork = connection?.effectiveType === "slow-2g" || connection?.effectiveType === "2g";
+    const shouldSaveData = savedPreference === "on" ||
+      (savedPreference !== "off" && (Boolean(connection?.saveData) || constrainedNetwork));
+    const downlink = connection?.downlink ?? 0;
+    const detectedNetwork = downlink >= 15 ? "5G / fast" :
+      connection?.effectiveType === "4g" ? "4G" :
+      connection?.effectiveType === "3g" ? "H+ / 3G" :
+      constrainedNetwork ? "2G" : "Adaptive";
+    const preferenceTimer = window.setTimeout(() => {
+      setDataSaver(shouldSaveData);
+      setNetworkLabel(detectedNetwork);
+    }, 0);
+    const readyTimer = window.setTimeout(() => setExperienceReady(true), shouldSaveData ? 240 : 760);
+
+    return () => {
+      window.clearTimeout(preferenceTimer);
+      window.clearTimeout(readyTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+    if (dataSaver || reduceMotion || carouselPaused) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      if (!document.hidden) {
+        setCurrentSlide((current) => (current + 1) % slides.length);
+      }
+    }, 6200);
+
+    return () => window.clearInterval(interval);
+  }, [carouselPaused, dataSaver, slides.length]);
+
+  const toggleDataSaver = () => {
+    setDataSaver((current) => {
+      const next = !current;
+      window.localStorage.setItem("phekong-data-saver", next ? "on" : "off");
+      onNotify("success", next ? "Data saver enabled." : "Enhanced experience enabled.");
+      return next;
+    });
+  };
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
     onNotify("success", "Moved to the next hero slide.");
@@ -216,9 +270,24 @@ function HomeSurface({
   const slide = slides[currentSlide];
 
   return (
-    <div className="shell-surface">
-      <section className="shell-hero" id="home">
-        <div className="shell-hero__dots" aria-hidden="true">
+    <div className={`shell-surface ${dataSaver ? "is-data-saver" : "is-enhanced"}`}>
+      {!experienceReady && (
+        <div className="ritual-loader" role="status" aria-live="polite" aria-label="Preparing the Phekong experience">
+          <div className="ritual-loader__seed" aria-hidden="true"><span /><i /><b /></div>
+          <p>Rooting your wellness journey</p>
+          <span>Gathering the essentials for a calm arrival.</span>
+          <button type="button" onClick={() => setExperienceReady(true)}>Enter now</button>
+        </div>
+      )}
+      <section
+        className="shell-hero"
+        id="home"
+        onMouseEnter={() => setCarouselPaused(true)}
+        onMouseLeave={() => setCarouselPaused(false)}
+        onFocusCapture={() => setCarouselPaused(true)}
+        onBlurCapture={() => setCarouselPaused(false)}
+      >
+        <div className="shell-hero__dots" role="group" aria-label="Choose featured product slide">
           {slides.map((_, index) => (
             <button
               key={index}
@@ -242,10 +311,11 @@ function HomeSurface({
             Phekong blends natural wellness products with a premium South African feel. Pure ingredients, clear categories, and a calmer path to purchase.
           </p>
           <div className="shell-hero__actions">
-            <a className="shell-cta" href="#products" onClick={() => onNotify("success", "Jumped to the product catalogue.")}>
-              Explore Our Products
+            <a className="shell-cta" href="#shop-by-need" onClick={() => onNotify("success", "Opening guided product discovery.")}>
+              Shop by what you need
               <ArrowRightIcon />
             </a>
+            <Link className="shell-cta-secondary" href="/products">Browse all products</Link>
           </div>
 
           <div className="shell-trust">
@@ -274,6 +344,7 @@ function HomeSurface({
               width={1200}
               height={900}
               priority
+              sizes="(max-width: 760px) 100vw, (max-width: 1120px) 100vw, 55vw"
             />
             <div className="shell-hero__product-card">
               <p className="shell-hero__product-eyebrow">EDITOR&apos;S PICK</p>
@@ -292,6 +363,12 @@ function HomeSurface({
           <button type="button" className="shell-hero__nav shell-hero__nav--next" onClick={nextSlide} aria-label="Next slide">
             <ArrowRightIcon />
           </button>
+          <div className="shell-hero__experience-control">
+            <span>{networkLabel} experience</span>
+            <button type="button" onClick={toggleDataSaver} aria-pressed={dataSaver}>
+              {dataSaver ? "Use enhanced visuals" : "Use less data"}
+            </button>
+          </div>
         </aside>
       </section>
 

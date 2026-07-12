@@ -1,0 +1,154 @@
+/* Adaptive ritual gateway: intentionally CSS-only to keep the enhanced layer light. */
+.shell-hero__visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgb(8 12 7 / 32%), transparent 28%, transparent 72%, rgb(8 10 6 / 18%));
+}
+
+.shell-hero__image {
+  transform: scale(1.015);
+  transition: opacity 700ms ease, transform 6.2s ease;
+}
+
+.is-enhanced .shell-hero__image { transform: scale(1.055); }
+.is-data-saver .shell-hero__image { animation: none; transition: none; transform: none; }
+
+.shell-hero__product-card,
+.shell-hero__nav,
+.shell-hero__experience-control { z-index: 3; }
+
+.shell-cta-secondary {
+  min-height: 3.1rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.78rem 1.1rem;
+  color: #f0dfc4;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(232 196 136 / 52%);
+}
+
+.shell-hero__experience-control {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.65rem 0.55rem 0.8rem;
+  border: 1px solid rgb(238 208 154 / 22%);
+  border-radius: 999px;
+  background: rgb(7 10 6 / 76%);
+  color: rgb(244 230 205 / 78%);
+  font-size: 0.72rem;
+  backdrop-filter: blur(0.7rem);
+}
+
+.shell-hero__experience-control button,
+.ritual-loader button {
+  border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.shell-hero__experience-control button {
+  min-height: 2rem;
+  border: 0;
+  padding: 0.35rem 0.7rem;
+  background: #d6a864;
+  color: #20150c;
+  font-weight: 700;
+}
+
+.ritual-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.7rem;
+  padding: 2rem;
+  text-align: center;
+  color: #f3e4ca;
+  background: radial-gradient(circle at 50% 46%, rgb(95 124 62 / 26%), transparent 18rem), linear-gradient(155deg, #071006, #161109);
+  animation: ritual-arrive 360ms ease both;
+}
+
+.ritual-loader p {
+  margin: 0.4rem 0 0;
+  font-family: var(--phekong-font-display);
+  font-size: clamp(1.9rem, 5vw, 3.25rem);
+}
+
+.ritual-loader > span { color: rgb(242 224 193 / 72%); }
+
+.ritual-loader button {
+  margin-top: 0.7rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid rgb(232 196 136 / 44%);
+  background: transparent;
+  color: #f2d69e;
+}
+
+.ritual-loader__seed {
+  position: relative;
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 50%;
+  border: 1px solid rgb(225 192 125 / 35%);
+  box-shadow: 0 0 0 0.85rem rgb(225 192 125 / 5%), inset 0 -1.4rem 2rem rgb(55 35 17 / 52%);
+}
+
+.ritual-loader__seed::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 1.1rem;
+  width: 0.18rem;
+  height: 3.5rem;
+  border-radius: 99px;
+  background: linear-gradient(#c89c51, #547039);
+  transform-origin: bottom;
+  animation: ritual-grow 760ms ease-out both;
+}
+
+.ritual-loader__seed span,
+.ritual-loader__seed i {
+  position: absolute;
+  top: 1.9rem;
+  width: 2rem;
+  height: 1rem;
+  border-radius: 100% 0 100% 0;
+  background: linear-gradient(135deg, #adc078, #55743b);
+}
+
+.ritual-loader__seed span { left: 3.2rem; transform: rotate(-14deg); }
+.ritual-loader__seed i { right: 3.2rem; transform: scaleX(-1) rotate(-14deg); }
+.ritual-loader__seed b {
+  position: absolute;
+  inset: 0.65rem;
+  border-radius: 50%;
+  border: 1px dashed rgb(226 194 132 / 26%);
+  animation: ritual-orbit 8s linear infinite;
+}
+
+@keyframes ritual-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes ritual-orbit { to { transform: rotate(360deg); } }
+@keyframes ritual-arrive { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .shell-hero__image,
+  .ritual-loader,
+  .ritual-loader__seed::before,
+  .ritual-loader__seed b { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 760px) {
+  .shell-hero__experience-control { top: 0.65rem; right: 0.65rem; max-width: calc(100% - 1.3rem); }
+  .shell-hero__experience-control span { display: none; }
+  .shell-hero__product-card { right: 0.75rem; bottom: 0.75rem; left: 0.75rem; max-width: none; }
+}
