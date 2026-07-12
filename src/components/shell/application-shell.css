@@ -863,3 +863,11 @@
 
 
 
+
+.living-footer { display:grid; grid-template-columns:1.4fr 1fr; gap:2rem; padding:3rem clamp(1rem,6vw,6rem); background:#050b07; color:#e9dac2; }
+.living-footer strong { font-family:var(--phekong-font-display); font-size:1.5rem; letter-spacing:.12em; }
+.living-footer p { max-width:34rem; color:#c8b79d; line-height:1.6; }
+.living-footer nav { display:flex; flex-wrap:wrap; align-content:start; gap:1rem 1.5rem; }
+.living-footer nav a { color:#f3e7d2; text-decoration:none; }
+.living-footer > span { grid-column:1/-1; padding-top:1.5rem; border-top:1px solid rgb(233 218 194 / 20%); color:#b8aa94; font-size:.8rem; }
+@media(max-width:767px){.living-footer{grid-template-columns:1fr}.living-footer>span{grid-column:auto}}

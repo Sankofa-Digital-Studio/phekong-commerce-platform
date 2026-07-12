@@ -48,3 +48,13 @@ This document records the automated and manual evidence required before the adap
 - Test at 360 px, 768 px, 1024 px and 1366 px widths.
 - Run the Vercel accessibility scan and confirm no hidden-focusable violations.
 - Check heading hierarchy, canonical URL, page title and meta description.
+
+## Living Ritual homepage contract
+
+- The homepage begins with four customer-feeling choices and no automatic carousel or artificial blocking loader.
+- Ritual state is shareable through ?ritual=restore|ground|care|renew and restored from session storage without overriding a new user choice.
+- Each choice reveals three wellness-oriented steps and maps to an existing catalogue slug; no medical or unsupported social-proof claims are introduced.
+- Product stock and save controls occupy separate corners, with save controls sized to 44 by 44 pixels.
+- Storybook covers unselected, four ritual states, mobile and desktop; axe must report no serious accessibility violations.
+- Cypress verifies the restoring journey, session persistence, 320-pixel horizontal overflow, control sizing and hidden-focus safety.
+- Manual screenshot inspection remains a required preview acceptance gate when the local browser surface is available.

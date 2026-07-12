@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { ApplicationShell } from "../components/shell/ApplicationShell";
-import { HomeExperience } from "@/components/home/HomeExperience";
+import { LivingRitualHome } from "@/components/home/LivingRitualHome";
 import { buildCanonicalUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Public product catalogue",
-  description: "Phekong Wellness Centre's public catalogue of approved products and product detail pages.",
+  title: "Phekong Wellness Centre | Find Your Ritual",
+  description: "Tell us how you want to feel and discover a simple Phekong wellness ritual, rooted in Welkom, South Africa.",
   alternates: {
     canonical: buildCanonicalUrl("/"),
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <ApplicationShell activeRoute="home" showStatePanel={false}>
-      <HomeExperience />
+      <LivingRitualHome />
     </ApplicationShell>
   );
 }

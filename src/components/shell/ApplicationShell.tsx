@@ -34,7 +34,7 @@ export function ApplicationShell({
   const [menuOpen, setMenuOpen] = useState(false);
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
   const t = shellCopy[locale];
-  const homeSurface = !showStatePanel ? <HomeSurface catalogueState={catalogueState} onRetry={catalogueOnRetry} onNotify={announce} /> : null;
+  const homeSurface = !showStatePanel && !children ? <HomeSurface catalogueState={catalogueState} onRetry={catalogueOnRetry} onNotify={announce} /> : null;
   const shellContent =
     activeRoute === "home" && children ? (
       <>
@@ -96,17 +96,8 @@ export function ApplicationShell({
           </nav>
 
           <div className="header-actions">
-            <Link className="icon-button" href="/products" aria-label="Browse products" onClick={() => announce("success", "Opening products.")}>
-              <SearchIcon />
-            </Link>
-            <Link className="icon-button" href="/account" aria-label="Account" onClick={() => announce("blocked", "Account is blocked until sign-in ships.")}>
-              <UserIcon />
-            </Link>
-            <Link className="icon-button icon-button--bag" href="/cart" aria-label="Cart" onClick={() => announce("blocked", "Cart is currently a preview-only route.")}>
+            <Link className="icon-button icon-button--bag" href="/cart" aria-label="Cart">
               <BagIcon />
-            </Link>
-            <Link className="shell-header-cta" href="/#shop-by-need" onClick={() => announce("success", "Opening guided product discovery.")}>
-              Begin your ritual
             </Link>
             <button
               className="menu-button"
@@ -152,9 +143,10 @@ export function ApplicationShell({
         {shellContent}
       </main>
 
-      <footer className="site-footer" id="contact">
-        <strong>Phekong {t.wellnessCentre}</strong>
-        <span>Copyright 2026 Sankofa Digital</span>
+      <footer className="site-footer living-footer" id="contact">
+        <div><strong>PHEKONG</strong><p>Natural wellness, thoughtful rituals and a quieter way back to yourself.</p></div>
+        <nav aria-label="Footer navigation"><Link href="/products">Shop</Link><Link href="/rituals">Rituals</Link><Link href="/about">Our Story</Link><Link href="/services">Services</Link><Link href="/contact">Contact</Link></nav>
+        <span>Welkom, Free State · © 2026 Phekong Wellness Centre</span>
       </footer>
     </div>
   );
@@ -399,6 +391,7 @@ function FeatureItem({
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function MetricItem({
   icon,
   value,
@@ -446,6 +439,7 @@ function LeafMark() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function SearchIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -454,6 +448,7 @@ function SearchIcon() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function UserIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -486,6 +481,7 @@ function ArrowLeftIcon() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function StarsRow() {
   return (
     <span className="shell-stars" aria-hidden="true">
@@ -546,6 +542,7 @@ function RecycleIcon() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function LeafBadgeIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -554,6 +551,7 @@ function LeafBadgeIcon() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function UsersIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -562,6 +560,7 @@ function UsersIcon() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function StarBadgeIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -570,6 +569,7 @@ function StarBadgeIcon() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ShieldIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
