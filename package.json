@@ -21,43 +21,45 @@
     "test-storybook": "vitest run --configLoader runner --project=storybook",
     "storybook:ci": "npm run test-storybook && npm run build-storybook",
     "test:e2e:cypress": "cypress run --browser chrome",
-    "e2e:cypress:open": "cypress open"
+    "e2e:cypress:open": "cypress open",
+    "dependencies:check": "npm ls --all"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.6.1",
-    "@supabase/supabase-js": "^2.110.2",
+    "@supabase/ssr": "^0.12.1",
+    "@supabase/supabase-js": "^2.110.3",
     "next": "^16.2.10",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.2.1",
-    "@eslint/eslintrc": "^3.3.1",
-    "@storybook/addon-a11y": "^10.4.6",
-    "@storybook/addon-docs": "^10.4.6",
-    "@storybook/addon-mcp": "^0.6.0",
-    "@storybook/addon-vitest": "^10.4.6",
-    "@storybook/nextjs-vite": "^10.4.6",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@types/node": "^22.13.10",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitest/browser": "3.2.6",
-    "@vitest/coverage-v8": "3.2.6",
+    "@eslint/eslintrc": "^3.3.6",
+    "@storybook/addon-a11y": "^10.5.0",
+    "@storybook/addon-docs": "^10.5.0",
+    "@storybook/addon-mcp": "^0.7.0",
+    "@storybook/addon-vitest": "^10.5.0",
+    "@storybook/nextjs-vite": "^10.5.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitest/browser": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.10",
     "cypress": "^15.18.1",
-    "eslint": "^9.22.0",
-    "eslint-config-next": "^16.2.1",
-    "eslint-plugin-storybook": "^10.4.6",
-    "jsdom": "^26.0.0",
-    "playwright": "^1.61.0",
-    "storybook": "^10.4.6",
-    "supabase": "2.109.0",
-    "typescript": "^5.8.2",
-    "vite": "8.0.16",
-    "vitest": "3.2.6"
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.10",
+    "eslint-plugin-storybook": "^10.5.0",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.61.1",
+    "storybook": "^10.5.0",
+    "supabase": "^2.109.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.1.4",
+    "vitest": "^4.1.10"
   },
   "engines": {
-    "node": ">=20.9.0"
-  }
+    "node": "24.x"
+  },
+  "packageManager": "npm@11.6.2"
 }

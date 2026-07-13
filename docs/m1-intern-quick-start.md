@@ -12,7 +12,7 @@ The goal is not to build a feature yet. The goal is to make the development path
 
 Install these before touching the code:
 
-- Node.js LTS, version 20.9.0 or newer
+- Node.js 24 LTS
 - Git
 - GitHub CLI, recommended for authentication and pull requests
 - Docker Desktop, required before local Supabase can run
