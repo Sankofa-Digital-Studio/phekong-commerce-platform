@@ -246,12 +246,10 @@ function HomeSurface({
   }, [carouselPaused, dataSaver, slides.length]);
 
   const toggleDataSaver = () => {
-    setDataSaver((current) => {
-      const next = !current;
-      window.localStorage.setItem("phekong-data-saver", next ? "on" : "off");
-      onNotify("success", next ? "Data saver enabled." : "Enhanced experience enabled.");
-      return next;
-    });
+    const next = !dataSaver;
+    setDataSaver(next);
+    window.localStorage.setItem("phekong-data-saver", next ? "on" : "off");
+    onNotify("success", next ? "Data saver enabled." : "Enhanced experience enabled.");
   };
 
   const nextSlide = () => {
