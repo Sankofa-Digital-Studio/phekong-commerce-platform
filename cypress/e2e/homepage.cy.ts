@@ -31,6 +31,29 @@ describe("adaptive homepage smoke", () => {
     cy.window().its("localStorage").invoke("getItem", "phekong-data-saver").should("equal", "on");
   });
 
+  it("keeps the hero stable and the trust row clear of the principles strip", () => {
+    cy.viewport(390, 844);
+    cy.contains("button", "Enter now").click();
+
+    cy.get(".shell-hero").then(($hero) => {
+      const initialHeight = $hero[0].getBoundingClientRect().height;
+
+      cy.get('[aria-label="Next slide"]').click().click();
+      cy.contains("h1", /therapy lab support for oral and topical care/i).should("be.visible");
+      cy.get(".shell-hero").should(($changedHero) => {
+        expect($changedHero[0].getBoundingClientRect().height).to.equal(initialHeight);
+      });
+    });
+
+    cy.get(".shell-trust").then(($trust) => {
+      cy.get(".shell-feature-strip").should(($strip) => {
+        expect($trust[0].getBoundingClientRect().bottom).to.be.at.most(
+          $strip[0].getBoundingClientRect().top,
+        );
+      });
+    });
+  });
+
   it("does not hide focusable carousel controls from assistive technology", () => {
     cy.get('[aria-hidden="true"]').each(($element) => {
       expect($element.find('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])')).to.have.length(0);
