@@ -1,13 +1,27 @@
 describe("adaptive homepage smoke", () => {
+  const waitForButtonlessWelcome = () => {
+    cy.contains("button", "Enter now").should("not.exist");
+    cy.window().should((win) => {
+      expect(win.sessionStorage.getItem("phekong-welcome-seen")).to.equal("true");
+    });
+    cy.contains("Rooting your wellness journey").should("not.exist");
+  };
+
   beforeEach(() => {
     cy.clearLocalStorage();
-    cy.visit("/");
+    cy.visit("/", {
+      onBeforeLoad(win) {
+        win.sessionStorage.clear();
+      },
+    });
   });
 
-  it("moves from the ritual welcome into guided product discovery", () => {
-    cy.contains("Rooting your wellness journey").should("be.visible");
-    cy.contains("button", "Enter now").click();
+  it("completes the buttonless ritual welcome once per session", () => {
+    waitForButtonlessWelcome();
+
+    cy.reload();
     cy.contains("Rooting your wellness journey").should("not.exist");
+    cy.contains("button", "Enter now").should("not.exist");
 
     cy.contains("a", "Find your remedy")
       .should("be.visible")
@@ -21,7 +35,7 @@ describe("adaptive homepage smoke", () => {
   });
 
   it("supports manual carousel control and a persistent data-saver override", () => {
-    cy.contains("button", "Enter now").click();
+    waitForButtonlessWelcome();
     cy.get("h1").contains(/healing herbal teas for daily balance/i).should("exist");
     cy.get('[aria-label="Next slide"]').click();
     cy.get("h1").contains(/fresh herbal juices with a clean finish/i).should("exist");
@@ -33,7 +47,7 @@ describe("adaptive homepage smoke", () => {
 
   it("keeps the hero stable and the trust row clear of the principles strip", () => {
     cy.viewport(390, 844);
-    cy.contains("button", "Enter now").click();
+    waitForButtonlessWelcome();
 
     cy.get(".shell-hero").then(($hero) => {
       const initialHeight = $hero[0].getBoundingClientRect().height;
