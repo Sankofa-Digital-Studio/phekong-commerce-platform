@@ -209,10 +209,6 @@ function HomeSurface({
 
   useEffect(() => {
     const welcomeSeen = window.sessionStorage.getItem("phekong-welcome-seen") === "true";
-    if (!welcomeSeen) {
-      setShowWelcome(true);
-    }
-
     const connection = (navigator as Navigator & {
       connection?: { effectiveType?: string; saveData?: boolean; downlink?: number };
     }).connection;
@@ -228,6 +224,7 @@ function HomeSurface({
     const preferenceTimer = window.setTimeout(() => {
       setDataSaver(shouldSaveData);
       setNetworkLabel(detectedNetwork);
+      setShowWelcome(!welcomeSeen);
     }, 0);
     let readyTimer: number | undefined;
     const finishWelcome = () => {
