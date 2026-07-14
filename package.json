@@ -25,7 +25,8 @@
     "dependencies:check": "npm ls --all"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.12.1",
+    "@emnapi/runtime": "1.11.2",
+"@supabase/ssr": "^0.12.1",
     "@supabase/supabase-js": "^2.110.3",
     "next": "^16.2.10",
     "react": "^19.2.7",
@@ -61,8 +62,5 @@
   "engines": {
     "node": "24.x"
   },
-  "packageManager": "npm@11.6.2",
-  "optionalDependencies": {
-    "@emnapi/runtime": "1.11.2"
-  }
+  "packageManager": "npm@11.6.2"
 }
