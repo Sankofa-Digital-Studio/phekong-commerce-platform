@@ -1,13 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import HomePage from "./page";
+import HomePage, { metadata } from "./page";
 
 describe("HomePage", () => {
+  it("uses the customer-facing Phekong Wellness Center title", () => {
+    expect(metadata.title).toBe("Phekong Wellness Center");
+  });
+
   it("renders the application shell with the product catalogue", () => {
     render(<HomePage />);
 
     expect(screen.getByRole("navigation", { name: /primary navigation/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /find your remedy/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Wellness" })).toHaveAttribute("href", "/#wellness");
     expect(screen.getByRole("heading", { name: /healing herbal teas for daily balance/i })).toBeInTheDocument();
     expect(screen.getByRole("group", { name: /choose featured product slide/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /use less data/i })).toBeInTheDocument();

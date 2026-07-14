@@ -6,6 +6,7 @@ describe("ApplicationShell adaptive homepage", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     window.localStorage.clear();
+    window.sessionStorage.clear();
     Object.defineProperty(window, "matchMedia", {
       configurable: true,
       value: vi.fn().mockReturnValue({ matches: false }),
@@ -17,13 +18,26 @@ describe("ApplicationShell adaptive homepage", () => {
     vi.useRealTimers();
   });
 
-  it("shows and dismisses the ritual welcome without a network asset", () => {
+  it("shows a buttonless ritual welcome once per session", () => {
     render(<ApplicationShell activeRoute="home" showStatePanel={false} />);
     act(() => vi.advanceTimersByTime(0));
     expect(screen.getByText("Rooting your wellness journey")).toBeInTheDocument();
 
-    act(() => vi.advanceTimersByTime(800));
+    expect(screen.queryByRole("button", { name: /enter/i })).not.toBeInTheDocument();
+
+    act(() => vi.advanceTimersByTime(1250));
     expect(screen.queryByText("Rooting your wellness journey")).not.toBeInTheDocument();
+    expect(window.sessionStorage.getItem("phekong-welcome-seen")).toBe("true");
+
+    render(<ApplicationShell activeRoute="home" showStatePanel={false} />);
+    act(() => vi.advanceTimersByTime(0));
+    expect(screen.queryByText("Rooting your wellness journey")).not.toBeInTheDocument();
+  });
+
+  it("links Wellness navigation to the homepage story", () => {
+    render(<ApplicationShell activeRoute="home" showStatePanel={false} />);
+
+    expect(screen.getByRole("link", { name: "Wellness" })).toHaveAttribute("href", "/#wellness");
   });
 
   it("persists the user data-saver override", () => {

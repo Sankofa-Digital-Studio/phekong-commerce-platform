@@ -46,20 +46,16 @@
   backdrop-filter: blur(0.7rem);
 }
 
-.shell-hero__experience-control button,
-.ritual-loader button {
-  border-radius: 999px;
-  font: inherit;
-  cursor: pointer;
-}
-
 .shell-hero__experience-control button {
   min-height: 2rem;
   border: 0;
+  border-radius: 999px;
   padding: 0.35rem 0.7rem;
   background: #d6a864;
   color: #20150c;
+  font: inherit;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .ritual-loader {
@@ -84,15 +80,6 @@
 }
 
 .ritual-loader > span { color: rgb(242 224 193 / 72%); }
-
-.ritual-loader button {
-  margin-top: 0.7rem;
-  min-height: 2.75rem;
-  padding: 0.55rem 1rem;
-  border: 1px solid rgb(232 196 136 / 44%);
-  background: transparent;
-  color: #f2d69e;
-}
 
 .ritual-loader__seed {
   position: relative;
@@ -124,6 +111,8 @@
   height: 1rem;
   border-radius: 100% 0 100% 0;
   background: linear-gradient(135deg, #adc078, #55743b);
+  opacity: 0;
+  animation: ritual-leaf 420ms 520ms ease-out forwards;
 }
 
 .ritual-loader__seed span { left: 3.2rem; transform: rotate(-14deg); }
@@ -136,15 +125,36 @@
   animation: ritual-orbit 8s linear infinite;
 }
 
+.ritual-loader__seed em {
+  position: absolute;
+  left: 50%;
+  bottom: 0.65rem;
+  width: 1.15rem;
+  height: 0.72rem;
+  border-radius: 52% 48% 46% 54%;
+  background: linear-gradient(145deg, #9b6735, #4f321d);
+  transform: translateX(-50%) scale(1);
+  animation: ritual-seed 1.05s ease-out forwards;
+}
+
 @keyframes ritual-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes ritual-leaf { from { opacity: 0; scale: 0.2; } to { opacity: 1; scale: 1; } }
+@keyframes ritual-seed { 0%, 28% { opacity: 1; transform: translateX(-50%) scale(1); } 100% { opacity: 0; transform: translateX(-50%) scale(0.55); } }
 @keyframes ritual-orbit { to { transform: rotate(360deg); } }
 @keyframes ritual-arrive { from { opacity: 0; } to { opacity: 1; } }
+@keyframes shell-page-enter { from { opacity: 0; transform: translateY(0.45rem); } to { opacity: 1; transform: translateY(0); } }
+
+.shell-main > * { animation: shell-page-enter 320ms ease-out both; }
 
 @media (prefers-reduced-motion: reduce) {
+  .shell-main > *,
   .shell-hero__image,
   .ritual-loader,
   .ritual-loader__seed::before,
-  .ritual-loader__seed b { animation: none !important; transition: none !important; }
+  .ritual-loader__seed b,
+  .ritual-loader__seed span,
+  .ritual-loader__seed i,
+  .ritual-loader__seed em { animation: none !important; transition: none !important; opacity: 1; }
 }
 
 @media (max-width: 760px) {

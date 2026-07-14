@@ -42,7 +42,9 @@ This document records the automated and manual evidence required before the adap
 ## Manual Preview checklist
 
 - Confirm the hero image fills the visual panel without a blank region.
-- Confirm the loader does not trap keyboard focus and “Enter now” works.
+- Confirm the first-session loader has no false skip action, does not trap focus, and is not repeated after refresh in the same session.
+- Confirm product API waits use the blocking seed-to-seedling state, while ordinary route changes use the reduced-motion-safe page transition.
+- Force a product API failure and confirm the friendly recovery state offers retry and catalogue navigation without exposing technical details.
 - Confirm autoplay is smooth and pauses on hover/focus.
 - Confirm Data Saver survives refresh and removes enhanced motion.
 - Test at 360 px, 768 px, 1024 px and 1366 px widths.

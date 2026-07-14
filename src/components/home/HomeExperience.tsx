@@ -7,7 +7,7 @@ import "./home-experience.css";
 
 export function HomeExperience() {
   return (
-    <section className="home-experience" aria-label="Phekong home expansion">
+    <section id="wellness" className="home-experience" aria-label="Phekong wellness story">
       <div className="home-experience__story">
         <div className="home-experience__media">
           <Image

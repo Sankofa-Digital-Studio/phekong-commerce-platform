@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/ProductCatalogue";
 import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedback";
 import { shellCopy, type ShellLocale } from "./translations";
+import { RitualLoader } from "./RitualLoader";
 import "./application-shell.css";
 import "./adaptive-hero.css";
 
@@ -15,7 +16,7 @@ export interface ApplicationShellProps {
   children?: ReactNode;
   locale?: ShellLocale;
   state?: ShellState;
-  activeRoute?: "home" | "products" | "rituals" | "about" | "services" | "contact" | "account" | "cart";
+  activeRoute?: "home" | "products" | "rituals" | "wellness" | "about" | "services" | "contact" | "account" | "cart";
   showStatePanel?: boolean;
   catalogueState?: ProductCatalogueState;
   catalogueOnRetry?: () => void;
@@ -46,6 +47,7 @@ export function ApplicationShell({
     { route: "home", label: t.home, href: "/" },
     { route: "products", label: t.products, href: "/products" },
     { route: "rituals", label: t.rituals, href: "/rituals" },
+    { route: "wellness", label: t.wellness, href: "/#wellness" },
     { route: "about", label: t.about, href: "/about" },
     { route: "services", label: t.services, href: "/services" },
     { route: "contact", label: t.contact, href: "/contact" },
@@ -171,7 +173,7 @@ function HomeSurface({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [dataSaver, setDataSaver] = useState(false);
   const [networkLabel, setNetworkLabel] = useState("Adaptive");
-  const [experienceReady, setExperienceReady] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
   const [carouselPaused, setCarouselPaused] = useState(false);
 
   const slides = [
@@ -206,6 +208,11 @@ function HomeSurface({
   ];
 
   useEffect(() => {
+    const welcomeSeen = window.sessionStorage.getItem("phekong-welcome-seen") === "true";
+    if (!welcomeSeen) {
+      setShowWelcome(true);
+    }
+
     const connection = (navigator as Navigator & {
       connection?: { effectiveType?: string; saveData?: boolean; downlink?: number };
     }).connection;
@@ -222,11 +229,24 @@ function HomeSurface({
       setDataSaver(shouldSaveData);
       setNetworkLabel(detectedNetwork);
     }, 0);
-    const readyTimer = window.setTimeout(() => setExperienceReady(true), shouldSaveData ? 240 : 760);
+    let readyTimer: number | undefined;
+    const finishWelcome = () => {
+      readyTimer = window.setTimeout(() => {
+        window.sessionStorage.setItem("phekong-welcome-seen", "true");
+        setShowWelcome(false);
+      }, shouldSaveData ? 350 : 1200);
+    };
+
+    if (document.readyState === "complete") {
+      finishWelcome();
+    } else {
+      window.addEventListener("load", finishWelcome, { once: true });
+    }
 
     return () => {
       window.clearTimeout(preferenceTimer);
-      window.clearTimeout(readyTimer);
+      if (readyTimer !== undefined) window.clearTimeout(readyTimer);
+      window.removeEventListener("load", finishWelcome);
     };
   }, []);
 
@@ -269,13 +289,12 @@ function HomeSurface({
 
   return (
     <div className={`shell-surface ${dataSaver ? "is-data-saver" : "is-enhanced"}`}>
-      {!experienceReady && (
-        <div className="ritual-loader" role="status" aria-live="polite" aria-label="Preparing the Phekong experience">
-          <div className="ritual-loader__seed" aria-hidden="true"><span /><i /><b /></div>
-          <p>Rooting your wellness journey</p>
-          <span>Gathering the essentials for a calm arrival.</span>
-          <button type="button" onClick={() => setExperienceReady(true)}>Enter now</button>
-        </div>
+      {showWelcome && (
+        <RitualLoader
+          title="Rooting your wellness journey"
+          message="Growing a calm space for your arrival."
+          label="Preparing the Phekong experience"
+        />
       )}
       <section
         className="shell-hero"
