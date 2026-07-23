@@ -1,0 +1,69 @@
+.bannerCard {
+  background: #f6faf5;
+  width: 100%;
+}
+
+.banner {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1.5rem;
+  align-items: center;
+  
+}
+
+.imageWrap {
+  width: 100%;
+}
+
+.desktopOnly {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.mobileOnly {
+  display: none;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.copy {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  letter-spacing: -0.03em;
+}
+
+.description {
+  margin: 0;
+  color: rgb(var(--muted-foreground));
+  line-height: 1.7;
+  max-width: 48ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 780px) {
+  .banner {
+    grid-template-columns: 1fr;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+}

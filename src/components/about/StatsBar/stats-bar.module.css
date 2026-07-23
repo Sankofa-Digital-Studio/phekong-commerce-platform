@@ -1,0 +1,56 @@
+.wrap {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.bgPlaceholder {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+
+.bgImage {
+  object-fit: cover;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgb(0 0 0 / 0.08);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.5rem;
+  background: rgb(0 0 0 / 0.42);
+  color: #fff;
+}
+
+.statCopy {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.value {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.label {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

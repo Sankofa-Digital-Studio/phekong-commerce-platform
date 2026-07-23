@@ -1,0 +1,117 @@
+.hero {
+  display: grid;
+  gap: 2rem;
+  padding: 2.5rem 3rem;
+  border-radius: 24px;
+  background: rgb(var(--card));
+  border: 1px solid rgb(var(--border));
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+
+.headerGroup {
+  text-align: center;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: rgb(var(--foreground));
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.title {
+  margin: 0 auto;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: rgb(var(--foreground));
+  text-align: center; 
+  width: 100%; 
+}
+
+
+.contentGroup {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.paragraphs {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.paragraphs p {
+  margin: 0;
+  color: rgb(var(--muted-foreground));
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.illustrationWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.illustration {
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .hero {
+    padding: 1.75rem;
+  }
+
+  .contentGroup {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .illustrationWrap {
+    order: -1;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .illustration {
+    max-height: 250px;
+  }
+  
+  .title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 1.25rem;
+    gap: 1.5rem;
+  }
+  
+  .illustrationWrap {
+    max-width: 240px;
+  }
+  
+  .illustration {
+    max-height: 200px;
+  }
+  
+  .paragraphs p {
+    font-size: 0.9rem;
+  }
+}

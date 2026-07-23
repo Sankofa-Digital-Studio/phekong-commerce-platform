@@ -1,0 +1,67 @@
+.section {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.header {
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.titleUnderline {
+  width: 100px;
+  height: 3px;
+  background: #06402B;
+  border-radius: 2px;
+  margin: 0.5rem auto 0;
+  box-shadow: 0 4px 12px rgba(6, 64, 43, 0.5);
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+}
+
+.imageWrap {
+  position: relative; 
+  width: 56px;
+  height: 56px;
+}
+
+
+.image {
+  object-fit: contain;
+}
+
+.cardTitle {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.cardText {
+  margin: 0;
+  max-width: 24ch;
+  color: rgb(var(--muted-foreground));
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
