@@ -70,3 +70,285 @@
   line-height: 1.7;
 }
 
+/* My custom styles for the contact page */
+/* page.module.css */
+
+
+
+/* Two column layout - exactly 50/50 split */
+.twoColumnLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Left column - form */
+.formColumn {
+  padding: 2rem;
+  background: var(--phekong-color-surface, #f9fafb);
+  border-radius: 12px;
+  border: 1px solid var(--phekong-color-border, #e5e7eb);
+}
+
+.formTitle {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+/* Product banner */
+.productBanner {
+  padding: 0.75rem 1rem;
+  background: #eff6ff;
+  border-left: 4px solid #2563eb;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+}
+
+.productBanner p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #1e40af;
+}
+
+/* Success message */
+.successMessage {
+  padding: 1.25rem;
+  background: #ecfdf5;
+  color: #047857;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.successMessage h3 {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.successMessage p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Form */
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+
+
+.fieldLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.fieldLabel.error {
+  color: #dc2626;
+}
+
+/* Inputs, selects, textareas */
+.fieldInput {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.fieldInput.error {
+  border: 2px solid #dc2626;
+  background: #fef2f2;
+}
+
+.fieldSelect {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+}
+
+.fieldTextarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  resize: vertical;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.fieldTextarea.error {
+  border: 2px solid #dc2626;
+  background: #fef2f2;
+}
+
+.errorText {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* Submit button */
+.submitButton {
+  padding: 0.85rem 1.75rem;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #1a1a1a;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Right column */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Map container - FIXED SIZE */
+.mapContainer {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  height: 320px;
+  position: relative;
+}
+
+.mapLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+}
+
+.mapIframe {
+  border: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mapBadge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* Contact details */
+.contactDetails {
+  padding: 1.5rem;
+  background: var(--phekong-color-surface, #f9fafb);
+  border-radius: 12px;
+  border: 1px solid var(--phekong-color-border, #e5e7eb);
+}
+
+.contactDetails h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.contactLine {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.contactLine a {
+  color: #0284c7;
+  text-decoration: underline;
+}
+
+.contactRow {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contactRow svg {
+  flex-shrink: 0;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modalContent {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modalIcon {
+  margin-bottom: 0.75rem;
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.modalText {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.modalButton {
+  padding: 0.65rem 1.5rem;
+  border-radius: 6px;
+  background: #dc2626;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modalButton:hover {
+  background: #b91c1c;
+}

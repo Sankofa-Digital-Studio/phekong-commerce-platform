@@ -146,7 +146,7 @@ export function ApplicationShell({
       <ActionFeedback state={feedback} />
 
       <main id="main-content" className="shell-main" aria-busy={state === "loading" ? "true" : "false"}>
-        {showStatePanel && <ShellStatePanel state={state} />}
+        
 
         {shellContent}
       </main>
@@ -434,7 +434,7 @@ function MetricItem({
     </article>
   );
 }
-
+/*
 function ShellStatePanel({ state }: { state: ShellState }) {
   const copy = {
     ready: ["Ready state", "The shell is ready and the public experience is visible."],
@@ -451,7 +451,7 @@ function ShellStatePanel({ state }: { state: ShellState }) {
     </section>
   );
 }
-
+*/
 function LeafMark() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
