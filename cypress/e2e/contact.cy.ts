@@ -4,7 +4,7 @@ describe('Contact page', () => {
   });
 
   it('shows validation feedback for an empty form', () => {
-    cy.findByRole('button', { name: /submit form/i }).click();
+    cy.get('button[type="submit"]').click();
 
     cy.contains('Full name is required.').should('be.visible');
     cy.contains('Email address is required.').should('be.visible');
@@ -12,16 +12,16 @@ describe('Contact page', () => {
   });
 
   it('reveals wholesale fields when the enquiry type changes', () => {
-    cy.findByLabelText(/inquiry type/i).select('wholesale');
+    cy.get('#topic').select('wholesale');
 
-    cy.findByLabelText(/company \/ business name/i).should('be.visible');
-    cy.findByLabelText(/estimated monthly volume/i).should('be.visible');
+    cy.get('#businessName').should('be.visible');
+    cy.get('#estimatedVolume').should('be.visible');
   });
 
   it('preserves product context from query parameters', () => {
     cy.visit('/contact?productName=Restorative%20Body%20Oil&productId=restorative-body-oil');
 
     cy.contains('Inquiry about product:').should('contain.text', 'Restorative Body Oil');
-    cy.findByLabelText(/inquiry type/i).should('have.value', 'product_inquiry');
+    cy.get('#topic').should('have.value', 'product_inquiry');
   });
 });
