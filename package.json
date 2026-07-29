@@ -22,7 +22,9 @@
     "storybook:ci": "npm run test-storybook && npm run build-storybook",
     "test:e2e:cypress": "cypress run --browser chrome",
     "e2e:cypress:open": "cypress open",
-    "dependencies:check": "npm ls --all"
+    "dependencies:check": "npm ls --all",
+    "images:check": "node scripts/validate-image-pipeline.mjs",
+    "images:prepare": "node scripts/prepare-image.mjs"
   },
   "dependencies": {
     "@emnapi/runtime": "1.11.2",
@@ -53,6 +55,7 @@
     "eslint-plugin-storybook": "^10.5.0",
     "jsdom": "^29.1.1",
     "playwright": "^1.61.1",
+    "sharp": "^0.35.0",
     "storybook": "^10.5.0",
     "supabase": "^2.109.1",
     "typescript": "^5.9.3",
@@ -65,6 +68,6 @@
   "packageManager": "npm@11.6.2",
   "overrides": {
     "postcss": "^8.5.18",
-    "sharp": "0.35.0"
+    "sharp": "^0.35.0"
   }
 }

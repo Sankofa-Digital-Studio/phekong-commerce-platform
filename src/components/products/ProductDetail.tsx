@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { ApprovedImage } from "@/components/media/ApprovedImage";
 import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedback";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import {
+  getApprovedImageAsset,
+  responsiveImageSizes,
+} from "@/lib/images/approved-assets";
 import { formatCurrency, getProductAvailability } from "@/lib/products/repository";
 import type { ProductCatalogueItem, ProductResolution } from "@/lib/products/types";
 import "./product-detail.css";
@@ -18,6 +22,7 @@ export interface ProductDetailProps {
 
 export function ProductDetail({ product, source, fallbackReason }: ProductDetailProps) {
   const availability = getProductAvailability(product);
+  const imageAsset = getApprovedImageAsset(product.imageAssetId);
   const [isAdding, setIsAdding] = useState(false);
   const [feedback, setFeedback] = useState<FeedbackState | null>(
     availability.tone === "out-of-stock"
@@ -57,13 +62,16 @@ export function ProductDetail({ product, source, fallbackReason }: ProductDetail
     <article className="product-detail">
       <section className="product-detail__hero">
         <div className="product-detail__media">
-          <Image
+          <ApprovedImage
             className="product-detail__image"
-            src={product.imageSrc}
-            alt={product.imageAlt}
-            width={1280}
-            height={1280}
+            src={imageAsset.src}
+            alt={imageAsset.alt}
+            width={imageAsset.width}
+            height={imageAsset.height}
+            sizes={responsiveImageSizes.productDetail}
+            quality={75}
             priority
+            fallbackLabel="Product image unavailable"
           />
           <span className={`product-detail__status product-detail__status--${availability.tone}`}>
             {availability.label}

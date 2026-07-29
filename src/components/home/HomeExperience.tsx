@@ -1,19 +1,28 @@
 import Link from "next/link";
-import Image from "next/image";
+import { ApprovedImage } from "@/components/media/ApprovedImage";
 import { wellnessThemeContent } from "@/components/ui/objects/wellnessThemeContent";
+import {
+  getApprovedImageAsset,
+  responsiveImageSizes,
+} from "@/lib/images/approved-assets";
 import "./home-experience.css";
+
+const homeStoryImage = getApprovedImageAsset("hero-reference");
 
 export function HomeExperience() {
   return (
     <section id="wellness" className="home-experience" aria-label="Phekong wellness story">
       <div className="home-experience__story">
         <div className="home-experience__media">
-          <Image
-            src="/images/phekong-hero-reference.png"
-            alt="Phekong wellness products arranged in a premium natural display"
-            width={960}
-            height={720}
-            priority={false}
+          <ApprovedImage
+            src={homeStoryImage.src}
+            alt={homeStoryImage.alt}
+            width={homeStoryImage.width}
+            height={homeStoryImage.height}
+            sizes={responsiveImageSizes.homeStory}
+            quality={75}
+            loading="lazy"
+            fallbackLabel="Wellness image unavailable"
           />
         </div>
         <div className="home-experience__copy">
