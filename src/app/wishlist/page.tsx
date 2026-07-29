@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ApplicationShell } from "@/components/shell/ApplicationShell";
-import { CommercePreview } from "@/components/commerce/CommercePreview";
+import { CommerceScreen } from "@/components/commerce/CommerceScreen";
 
 export const metadata: Metadata = {
   title: "Wishlist Preview",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function WishlistPage() {
   return (
     <ApplicationShell activeRoute="products" showStatePanel={false}>
-      <CommercePreview initialStep="wishlist" />
+      <CommerceScreen kind="wishlist" />
     </ApplicationShell>
   );
 }

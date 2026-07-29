@@ -5,7 +5,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(90deg, rgb(8 12 7 / 32%), transparent 28%, transparent 72%, rgb(8 10 6 / 18%));
+  background: linear-gradient(90deg, color-mix(in srgb, var(--phekong-footer-bg) 32%, transparent), transparent 28%, transparent 72%, color-mix(in srgb, var(--phekong-footer-bg) 18%, transparent));
 }
 
 .shell-hero__image {
@@ -25,9 +25,9 @@
   display: inline-flex;
   align-items: center;
   padding: 0.78rem 1.1rem;
-  color: #f0dfc4;
+  color: var(--phekong-footer-muted);
   text-decoration: none;
-  border-bottom: 1px solid rgb(232 196 136 / 52%);
+  border-bottom: 1px solid color-mix(in srgb, var(--phekong-accent) 52%, transparent);
 }
 
 .shell-hero__experience-control {
@@ -38,10 +38,10 @@
   align-items: center;
   gap: 0.65rem;
   padding: 0.55rem 0.65rem 0.55rem 0.8rem;
-  border: 1px solid rgb(238 208 154 / 22%);
+  border: 1px solid color-mix(in srgb, var(--phekong-accent) 22%, transparent);
   border-radius: 999px;
-  background: rgb(7 10 6 / 76%);
-  color: rgb(244 230 205 / 78%);
+  background: color-mix(in srgb, var(--phekong-footer-bg) 76%, transparent);
+  color: color-mix(in srgb, var(--phekong-footer-muted) 78%, transparent);
   font-size: 0.72rem;
   backdrop-filter: blur(0.7rem);
 }
@@ -51,8 +51,8 @@
   border: 0;
   border-radius: 999px;
   padding: 0.35rem 0.7rem;
-  background: #d6a864;
-  color: #20150c;
+  background: var(--phekong-accent);
+  color: var(--phekong-footer-bg);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -68,8 +68,8 @@
   gap: 0.7rem;
   padding: 2rem;
   text-align: center;
-  color: #f3e4ca;
-  background: radial-gradient(circle at 50% 46%, rgb(95 124 62 / 26%), transparent 18rem), linear-gradient(155deg, #071006, #161109);
+  color: var(--phekong-footer-text);
+  background: radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--phekong-visual-c) 26%, transparent), transparent 18rem), linear-gradient(155deg, var(--phekong-footer-bg), color-mix(in srgb, var(--phekong-footer-bg) 84%, var(--phekong-brand-strong)));
   animation: ritual-arrive 360ms ease both;
 }
 
@@ -79,15 +79,15 @@
   font-size: clamp(1.9rem, 5vw, 3.25rem);
 }
 
-.ritual-loader > span { color: rgb(242 224 193 / 72%); }
+.ritual-loader > span { color: color-mix(in srgb, var(--phekong-footer-muted) 72%, transparent); }
 
 .ritual-loader__seed {
   position: relative;
   width: 6.5rem;
   height: 6.5rem;
   border-radius: 50%;
-  border: 1px solid rgb(225 192 125 / 35%);
-  box-shadow: 0 0 0 0.85rem rgb(225 192 125 / 5%), inset 0 -1.4rem 2rem rgb(55 35 17 / 52%);
+  border: 1px solid color-mix(in srgb, var(--phekong-accent) 35%, transparent);
+  box-shadow: 0 0 0 0.85rem color-mix(in srgb, var(--phekong-accent) 5%, transparent), inset 0 -1.4rem 2rem color-mix(in srgb, var(--phekong-brand-strong) 52%, transparent);
 }
 
 .ritual-loader__seed::before {
@@ -98,7 +98,7 @@
   width: 0.18rem;
   height: 3.5rem;
   border-radius: 99px;
-  background: linear-gradient(#c89c51, #547039);
+  background: linear-gradient(var(--phekong-accent), var(--phekong-visual-c));
   transform-origin: bottom;
   animation: ritual-grow 760ms ease-out both;
 }
@@ -110,7 +110,7 @@
   width: 2rem;
   height: 1rem;
   border-radius: 100% 0 100% 0;
-  background: linear-gradient(135deg, #adc078, #55743b);
+  background: linear-gradient(135deg, var(--phekong-visual-a), var(--phekong-visual-c));
   opacity: 0;
   animation: ritual-leaf 420ms 520ms ease-out forwards;
 }
@@ -121,7 +121,7 @@
   position: absolute;
   inset: 0.65rem;
   border-radius: 50%;
-  border: 1px dashed rgb(226 194 132 / 26%);
+  border: 1px dashed color-mix(in srgb, var(--phekong-accent) 26%, transparent);
   animation: ritual-orbit 8s linear infinite;
 }
 
@@ -132,7 +132,7 @@
   width: 1.15rem;
   height: 0.72rem;
   border-radius: 52% 48% 46% 54%;
-  background: linear-gradient(145deg, #9b6735, #4f321d);
+  background: linear-gradient(145deg, var(--phekong-visual-c), var(--phekong-visual-d));
   transform: translateX(-50%) scale(1);
   animation: ritual-seed 1.05s ease-out forwards;
 }
