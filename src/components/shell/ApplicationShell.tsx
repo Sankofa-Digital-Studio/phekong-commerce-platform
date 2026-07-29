@@ -7,6 +7,7 @@ import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/Produ
 import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedback";
 import { shellCopy, type ShellLocale } from "./translations";
 import { RitualLoader } from "./RitualLoader";
+import { SiteFooter } from "./SiteFooter";
 import "./application-shell.css";
 import "./adaptive-hero.css";
 
@@ -153,10 +154,7 @@ export function ApplicationShell({
         {shellContent}
       </main>
 
-      <footer className="site-footer" id="contact">
-        <strong>Phekong {t.wellnessCentre}</strong>
-        <span>Copyright 2026 Sankofa Digital</span>
-      </footer>
+      <SiteFooter wellnessCentreLabel={t.wellnessCentre} />
     </div>
   );
 }

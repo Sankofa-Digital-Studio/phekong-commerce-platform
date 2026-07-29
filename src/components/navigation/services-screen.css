@@ -1,0 +1,193 @@
+.service-finder__layout {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.82fr) minmax(0, 1.18fr);
+  gap: var(--phekong-space-5);
+  align-items: start;
+}
+
+.service-picker {
+  display: grid;
+  gap: var(--phekong-space-3);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.service-picker button {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: var(--phekong-space-2) var(--phekong-space-3);
+  width: 100%;
+  padding: var(--phekong-space-4);
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-lg);
+  color: var(--phekong-ink);
+  text-align: left;
+  background: var(--phekong-surface);
+  cursor: pointer;
+}
+
+.service-picker button > span {
+  grid-row: 1 / span 2;
+  color: var(--phekong-brand-strong);
+  font-family: var(--phekong-font-display);
+  font-size: 1.35rem;
+}
+
+.service-picker button strong {
+  font-family: var(--phekong-font-display);
+  font-size: 1.35rem;
+}
+
+.service-picker button small {
+  color: var(--phekong-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.service-picker button[aria-pressed="true"] {
+  border-color: var(--phekong-brand);
+  box-shadow: inset 0 0 0 1px var(--phekong-brand);
+  background: var(--phekong-accent-soft);
+}
+
+.service-picker button:focus-visible {
+  outline: 3px solid var(--phekong-focus);
+  outline-offset: 3px;
+}
+
+.service-detail {
+  display: grid;
+  justify-items: start;
+  min-width: 0;
+  padding: clamp(var(--phekong-space-5), 5vw, var(--phekong-space-8));
+  border-radius: var(--phekong-radius-xl);
+  color: var(--phekong-footer-text);
+  background: var(--phekong-footer-bg);
+  box-shadow: var(--phekong-shadow);
+}
+
+.service-detail h2 {
+  max-width: 14ch;
+  margin: var(--phekong-space-3) 0 0;
+  font-family: var(--phekong-font-display);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.service-detail__description {
+  margin: var(--phekong-space-4) 0 0;
+  color: var(--phekong-footer-muted);
+  line-height: 1.7;
+}
+
+.service-detail ol {
+  display: grid;
+  gap: var(--phekong-space-3);
+  width: 100%;
+  margin: var(--phekong-space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-detail li {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: var(--phekong-space-3);
+  align-items: center;
+  padding-top: var(--phekong-space-3);
+  border-top: 1px solid color-mix(in srgb, var(--phekong-footer-text) 18%, transparent);
+}
+
+.service-detail li span {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--phekong-footer-bg);
+  background: var(--phekong-accent);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.service-detail__outcome {
+  margin: var(--phekong-space-5) 0;
+  padding-left: var(--phekong-space-4);
+  border-left: 3px solid var(--phekong-accent);
+}
+
+.service-detail__outcome p {
+  margin: var(--phekong-space-2) 0 0;
+  color: var(--phekong-footer-muted);
+  line-height: 1.6;
+}
+
+.service-detail .commerce-action--primary {
+  color: var(--phekong-footer-bg);
+  background: var(--phekong-accent);
+  border-color: var(--phekong-accent);
+}
+
+.service-boundary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--phekong-space-5);
+  padding: clamp(var(--phekong-space-5), 5vw, var(--phekong-space-8));
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-xl);
+  background: var(--phekong-surface);
+}
+
+.service-boundary__mark {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  place-items: center;
+  margin: 0;
+  border-radius: 50%;
+  color: var(--phekong-surface);
+  background: var(--phekong-brand-strong);
+  font-family: var(--phekong-font-display);
+  font-size: 1.8rem;
+}
+
+.service-boundary h2 {
+  margin: var(--phekong-space-3) 0 0;
+  font-family: var(--phekong-font-display);
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  font-weight: 500;
+}
+
+.service-boundary div > p:last-child {
+  max-width: 65ch;
+  margin: var(--phekong-space-3) 0 0;
+  color: var(--phekong-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 58rem) {
+  .service-finder__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 38rem) {
+  .service-detail,
+  .service-boundary {
+    border-radius: var(--phekong-radius-lg);
+  }
+
+  .service-detail .commerce-action {
+    width: 100%;
+  }
+
+  .service-boundary {
+    grid-template-columns: 1fr;
+  }
+}
+
+.service-detail .commerce-kicker {
+  color: var(--phekong-footer-text);
+}

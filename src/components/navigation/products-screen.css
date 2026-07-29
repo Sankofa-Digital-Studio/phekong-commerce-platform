@@ -1,0 +1,129 @@
+.commerce-screen {
+  display: grid;
+  gap: clamp(var(--phekong-space-8), 7vw, 6.5rem);
+  padding-bottom: clamp(var(--phekong-space-8), 8vw, 7rem);
+  color: var(--phekong-ink);
+  background: var(--phekong-bg);
+}
+
+.commerce-screen__section {
+  display: grid;
+  gap: var(--phekong-space-6);
+  min-width: 0;
+}
+
+.product-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--phekong-space-3);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.product-filter button {
+  min-height: 2.85rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-pill);
+  color: var(--phekong-ink);
+  background: var(--phekong-surface);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.product-filter button[aria-pressed="true"] {
+  border-color: var(--phekong-brand-strong);
+  color: var(--phekong-surface);
+  background: var(--phekong-brand-strong);
+}
+
+.product-filter button:focus-visible {
+  outline: 3px solid var(--phekong-focus);
+  outline-offset: 3px;
+}
+
+.product-filter__count {
+  margin: calc(-1 * var(--phekong-space-3)) 0 0;
+  color: var(--phekong-muted);
+  font-size: 0.9rem;
+}
+
+.product-finder .product-catalogue {
+  overflow: hidden;
+  padding: var(--phekong-space-5);
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-xl);
+}
+
+.shopping-confidence__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--phekong-space-4);
+}
+
+.shopping-confidence article {
+  display: grid;
+  align-content: start;
+  gap: var(--phekong-space-3);
+  min-width: 0;
+  padding: var(--phekong-space-5);
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-lg);
+  background: var(--phekong-surface);
+  box-shadow: var(--phekong-card-shadow);
+}
+
+.shopping-confidence article span {
+  color: var(--phekong-brand);
+  font-family: var(--phekong-font-display);
+  font-size: 1.5rem;
+}
+
+.shopping-confidence h3,
+.shopping-confidence p {
+  margin: 0;
+}
+
+.shopping-confidence h3 {
+  font-family: var(--phekong-font-display);
+  font-size: 1.45rem;
+}
+
+.shopping-confidence p {
+  color: var(--phekong-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 58rem) {
+  .shopping-confidence__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 38rem) {
+  .commerce-screen {
+    gap: var(--phekong-space-8);
+  }
+
+  .product-filter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .product-filter button {
+    width: 100%;
+  }
+
+  .product-finder .product-catalogue {
+    padding: var(--phekong-space-3);
+    border-radius: var(--phekong-radius-lg);
+  }
+}
+
+@media (max-width: 23rem) {
+  .product-filter {
+    grid-template-columns: 1fr;
+  }
+}

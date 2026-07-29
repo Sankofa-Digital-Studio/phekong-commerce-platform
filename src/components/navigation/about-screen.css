@@ -1,0 +1,189 @@
+.about-foundation__layout {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--phekong-space-5);
+}
+
+.about-origin-card {
+  display: grid;
+  align-content: end;
+  min-height: 25rem;
+  padding: var(--phekong-space-6);
+  overflow: hidden;
+  border-radius: var(--phekong-radius-xl);
+  color: var(--phekong-footer-text);
+  background: radial-gradient(circle at 80% 10%, color-mix(in srgb, var(--phekong-accent) 34%, transparent), transparent 14rem), var(--phekong-footer-bg);
+}
+
+.about-origin-card__year {
+  margin: 0;
+  color: var(--phekong-accent);
+  font-family: var(--phekong-font-display);
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.9;
+}
+
+.about-origin-card h3 {
+  margin: var(--phekong-space-4) 0 0;
+  font-family: var(--phekong-font-display);
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 500;
+}
+
+.about-origin-card p:last-child {
+  margin: var(--phekong-space-4) 0 0;
+  color: var(--phekong-footer-muted);
+  line-height: 1.7;
+}
+
+.about-storyline {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-storyline li {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: var(--phekong-space-4);
+  padding: var(--phekong-space-5);
+  border-top: 1px solid var(--phekong-border);
+}
+
+.about-storyline li:last-child {
+  border-bottom: 1px solid var(--phekong-border);
+}
+
+.about-storyline li > span {
+  color: var(--phekong-accent);
+  font-family: var(--phekong-font-display);
+  font-size: 1.5rem;
+}
+
+.about-storyline h3,
+.about-storyline p {
+  margin: 0;
+}
+
+.about-storyline h3 {
+  font-family: var(--phekong-font-display);
+  font-size: 1.55rem;
+}
+
+.about-storyline p {
+  margin-top: var(--phekong-space-2);
+  color: var(--phekong-muted);
+  line-height: 1.7;
+}
+
+.about-principles__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--phekong-space-4);
+}
+
+.about-principles article {
+  display: grid;
+  align-content: start;
+  gap: var(--phekong-space-3);
+  min-width: 0;
+  min-height: 18rem;
+  padding: var(--phekong-space-5);
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-lg);
+  background: var(--phekong-surface);
+}
+
+.about-principles article:nth-child(2) {
+  background: var(--phekong-accent-soft);
+}
+
+.about-principles article p,
+.about-principles article h3,
+.about-principles article span {
+  margin: 0;
+}
+
+.about-principles article p {
+  color: var(--phekong-brand);
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.about-principles article h3 {
+  font-family: var(--phekong-font-display);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 500;
+}
+
+.about-principles article span {
+  color: var(--phekong-muted);
+  line-height: 1.7;
+}
+
+.about-closing {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--phekong-space-6);
+  padding: clamp(var(--phekong-space-5), 5vw, var(--phekong-space-8));
+  border: 1px solid var(--phekong-border);
+  border-radius: var(--phekong-radius-xl);
+  background: var(--phekong-surface);
+}
+
+.about-closing h2 {
+  max-width: 15ch;
+  margin: var(--phekong-space-3) 0 0;
+  font-family: var(--phekong-font-display);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.about-closing__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--phekong-space-3);
+}
+
+@media (max-width: 58rem) {
+  .about-foundation__layout,
+  .about-principles__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-principles article {
+    min-height: 0;
+  }
+
+  .about-closing {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 38rem) {
+  .about-origin-card {
+    min-height: 21rem;
+    padding: var(--phekong-space-5);
+    border-radius: var(--phekong-radius-lg);
+  }
+
+  .about-storyline li {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    padding-inline: 0;
+  }
+
+  .about-closing {
+    border-radius: var(--phekong-radius-lg);
+  }
+
+  .about-closing__actions,
+  .about-closing__actions .commerce-action {
+    width: 100%;
+  }
+}
