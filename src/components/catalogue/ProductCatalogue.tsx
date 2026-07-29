@@ -2,89 +2,25 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { ApprovedImage } from "@/components/media/ApprovedImage";
 import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedback";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { getProductAvailability } from "@/lib/products/repository";
+import {
+  getApprovedImageAsset,
+  responsiveImageSizes,
+} from "@/lib/images/approved-assets";
+import { catalogueProducts, getProductAvailability } from "@/lib/products/repository";
+import type { ProductCatalogueItem } from "@/lib/products/types";
 import "./product-catalogue.css";
 
 export type ProductCatalogueState = "ready" | "loading" | "empty" | "error";
-
-export interface ProductCatalogueItem {
-  slug: string;
-  category: string;
-  name: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
-  priceCents: number;
-  rating: number;
-  stockQuantity: number;
-  lowStockThreshold: number;
-  active: boolean;
-}
 
 export interface ProductCatalogueProps {
   state?: ProductCatalogueState;
   products?: ReadonlyArray<ProductCatalogueItem>;
   onRetry?: () => void;
 }
-
-export const catalogueProducts: ReadonlyArray<ProductCatalogueItem> = [
-  {
-    slug: "nourishing-shea-butter",
-    category: "Body Butter",
-    name: "Nourishing Shea Butter",
-    description: "Rich, slow-melting moisture for dry skin and polished daily care rituals.",
-    imageSrc: "/images/product-shea-butter.png",
-    imageAlt: "A creamy shea butter jar on a stone pedestal with botanical leaves.",
-    priceCents: 26000,
-    rating: 4.8,
-    stockQuantity: 18,
-    lowStockThreshold: 5,
-    active: true,
-  },
-  {
-    slug: "growth-strength-oil",
-    category: "Hair Oil",
-    name: "Growth & Strength Oil",
-    description: "A concentrated leave-in formula with a warm finish and a premium shelf presence.",
-    imageSrc: "/images/product-hair-oil.png",
-    imageAlt: "An amber dropper bottle of hair oil on a stone pedestal with dried botanicals.",
-    priceCents: 28000,
-    rating: 4.7,
-    stockQuantity: 4,
-    lowStockThreshold: 5,
-    active: true,
-  },
-  {
-    slug: "exfoliating-sugar-scrub",
-    category: "Body Scrub",
-    name: "Exfoliating Sugar Scrub",
-    description: "A tactile polish that reads luxurious, warm, and immediately giftable.",
-    imageSrc: "/images/product-sugar-scrub.png",
-    imageAlt: "A warm amber scrub jar with botanical accents on stone and wood.",
-    priceCents: 24000,
-    rating: 4.9,
-    stockQuantity: 0,
-    lowStockThreshold: 5,
-    active: true,
-  },
-  {
-    slug: "turmeric-honey-soap",
-    category: "Handmade Soap",
-    name: "Turmeric & Honey Soap",
-    description: "A crafted everyday essential with an earthy golden tone and clean finish.",
-    imageSrc: "/images/product-turmeric-soap.png",
-    imageAlt: "Stacked turmeric soap bars beside a kraft box with honey accents and leaves.",
-    priceCents: 9000,
-    rating: 4.8,
-    stockQuantity: 12,
-    lowStockThreshold: 5,
-    active: true,
-  },
-] as const;
 
 function formatCurrency(priceCents: number) {
   return new Intl.NumberFormat("en-ZA", {
@@ -135,6 +71,7 @@ function ProductCatalogueReady({
             const isSaved = savedSlugs.has(product.slug);
             const isFeatured = product.slug === featuredSlug;
             const isBusy = busySlug === product.slug;
+            const imageAsset = getApprovedImageAsset(product.imageAssetId);
 
             return (
               <article className={`product-card ${isFeatured ? "product-card--featured" : ""}`.trim()} key={product.slug}>
@@ -144,13 +81,17 @@ function ProductCatalogueReady({
                     href={`/products/${product.slug}`}
                     aria-label={`Open ${product.name}`}
                   >
-                    <Image
+                    <ApprovedImage
                       className="product-card__image"
-                      src={product.imageSrc}
-                      alt={product.imageAlt}
-                      width={720}
-                      height={720}
+                      src={imageAsset.src}
+                      alt={imageAsset.alt}
+                      width={imageAsset.width}
+                      height={imageAsset.height}
+                      sizes={responsiveImageSizes.productCard}
+                      quality={75}
                       loading={isFeatured ? "eager" : "lazy"}
+                      fetchPriority={isFeatured ? "high" : "auto"}
+                      fallbackLabel="Product image unavailable"
                     />
                   </Link>
                   <span className={`product-card__status ${availabilityClassName}`}>{availability}</span>

@@ -1,4 +1,10 @@
 import type { ProductCatalogueItem } from "./types";
+import { getApprovedImageAsset } from "@/lib/images/approved-assets";
+
+const sheaButterImage = getApprovedImageAsset("product-shea-butter");
+const hairOilImage = getApprovedImageAsset("product-hair-oil");
+const sugarScrubImage = getApprovedImageAsset("product-sugar-scrub");
+const turmericSoapImage = getApprovedImageAsset("product-turmeric-soap");
 
 export const catalogueProducts = [
   {
@@ -6,8 +12,7 @@ export const catalogueProducts = [
     category: "Body Butter",
     name: "Nourishing Shea Butter",
     description: "Rich, slow-melting moisture for dry skin and polished daily care rituals.",
-    imageSrc: "/images/product-shea-butter.png",
-    imageAlt: "A creamy shea butter jar on a stone pedestal with botanical leaves.",
+    imageAssetId: sheaButterImage.id,
     priceCents: 26000,
     rating: 4.8,
     stockQuantity: 18,
@@ -19,8 +24,7 @@ export const catalogueProducts = [
     category: "Hair Oil",
     name: "Growth & Strength Oil",
     description: "A concentrated leave-in formula with a warm finish and a premium shelf presence.",
-    imageSrc: "/images/product-hair-oil.png",
-    imageAlt: "An amber dropper bottle of hair oil on a stone pedestal with dried botanicals.",
+    imageAssetId: hairOilImage.id,
     priceCents: 28000,
     rating: 4.7,
     stockQuantity: 4,
@@ -32,8 +36,7 @@ export const catalogueProducts = [
     category: "Body Scrub",
     name: "Exfoliating Sugar Scrub",
     description: "A tactile polish that reads luxurious, warm, and immediately giftable.",
-    imageSrc: "/images/product-sugar-scrub.png",
-    imageAlt: "A warm amber scrub jar with botanical accents on stone and wood.",
+    imageAssetId: sugarScrubImage.id,
     priceCents: 24000,
     rating: 4.9,
     stockQuantity: 0,
@@ -45,8 +48,7 @@ export const catalogueProducts = [
     category: "Handmade Soap",
     name: "Turmeric & Honey Soap",
     description: "A crafted everyday essential with an earthy golden tone and clean finish.",
-    imageSrc: "/images/product-turmeric-soap.png",
-    imageAlt: "Stacked turmeric soap bars beside a kraft box with honey accents and leaves.",
+    imageAssetId: turmericSoapImage.id,
     priceCents: 9000,
     rating: 4.8,
     stockQuantity: 12,
