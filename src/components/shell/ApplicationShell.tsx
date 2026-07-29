@@ -338,7 +338,7 @@ function HomeSurface({
           </div>
 
           <div className="shell-trust">
-            <div className="shell-trust__avatars" aria-label="Trusted by 1,200+ customers">
+            <div className="shell-trust__avatars" role="img" aria-label="Trusted by 1,200+ customers">
               <span className="shell-avatar shell-avatar--one">A</span>
               <span className="shell-avatar shell-avatar--two">K</span>
               <span className="shell-avatar shell-avatar--three">M</span>

@@ -65,7 +65,7 @@ function ProductCatalogueReady({
       </aside>
 
       <div className="product-catalogue__carousel">
-        <div className="product-catalogue__grid" aria-label="Featured products">
+        <div className="product-catalogue__grid">
           {products.map((product) => {
             const [availability, availabilityClassName] = getAvailabilityLabel(product);
             const isSaved = savedSlugs.has(product.slug);

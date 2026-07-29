@@ -114,13 +114,13 @@ export function PublicRouteSurface({
 
   return (
     <section className="public-route">
-      <Card className="public-route__card" eyebrow={eyebrow} title={title} tone={tone}>
+      <Card className="public-route__card" eyebrow={eyebrow} title={title} headingLevel={1} tone={tone}>
         <p className="public-route__lede">{description}</p>
         {summary ? <p className="public-route__summary">{summary}</p> : null}
         {note ? <p className="public-route__note">{note}</p> : null}
 
         {actions.length > 0 ? (
-          <div className="public-route__actions" aria-label={`${title} actions`}>
+          <div className="public-route__actions">
             {actions.map((action) =>
               action.kind === "link" ? (
                 <Link key={action.label} className={toButtonClassName(action.variant)} href={action.href}>
