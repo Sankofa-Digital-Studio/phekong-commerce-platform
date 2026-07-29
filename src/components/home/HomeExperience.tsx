@@ -49,7 +49,7 @@ export function HomeExperience() {
         </div>
       </div>
 
-      <div id="shop-by-need" className="home-experience__grid">
+      <div id="shop-by-need" aria-label="Shop by need" className="home-experience__grid">
         {wellnessThemeContent.categories.map((category) => (
           <Link key={category.title} className="home-experience__card" href={category.href}>
             <h3>{category.title}</h3>
