@@ -37,7 +37,8 @@ function ContactContent() {
 
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [showModal, setShowModal] = useState(false);
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [serverErrorMessage, setServerErrorMessage] = useState('');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -48,9 +49,12 @@ function ContactContent() {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: false }));
     }
+    if (serverErrorMessage) {
+      setServerErrorMessage('');
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newErrors: Record<string, boolean> = {};
@@ -70,8 +74,32 @@ function ContactContent() {
     }
 
     setStatus('sending');
+    setServerErrorMessage('');
 
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          topic: formData.topic,
+          productId: formData.productId || null,
+          businessName: formData.businessName || null,
+          estimatedVolume: formData.estimatedVolume || null,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit enquiry. Please try again.');
+      }
+
+      // Truthful success confirmed by backend
       setStatus('success');
       setFormData({
         fullName: '',
@@ -84,7 +112,11 @@ function ContactContent() {
         message: '',
       });
       setErrors({});
-    }, 1500);
+    } catch (err: unknown) {
+      setStatus('error');
+      const message = err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.';
+      setServerErrorMessage(message);
+    }
   };
 
   return (
@@ -108,6 +140,12 @@ function ContactContent() {
                 <p>
                   Inquiry about product: <strong>{formData.productName}</strong>
                 </p>
+              </div>
+            )}
+
+            {status === 'error' && serverErrorMessage && (
+              <div style={{ padding: '1rem', marginBottom: '1rem', backgroundColor: '#fee2e2', border: '1px solid #ef4444', borderRadius: '0.375rem', color: '#991b1b' }}>
+                <p><strong>Submission Failed:</strong> {serverErrorMessage}</p>
               </div>
             )}
 
