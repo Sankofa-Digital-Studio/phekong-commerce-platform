@@ -8,6 +8,25 @@ import shared from '../../components/routes/route-page.module.css';
 import { ApplicationShell } from '../../components/shell/ApplicationShell';
 import styles from './page.module.css';
 
+const FAQ_ITEMS = [
+  {
+    question: 'How long does it take to get a response to my enquiry?',
+    answer: 'We typically respond to all customer and product enquiries within 24 to 48 business hours.',
+  },
+  {
+    question: 'How do I apply for a bulk or wholesale account?',
+    answer: 'Select "Apply for Bulk / Wholesale Account" in the Inquiry Type dropdown above, fill in your company details and estimated monthly volume, and our sales team will get back to you with wholesale pricing.',
+  },
+  {
+    question: 'Can I check my order status through the contact form?',
+    answer: 'Yes! Please select "Product Question" as your Inquiry Type and include your Order Number in the message body for faster processing.',
+  },
+  {
+    question: 'What are your business operating hours?',
+    answer: 'Our customer support team is available Monday through Friday, from 08:00 to 17:00 (SAST).',
+  },
+];
+
 function ContactContent() {
   const searchParams = useSearchParams();
 
@@ -39,6 +58,12 @@ function ContactContent() {
   const [showModal, setShowModal] = useState(false);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [serverErrorMessage, setServerErrorMessage] = useState('');
+
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex((prev) => (prev === index ? null : index));
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -99,7 +124,6 @@ function ContactContent() {
         throw new Error(data.error || 'Failed to submit enquiry. Please try again.');
       }
 
-      // Truthful success confirmed by backend
       setStatus('success');
       setFormData({
         fullName: '',
@@ -128,10 +152,18 @@ function ContactContent() {
         ]}
       />
 
-      <section className={shared.section} style={{ marginTop: '1rem' }}>
+      {/* Hero Header */}
+      <section className={styles.heroSection}>
+        <h1 className={styles.heroTitle}>How can we help you today?</h1>
+        <p className={styles.heroSubtitle}>
+          Reach out to our team or explore our answers to common questions below.
+        </p>
+      </section>
+
+      <section className={shared.section}>
         <div className={styles.twoColumnLayout}>
           
-          {/* Form */}
+          {/* Form Column */}
           <div className={styles.formColumn}>
             <h2 className={styles.formTitle}>Contact Us</h2>
 
@@ -144,14 +176,14 @@ function ContactContent() {
             )}
 
             {status === 'error' && serverErrorMessage && (
-              <div style={{ padding: '1rem', marginBottom: '1rem', backgroundColor: '#fee2e2', border: '1px solid #ef4444', borderRadius: '0.375rem', color: '#991b1b' }}>
+              <div className={styles.serverErrorBanner}>
                 <p><strong>Submission Failed:</strong> {serverErrorMessage}</p>
               </div>
             )}
 
             {status === 'success' ? (
               <div className={styles.successMessage}>
-                <h3> Message Sent!</h3>
+                <h3>Message Sent!</h3>
                 <p>Thank you for reaching out. Our team will review your inquiry and get back to you shortly.</p>
               </div>
             ) : (
@@ -355,6 +387,42 @@ function ContactContent() {
               </p>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Frequently Asked Questions Section */}
+      <section className={`${shared.section} ${styles.faqSection}`}>
+        <div className={styles.faqContainer}>
+          <h2 className={styles.faqTitle}>
+            Frequently Asked Questions
+          </h2>
+
+          <div className={styles.faqList}>
+            {FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className={styles.faqItem}>
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${index}`}
+                    className={styles.faqButton}
+                  >
+                    <span>{item.question}</span>
+                    <span className={styles.faqIcon}>
+                      {isOpen ? '−' : '+'}
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div id={`faq-answer-${index}`} className={styles.faqAnswer}>
+                      <p>{item.answer}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
