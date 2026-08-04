@@ -10,20 +10,28 @@ import styles from './page.module.css';
 
 const FAQ_ITEMS = [
   {
-    question: 'How long does it take to get a response to my enquiry?',
-    answer: 'We typically respond to all customer and product enquiries within 24 to 48 business hours.',
+    question: 'Are your herbal products safe to use or consume?',
+    answer: 'Yes, our herbal products are made from natural ingredients. However if you have allergies, are pregnant or have a medical condition, we recommend consulting a healthcare professional before consumption.',
   },
   {
-    question: 'How do I apply for a bulk or wholesale account?',
-    answer: 'Select "Apply for Bulk / Wholesale Account" in the Inquiry Type dropdown above, fill in your company details and estimated monthly volume, and our sales team will get back to you with wholesale pricing.',
+    question: 'What is the Returns & Refunds Policy?',
+    answer: 'Due to the nature of our products and services, we do not accept returns or offer refunds once the purchase has been completed. We encourage customers to carefully review their orders before making payment. If you receive an incorrect or damaged item, please contact us within 48 hours of delivery for assistance.',
   },
   {
-    question: 'Can I check my order status through the contact form?',
-    answer: 'Yes! Please select "Product Question" as your Inquiry Type and include your Order Number in the message body for faster processing.',
+    question: 'Do you offer products for specific health concerns?',
+    answer: 'Yes, we offer herbal products that support various needs such as stress relief, muscle recovery, immune support and general wellness.',
   },
   {
-    question: 'What are your business operating hours?',
-    answer: 'Our customer support team is available Monday through Friday, from 08:00 to 17:00 (SAST).',
+    question: 'What should I wear during a massage session?',
+    answer: 'You should wear comfortable clothing. During the massage session, you will be covered at all times, and only the area being worked on will be exposed.',
+  },
+  {
+    question: 'What is your Booking cancellation fee?',
+    answer: 'Cancellations made at least 24 hours before the scheduled appointment will only qualify for a 50% refund of the booking amount. Cancellations made on the day of the appointment are non-refundable. We kindly encourage clients to notify us as early as possible should they need to cancel or reschedule their booking.',
+  },
+  {
+    question: 'How long is a typical massage session?',
+    answer: 'Sessions typically range from 30 minutes to 90 minutes, depending on your needs and the type of massage selected.',
   },
 ];
 
