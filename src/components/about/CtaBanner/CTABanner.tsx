@@ -1,15 +1,16 @@
-import Image from 'next/image';
-import { Button } from "../../ui/Button";
-import { Card } from "../Card/Card";
+import Image from "next/image";
+
+import { AboutCard } from "../AboutCard/AboutCard";
 import styles from "./cta-banner.module.css";
+import Link from "next/link";
 
 export type CTABannerProps = {
   title: string;
   description: string;
   primaryLabel: string;
+  primaryHref: string;
   secondaryLabel: string;
-  onPrimaryClick?: () => void;
-  onSecondaryClick?: () => void;
+  secondaryHref: string;
   cardVariant?: "default" | "elevated" | "outlined" | "ghost";
   cardPadding?: "none" | "sm" | "md" | "lg";
 };
@@ -18,14 +19,14 @@ export function CTABanner({
   title,
   description,
   primaryLabel,
+  primaryHref,
   secondaryLabel,
-  onPrimaryClick,
-  onSecondaryClick,
+  secondaryHref,
   cardVariant = "elevated",
   cardPadding = "md",
 }: CTABannerProps) {
   return (
-    <Card
+    <AboutCard
       variant={cardVariant}
       padding={cardPadding}
       className={styles.bannerCard}
@@ -33,18 +34,11 @@ export function CTABanner({
       <section className={styles.banner} aria-labelledby="cta-banner-title">
         <div className={styles.imageWrap}>
           <Image
-            className={styles.desktopOnly}
             src="/images/cta-tea.png"
-            alt="Wellness tea and leaves"
-            width={640}
-            height={420}
-          />
-          <Image
-            className={styles.mobileOnly}
-            src="/images/cta-tea.png"
-            alt="Wellness tea and leaves"
-            width={320}
-            height={220}
+            alt="Herbal wellness tea with natural leaves"
+            fill
+            sizes="(max-width: 780px) 100vw, 50vw"
+            className={styles.image}
           />
         </div>
 
@@ -54,19 +48,22 @@ export function CTABanner({
           </h2>
           <p className={styles.description}>{description}</p>
           <div className={styles.actions}>
-            <Button
-              variant="primary"
-              label={primaryLabel}
-              onClick={onPrimaryClick}
-            />
-            <Button
-              variant="secondary"
-              label={secondaryLabel}
-              onClick={onSecondaryClick}
-            />
+            <Link
+              href={primaryHref}
+              className="phekong-button phekong-button-primary phekong-button-medium"
+            >
+              {primaryLabel}
+            </Link>
+
+            <Link
+              href={secondaryHref}
+              className="phekong-button phekong-button-secondary phekong-button-medium"
+            >
+              {secondaryLabel}
+            </Link>
           </div>
         </div>
       </section>
-    </Card>
+    </AboutCard>
   );
 }

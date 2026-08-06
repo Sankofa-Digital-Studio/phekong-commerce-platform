@@ -9,14 +9,20 @@ const meta = {
     title: 'Our Products & Services',
     panels: [
       {
-        title: 'Herbal products',
-        items: ['Herbal Juices', 'Herbal Teas', 'Therapy Lab', 'Beauty lap', 'Food Cures'],
-        imageLabel: 'herbal-products.png',
+        title: 'Herbal Products',
+        items: ['Herbal Juices', 'Herbal Teas', 'Super Natural Therapy Lab', 'Super Natural Beauty lab', 'Food Cures'],
+        image: {
+  src: "/images/herbal-products.png",
+  alt: "Selection of Phekong herbal wellness products",
+},
       },
       {
         title: 'Massages',
         items: ['Full Body', 'Half Body', 'Foot', 'Herbal Detox'],
-        imageLabel: 'massage.png',
+       image: {
+    src: "/images/massage.png",
+    alt: "Massage services offered at Phekong Wellness Centre",
+  },
       },
     ],
   },

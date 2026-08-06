@@ -18,10 +18,10 @@
 .titleUnderline {
   width: 160px;
   height: 3px;
-  background: #06402B;
+  background: var(--phekong-brand-strong);
   border-radius: 2px;
   margin: 0.5rem auto 0;
-  box-shadow: 0 4px 12px rgba(6, 64, 43, 0.5);
+  box-shadow: 0 4px 12px rgba(80, 55, 42, 0.5);
 }
 
 .grid {
@@ -34,8 +34,8 @@
   display: grid;
   gap: 1rem;
   align-content: start;
-  background: #f6faf5;
-  transition: transform 0.2s ease;
+  background: var(--phekong-surface-2);
+  transition: transform var(--phekong-motion-fast) var(--ease);
   height: fit-content; 
 }
 
@@ -43,11 +43,16 @@
   transform: translateY(-4px);
 }
 
+.card:focus-visible {
+  outline: 2px solid var(--phekong-focus);
+  outline-offset: 2px;
+}
+
 .panelTitle {
   margin: 0 0 0.75rem 0;
   font-size: 1.4rem;
   font-weight: 700;
-  color: rgb(var(--foreground));
+  color: var(--phekong-ink);
 }
 
 .panelContent {
@@ -61,7 +66,7 @@
   padding-left: 1.2rem;
   display: grid;
   gap: 0.4rem;
-  color: rgb(var(--muted-foreground));
+  color: var(--phekong-muted);
   line-height: 1.6;
   flex: 1;
   font-size: 0.95rem;
@@ -71,13 +76,10 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  border-radius: 12px;
+  border-radius: var(--phekong-radius-sm);
   overflow: hidden;
   position: relative; 
 }
-
-
-
 
 .image {
   object-fit: cover;
@@ -112,7 +114,7 @@
   }
   
   .card {
-    padding: 0.75rem !important;
+    padding: var(--phekong-space-section) !important;
     gap: 0.5rem;
     height: auto; 
   }
@@ -146,8 +148,6 @@
     height: 100px !important;
     position: relative;
   }
-  
- 
 }
 
 /* Very small screens */
@@ -157,7 +157,7 @@
   }
   
   .card {
-    padding: 0.5rem !important;
+    padding: var(--phekong-space-xs) !important;
     gap: 0.35rem;
   }
   

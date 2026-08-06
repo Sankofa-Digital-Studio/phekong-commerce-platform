@@ -5,12 +5,15 @@ const meta = {
   title: 'M1/Components/About/CTABanner',
   component: CTABanner,
   tags: ['autodocs'],
-  args: {
-    title: 'Begin your Wellness Journey Today',
-    description: 'Experience the healing power of nature and professional care, all in one place.',
-    primaryLabel: 'Shop Now',
-    secondaryLabel: 'Book Massage',
-  },
+ args: {
+  title: "Begin Your Wellness Journey Today",
+  description:
+    "Experience the healing power of nature and professional care, all in one place.",
+  primaryLabel: "Shop Now",
+  primaryHref: "/products",
+  secondaryLabel: "Book Massage",
+  secondaryHref: "/services",
+},
 } satisfies Meta<typeof CTABanner>;
 
 export default meta;

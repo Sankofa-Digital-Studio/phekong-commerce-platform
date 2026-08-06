@@ -27,13 +27,14 @@ export function StatsBar({ stats }: StatsBarProps) {
     <div className={styles.wrap}>
 
       <div className={styles.bgPlaceholder}>
-        <Image
-          src="/images/stats-bg.png"
-          alt="Forest and leaves background"
-          fill
-          className={styles.bgImage}
-          style={{ objectFit: 'cover' }}
-        />
+       <Image
+  src="/images/stats-bg.png"
+  alt="Forest and leaves background"
+  fill
+  loading="eager"
+  className={styles.bgImage}
+  style={{ objectFit: "cover" }}
+/>
       </div>
 
       <div className={styles.grid}>

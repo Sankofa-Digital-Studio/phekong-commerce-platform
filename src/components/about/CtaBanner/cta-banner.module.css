@@ -1,5 +1,5 @@
 .bannerCard {
-  background: #f6faf5;
+  background: var(--phekong-surface-2);
   width: 100%;
 }
 
@@ -8,25 +8,17 @@
   grid-template-columns: 0.9fr 1.1fr;
   gap: 1.5rem;
   align-items: center;
-  
 }
 
 .imageWrap {
+  position: relative;
   width: 100%;
+  min-height: 250px;
 }
 
-.desktopOnly {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-.mobileOnly {
-  display: none;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
+.image {
+  object-fit: cover;
+  border-radius: var(--phekong-radius-sm);
 }
 
 .copy {
@@ -42,7 +34,7 @@
 
 .description {
   margin: 0;
-  color: rgb(var(--muted-foreground));
+  color: var(--phekong-muted);
   line-height: 1.7;
   max-width: 48ch;
 }
@@ -54,16 +46,18 @@
   margin-top: 0.25rem;
 }
 
+.actions a:focus-visible,
+.actions button:focus-visible {
+  outline: 2px solid var(--phekong-focus);
+  outline-offset: 2px;
+}
+
 @media (max-width: 780px) {
   .banner {
     grid-template-columns: 1fr;
   }
 
-  .desktopOnly {
-    display: none;
-  }
-
-  .mobileOnly {
-    display: block;
+  .imageWrap {
+    min-height: 240px;
   }
 }

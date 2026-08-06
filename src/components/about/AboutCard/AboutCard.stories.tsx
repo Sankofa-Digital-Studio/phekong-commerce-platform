@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { Card } from './Card';
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { AboutCard } from "./AboutCard";
 
 const meta = {
-  title: 'M1/Components/About/Card',
-  component: Card,
-  tags: ['autodocs'],
+  title: "M1/Components/About/AboutCard",
+  component: AboutCard,
+  tags: ["autodocs"],
   args: {
     children: (
       <>
@@ -12,10 +12,10 @@ const meta = {
         <p>This is the card content. You can put any React elements here.</p>
       </>
     ),
-    variant: 'elevated',
-    padding: 'md',
+    variant: "elevated",
+    padding: "md",
   },
-} satisfies Meta<typeof Card>;
+} satisfies Meta<typeof AboutCard>;
 
 export default meta;
 
@@ -25,7 +25,7 @@ export const Default: Story = {};
 
 export const Elevated: Story = {
   args: {
-    variant: 'elevated',
+    variant: "elevated",
     children: (
       <>
         <h3>Elevated Card</h3>
@@ -37,7 +37,7 @@ export const Elevated: Story = {
 
 export const Outlined: Story = {
   args: {
-    variant: 'outlined',
+    variant: "outlined",
     children: (
       <>
         <h3>Outlined Card</h3>
@@ -49,7 +49,7 @@ export const Outlined: Story = {
 
 export const Ghost: Story = {
   args: {
-    variant: 'ghost',
+    variant: "ghost",
     children: (
       <>
         <h3>Ghost Card</h3>
@@ -61,7 +61,7 @@ export const Ghost: Story = {
 
 export const NoPadding: Story = {
   args: {
-    padding: 'none',
+    padding: "none",
     children: (
       <>
         <h3>No Padding</h3>
@@ -73,7 +73,7 @@ export const NoPadding: Story = {
 
 export const SmallPadding: Story = {
   args: {
-    padding: 'sm',
+    padding: "sm",
     children: (
       <>
         <h3>Small Padding</h3>
@@ -85,7 +85,7 @@ export const SmallPadding: Story = {
 
 export const LargePadding: Story = {
   args: {
-    padding: 'lg',
+    padding: "lg",
     children: (
       <>
         <h3>Large Padding</h3>
@@ -97,7 +97,7 @@ export const LargePadding: Story = {
 
 export const Clickable: Story = {
   args: {
-    onClick: () => alert('Card clicked!'),
+    onClick: () => alert("Card clicked!"),
     children: (
       <>
         <h3>Clickable Card</h3>
@@ -109,6 +109,6 @@ export const Clickable: Story = {
 
 export const Mobile: Story = {
   parameters: {
-    viewport: { defaultViewport: 'mobile1' },
+    viewport: { defaultViewport: "mobile1" },
   },
 };

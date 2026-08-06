@@ -1,7 +1,7 @@
 import styles from './card.module.css';
 import { ReactNode } from 'react';
 
-export type CardProps = {
+export type AboutCardProps = {
   children: ReactNode;
   className?: string;
   variant?: 'default' | 'elevated' | 'outlined' | 'ghost';
@@ -9,13 +9,13 @@ export type CardProps = {
   onClick?: () => void;
 };
 
-export function Card({
+export function AboutCard({
   children,
   className = '',
   variant = 'default',
   padding = 'md',
   onClick,
-}: CardProps) {
+}: AboutCardProps) {
   return (
     <div
       className={`${styles.card} ${styles[variant]} ${styles[`padding-${padding}`]} ${className}`}

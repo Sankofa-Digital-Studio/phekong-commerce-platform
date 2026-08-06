@@ -1,0 +1,60 @@
+.card {
+  border-radius: var(--phekong-radius-md);
+  transition: box-shadow var(--phekong-motion-fast) var(--ease), 
+              transform var(--phekong-motion-fast) var(--ease);
+  cursor: default;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--phekong-focus);
+  outline-offset: 2px;
+}
+
+/* Variants */
+.default {
+  border: 1px solid var(--phekong-border);
+  background: var(--phekong-surface);
+}
+
+.elevated {
+  border: none;
+  background: var(--phekong-surface);
+  box-shadow: var(--phekong-card-shadow);
+}
+
+.elevated:hover {
+  box-shadow: var(--phekong-shadow);
+  transform: translateY(-2px);
+}
+
+.outlined {
+  border: 2px solid var(--phekong-border);
+  background: transparent;
+}
+
+.ghost {
+  border: none;
+  background: transparent;
+}
+
+/* Padding */
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: var(--phekong-space-section);
+}
+
+.padding-md {
+  padding: calc(var(--phekong-space-section) * 1.67);
+}
+
+.padding-lg {
+  padding: calc(var(--phekong-space-section) * 2.67);
+}
+
+/* Clickable */
+.card[onClick] {
+  cursor: pointer;
+}

@@ -1,27 +1,52 @@
-describe('About page', () => {
+/// <reference types="cypress" />
+
+describe("About page", () => {
   beforeEach(() => {
-    cy.visit('/about');
+    cy.visit("/about");
   });
 
-  it('renders the core About page sections', () => {
-    cy.get('h1').should('contain.text', 'About Phekong');
-    cy.contains('h2', 'Why Choose Us').should('be.visible');
-    cy.contains('h2', 'Our Products & Services').should('be.visible');
-    cy.contains('h2', 'Our Values').should('be.visible');
+  it("renders the core About page sections", () => {
+    cy.get("h1").should("contain.text", "About Phekong");
+
+    cy.contains("h2", "Why Choose Us").should("be.visible");
+    cy.contains("h2", "Our Products & Services").should("be.visible");
+    cy.contains("h2", "Our Values").should("be.visible");
   });
 
-  it('shows the three value cards', () => {
-    cy.contains('h3', 'Quality').should('be.visible');
-    cy.contains('h3', 'Integrity').should('be.visible');
-    cy.contains('h3', 'Community').should('be.visible');
+  it("shows the three value cards", () => {
+    cy.contains("h3", "Quality").should("be.visible");
+    cy.contains("h3", "Integrity").should("be.visible");
+    cy.contains("h3", "Community").should("be.visible");
   });
 
-  it('shows both calls to action and exposes the current navigation gap', () => {
-    cy.contains('button', 'Shop Now').should('be.visible');
-    cy.contains('button', 'Book Massage').should('be.visible');
+  it("renders the call-to-action links with the correct destinations", () => {
+    cy.contains("a", "Shop Now")
+      .should("be.visible")
+      .and("have.attr", "href", "/products");
 
-    // V2 task: replace these buttons with links, then assert their href values:
-    // cy.contains('a', 'Shop Now').should('have.attr', 'href', '/products');
-    // cy.contains('a', 'Book a Massage').should('have.attr', 'href', '/services');
+    cy.contains("a", "Book Massage")
+      .should("be.visible")
+      .and("have.attr", "href", "/services");
+  });
+
+  it("renders the About Hero image", () => {
+    cy.get('img[alt="Massage therapy and herbal product preparation with natural herbs"]')
+      .should("be.visible");
+  });
+
+  it("renders the CTA banner image", () => {
+    cy.get('img[alt="Herbal wellness tea with natural leaves"]')
+      .should("be.visible");
+  });
+
+  it("does not overflow horizontally on mobile", () => {
+    cy.viewport("iphone-x");
+    cy.visit("/about");
+
+    cy.window().then((win) => {
+      expect(
+        win.document.documentElement.scrollWidth
+      ).to.be.lte(win.innerWidth);
+    });
   });
 });

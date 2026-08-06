@@ -1,6 +1,6 @@
 .wrap {
   position: relative;
-  border-radius: 24px;
+  border-radius: var(--phekong-radius-lg);
   overflow: hidden;
   isolation: isolate;
 }
@@ -10,7 +10,6 @@
   inset: 0;
   z-index: -1;
 }
-
 
 .bgImage {
   object-fit: cover;
@@ -27,9 +26,9 @@
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  padding: 1.5rem;
+  padding: var(--phekong-space-section);
   background: rgb(0 0 0 / 0.42);
-  color: #fff;
+  color: var(--phekong-white);
 }
 
 .statCopy {

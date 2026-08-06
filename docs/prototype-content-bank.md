@@ -29,7 +29,7 @@ The live repo already has a stronger App Router shell and a real backend baselin
 | Image file | Likely use |
 | --- | --- |
 | `logo8.png` / `Logo8.png` | Brand mark / header logo |
-| `about-us.gif` | About page hero or story panel |
+| `about-us-hero.png` | About page hero or story panel |
 | `Aloe Puree.jpeg` | Juice category or hero product |
 | `Ginger herbal Tea.png` | Tea category |
 | `Ginger Lemonade.png` | Refreshment / juice category |

@@ -18,10 +18,10 @@
 .titleUnderline {
   width: 100px;
   height: 3px;
-  background: #06402B;
+  background: var(--phekong-brand-strong);
   border-radius: 2px;
   margin: 0.5rem auto 0;
-  box-shadow: 0 4px 12px rgba(6, 64, 43, 0.5);
+  box-shadow: 0 4px 12px rgba(80, 55, 42, 0.5);
 }
 
 .grid {
@@ -36,12 +36,16 @@
   gap: 0.5rem;
 }
 
+.card:focus-visible {
+  outline: 2px solid var(--phekong-focus);
+  outline-offset: 2px;
+}
+
 .imageWrap {
   position: relative; 
   width: 56px;
   height: 56px;
 }
-
 
 .image {
   object-fit: contain;
@@ -56,7 +60,7 @@
 .cardText {
   margin: 0;
   max-width: 24ch;
-  color: rgb(var(--muted-foreground));
+  color: var(--phekong-muted);
   line-height: 1.6;
 }
 

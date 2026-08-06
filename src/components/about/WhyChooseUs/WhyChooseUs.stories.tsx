@@ -6,32 +6,40 @@ const meta = {
   component: WhyChooseUs,
   tags: ['autodocs'],
   args: {
-    title: 'Why Choose us',
+    title: 'Why Choose Us',
     intro:
       "We're committed to providing trusted herbal wellness products and professional massage therapies, backed by knowledge, compassion, and years of experience.",
     items: [
+    {
+  image: {
+    src: "/images/expertise.png",
+    alt: "Expertise icon",
+  },
+  title: "Expertise",
+  description:
+    "We combine traditional wellness knowledge with responsible modern practices.",
+},
       {
-        iconLabel: 'expertise-icon.png',
-        iconSrc: '/images/expertise.png',
-        title: 'Expertise',
-        description:
-          'We combine scientific understanding with traditional healing practices to deliver natural wellness solutions you can trust.',
-      },
-      {
-        iconLabel: 'commitment-icon.png',
-        iconSrc: '/images/commitment.png',
+       image: {
+  src: "/images/commitment.png",
+  alt: "Commitment icon",
+},
         title: 'Commitment',
         description: 'We are dedicated to helping every client achieve better health through personalised care and lasting support.',
       },
       {
-        iconLabel: 'attention-to-detail-icon.png', 
-        iconSrc: '/images/attention-to-detail.png',
-        title: 'Attention to detail',
+        image: {
+  src: "/images/attention-to-detail.png",
+  alt: "Attention to detail icon",
+},
+        title: 'Attention to Detail',
         description: 'Products and wellness service are carefully selected to ensure quality, safety, and effectiveness.',
       },
       {
-        iconLabel: 'customer-service-icon.png',
-        iconSrc: '/images/customer-service.png',
+       image: {
+  src: "/images/customer-service.png",
+  alt: "Customer service icon",
+},
         title: 'Customer Service',
         description: 'Our team is always ready to answer your questions and guide you on your wellness journey.',
       },

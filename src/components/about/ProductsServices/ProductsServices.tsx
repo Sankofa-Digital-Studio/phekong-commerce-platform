@@ -1,11 +1,16 @@
-import { Card } from "../Card/Card";
+import { AboutCard } from "../AboutCard/AboutCard";
 import styles from "./products-services.module.css";
-import Image from 'next/image';
+import Image from "next/image";
+
+type ImageContent = {
+  src: string;
+  alt: string;
+};
 
 export type ProductsServicesPanel = {
   title: string;
   items: string[];
-  imageLabel: string;
+  image: ImageContent;
 };
 
 export type ProductsServicesProps = {
@@ -40,12 +45,12 @@ export function ProductsServices({
         <h2 className={styles.title} id="products-services-title">
           {title}
         </h2>
-        <div className={styles.titleUnderline} />
+        <div className={styles.titleUnderline} aria-hidden="true" />
       </div>
 
       <div className={styles.grid}>
         {panels.map((panel) => (
-          <Card
+          <AboutCard
             key={panel.title}
             variant={cardVariant}
             padding={cardPadding}
@@ -63,19 +68,19 @@ export function ProductsServices({
                 style={{
                   width: size.width,
                   height: size.height,
-                  position: 'relative', 
+                  position: "relative",
                 }}
               >
                 <Image
-                  src={`/images/${panel.imageLabel}`}
-                  alt={panel.title}
+                  src={panel.image.src}
+                  alt={panel.image.alt}
                   fill
                   className={styles.image}
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: "cover" }}
                 />
               </div>
             </div>
-          </Card>
+          </AboutCard>
         ))}
       </div>
     </section>

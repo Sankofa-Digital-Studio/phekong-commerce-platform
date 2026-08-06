@@ -9,19 +9,28 @@ const meta = {
     title: 'Our Values',
     values: [
       {
-        imageLabel: 'quality.png',
+        image: {
+  src: "/images/quality.png",
+  alt: "Quality icon",
+},
         title: 'Quality',
-        description: 'we source and provide only the best quality herbs and products',
+        description: '"We source and provide only the best quality herbs and products.',
       },
       {
-     imageLabel: 'integrity.png', 
+     image: {
+  src: "/images/integrity.png",
+  alt: "Integrity icon",
+},
         title: 'Integrity',
-        description: 'Honest, transparent and ethical in all we do',
+        description: 'Honest, transparent and ethical in all we do.',
       },
       {
-        imageLabel: 'community.png', 
+       image: {
+  src: "/images/community.png",
+  alt: "Community icon",
+},
         title: 'Community',
-        description: 'We care about our community and empower healthier lives together',
+        description: 'We care about our community and empower healthier lives together.',
       },
     ],
   },

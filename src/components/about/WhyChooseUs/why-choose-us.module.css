@@ -19,18 +19,18 @@
   font-weight: 700;
 }
 
-
 .titleUnderline {
   width: 100px;
   height: 3px;
-  background: #06402B;
+  background: var(--phekong-brand-strong);
   border-radius: 2px;
   margin: 0.25rem auto 0;
-  box-shadow: 0 4px 12px rgba(6, 64, 43, 0.5); 
+  box-shadow: 0 4px 12px rgba(80, 55, 42, 0.5); 
 }
+
 .intro {
   margin: 0;
-  color: rgb(var(--muted-foreground));
+  color: var(--phekong-muted);
   line-height: 1.75;
   font-size: 1.05rem;
 }
@@ -45,12 +45,17 @@
   display: grid;
   gap: 0.65rem;
   align-content: start;
-  background: #f6faf5;
+  background: var(--phekong-surface-2);
+  transition: transform var(--phekong-motion-fast) var(--ease);
 }
 
 .card:hover {
   transform: translateY(-4px);
-  transition: transform 0.2s ease;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--phekong-focus);
+  outline-offset: 2px;
 }
 
 .iconWrap {
@@ -65,12 +70,12 @@
   margin: 0;
   font-weight: 700;
   font-size: 1.1rem;
-  color: rgb(var(--foreground));
+  color: var(--phekong-ink);
 }
 
 .cardText {
   margin: 0;
-  color: rgb(var(--muted-foreground));
+  color: var(--phekong-muted);
   line-height: 1.7;
   font-size: 0.95rem;
 }

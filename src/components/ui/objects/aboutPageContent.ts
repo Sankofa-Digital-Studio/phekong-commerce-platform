@@ -10,86 +10,113 @@ export const aboutPageContent = {
     ],
   },
   whyChooseUs: {
-    title: "Why Choose us",
+    title: "Why Choose Us",
     intro:
       "We're committed to providing trusted herbal wellness products and professional massage therapies, backed by knowledge, compassion, and years of experience.",
     items: [
-      {
-        iconLabel: "expertise-icon.png",
-        title: "Expertise",
-          iconSrc: '/images/expertise.png', 
-        description:
-          "We combine scientific understanding with traditional healing practices to deliver natural wellness solutions you can trust.",
-      },
-      {
-        iconLabel: "commitment-icon.png",
-        title: "Commitment",
-         iconSrc: '/images/commitment.png', 
-
-        description:
-          "We are dedicated to helping every client achieve better health through personalised care and lasting support.",
-      },
-      {
-        iconLabel: "attention-to-detail-icon.png",
-        title: "Attention to detail",
-         iconSrc: '/images/attention-to-detail.png', 
-        description:
-          "Products and wellness service are carefully selected to ensure quality, safety, and effectiveness.",
-      },
-      {
-        iconLabel: "customer-service-icon.png",
-        title: "Customer Service",
-        iconSrc: '/images/customer-service.png', 
-        description:
-          "Our team is always ready to answer your questions and guide you on your wellness journey.",
-      },
-    ],
+  {
+    image: {
+      src: "/images/expertise.png",
+      alt: "Expertise icon",
+    },
+    title: "Expertise",
+    description:
+      "We combine traditional wellness knowledge with responsible modern practices.",
+  },
+  {
+    image: {
+      src: "/images/commitment.png",
+      alt: "Commitment icon",
+    },
+    title: "Commitment",
+    description:
+      "We are dedicated to helping every client achieve better health through personalised care and lasting support.",
+  },
+  {
+    image: {
+      src: "/images/attention-to-detail.png",
+      alt: "Attention to detail icon",
+    },
+    title: "Attention to Detail",
+    description:
+      "Products and wellness services are carefully selected to ensure quality, safety, and effectiveness.",
+  },
+  {
+    image: {
+      src: "/images/customer-service.png",
+      alt: "Customer service icon",
+    },
+    title: "Customer Service",
+    description:
+      "Our team is always ready to answer your questions and guide you on your wellness journey.",
+  },
+]
   },
   productsServices: {
     title: "Our Products & Services",
     panels: [
-      {
-        title: "Herbal products",
-        items: [
-          "Herbal Juices",
-          "Herbal Teas",
-          "Therapy Lab",
-          "Beauty lap",
-          "Food Cures",
-        ],
-        imageLabel: "herbal-products.png",
-      },
-      {
-        title: "Massages",
-        items: ["Full Body", "Half Body", "Foot", "Herbal Detox"],
-        imageLabel: "massage.png",
-      },
+     {
+  title: "Herbal Products",
+  items: [
+    "Herbal Juices",
+    "Herbal Teas",
+    "Super Natural Therapy Lab",
+    "Super Natural Beauty Lab",
+    "Food Cures",
+  ],
+  image: {
+    src: "/images/herbal-products.png",
+    alt: "Selection of Phekong herbal wellness products",
+  },
+},
+     {
+  title: "Massages",
+  items: [
+    "Full Body",
+    "Half Body",
+    "Foot",
+    "Herbal Detox",
+  ],
+  image: {
+    src: "/images/massage.png",
+    alt: "Massage services offered at Phekong Wellness Centre",
+  },
+},
     ],
   },
   stats: [
-    { icon: "calendar" as const, value: "18+ years", label: "of experience" },
-    { icon: "leaf" as const, value: "100%", label: "Natural Ingredients" },
-    { icon: "heart" as const, value: "Trust", label: "& Care" },
+    { icon: "calendar" as const, value: "20 years", label: "of experience" },
+    { icon: "leaf" as const, value: "Natural", label: "wellness solutions" },
+    { icon: "heart" as const, value: "Trust", label: "& care" },
   ],
   values: {
     title: "Our Values",
     values: [
       {
-        imageLabel: "quality.png",
+        image: {
+  src: "/images/quality.png",
+  alt: "Quality icon",
+},
         title: "Quality",
         description:
-          "we source and provide only the best quality herbs and products",
+          "We source and provide only the best quality herbs and products.",
       },
       {
-        imageLabel: "integrity.png",
+       image: {
+  src: "/images/integrity.png",
+  alt: "Integrity icon",
+},
         title: "Integrity",
-        description: "Honest, transparent and ethical in all we do",
+        description: "Honest, transparent and ethical in all we do.",
       },
       {
-        imageLabel: "community.png",
+        image: {
+  src: "/images/community.png",
+  alt: "Community icon",
+},
         title: "Community",
         description:
-          "We care about our community and empower healthier lives together",
+          "We care about our community and empower healthier lives together.",
       },
     ],
   },

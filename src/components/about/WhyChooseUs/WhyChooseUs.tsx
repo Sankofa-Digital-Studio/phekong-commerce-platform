@@ -1,10 +1,14 @@
-import { Card } from "../Card/Card";
+import { AboutCard } from "../AboutCard/AboutCard";
 import styles from "./why-choose-us.module.css";
-import Image from 'next/image';
+import Image from "next/image";
+
+type ImageContent = {
+  src: string;
+  alt: string;
+};
 
 export type WhyChooseUsItem = {
-  iconLabel: string;
-  iconSrc: string; 
+  image: ImageContent;
   title: string;
   description: string;
 };
@@ -30,24 +34,29 @@ export function WhyChooseUs({
         <h2 className={styles.title} id="why-choose-us-title">
           {title}
         </h2>
-        <div className={styles.titleUnderline} />
+        <div className={styles.titleUnderline} aria-hidden="true" />
         <p className={styles.intro}>{intro}</p>
       </div>
 
       <div className={styles.grid}>
         {items.map((item) => (
-          <Card
+          <AboutCard
             key={item.title}
             variant={cardVariant}
             padding={cardPadding}
             className={styles.card}
           >
             <div className={styles.iconWrap}>
-              <Image src={item.iconSrc} alt={item.title} width={48} height={48} />
+              <Image
+                src={item.image.src}
+                alt={item.image.alt}
+                width={48}
+                height={48}
+              />
             </div>
             <h3 className={styles.cardTitle}>{item.title}</h3>
             <p className={styles.cardText}>{item.description}</p>
-          </Card>
+          </AboutCard>
         ))}
       </div>
     </section>

@@ -13,11 +13,11 @@ import styles from "./page.module.css";
 import { aboutPageContent } from "../../components/ui/objects/aboutPageContent";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: 'About Phekong Wellness Centre',
   description:
-    "A clear public overview of the Phekong commerce shell, the route boundaries, and the principles behind the public experience.",
+    'Learn about Phekong Wellness Centre, our Welkom roots, natural wellness approach, values, herbal product range and massage services.',
   alternates: {
-    canonical: "/about",
+    canonical: '/about',
   },
 };
 
@@ -26,8 +26,8 @@ export default function AboutPage() {
     aboutPageContent;
 
   return (
-    <ApplicationShell>
-      <main className={`${shared.page} ${styles.flow}`}>
+   <ApplicationShell>
+  <div className={`${shared.page} ${styles.flow}`}>
         <Breadcrumbs
           items={[{ label: "Home", href: "/" }, { label: "About" }]}
         />
@@ -55,12 +55,14 @@ export default function AboutPage() {
         <OurValues title={values.title} values={values.values} />
 
         <CTABanner
-          title={cta.title}
-          description={cta.description}
-          primaryLabel={cta.primaryLabel}
-          secondaryLabel={cta.secondaryLabel}
-        />
-      </main>
+  title={cta.title}
+  description={cta.description}
+  primaryLabel={cta.primaryLabel}
+  primaryHref="/products"
+  secondaryLabel={cta.secondaryLabel}
+  secondaryHref="/services"
+/>
+      </div>
     </ApplicationShell>
   );
 }

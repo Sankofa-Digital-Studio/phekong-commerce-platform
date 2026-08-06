@@ -27,8 +27,8 @@ export function AboutHero({ eyebrow, title, paragraphs }: AboutHeroProps) {
         <div className={styles.illustrationWrap}>
           <Image
             className={styles.illustration}
-            src="/images/about-us.gif"
-            alt="Illustration of the Phekong team waving"
+            src="/images/about-us-hero.png"
+            alt="Massage therapy and herbal product preparation with natural herbs"
             width={500}
             height={380}
           />
