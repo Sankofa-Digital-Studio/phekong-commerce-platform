@@ -186,28 +186,22 @@ function HomeSurface({
     slug: string;
   }> = [
     {
-      title: "Healing herbal teas for daily balance.",
-      product: "Aloe Herbal Juice",
+      title: "Aloe wellness for everyday balance.",
+      product: "Aloe Puree - Large Bottle",
       imageAssetId: "landing-aloe-puree-hero",
-      slug: "growth-strength-oil",
+      slug: "aloe-puree",
     },
     {
-      title: "Fresh herbal juices with a clean finish.",
-      product: "Lengana Tea Blend",
+      title: "A closer look at our Aloe Puree.",
+      product: "Aloe Puree - Compact Bottle",
       imageAssetId: "landing-aloe-puree-detail",
-      slug: "nourishing-shea-butter",
+      slug: "aloe-puree",
     },
     {
-      title: "Therapy lab support for oral and topical care.",
-      product: "Herbal Therapy Gel",
+      title: "Herbal therapy rooted in traditional care.",
+      product: "Herbal Therapy",
       imageAssetId: "landing-herbal-therapy-card",
-      slug: "exfoliating-sugar-scrub",
-    },
-    {
-      title: "Beauty lab care for skin and body.",
-      product: "Shea Butter Cream",
-      imageAssetId: "product-turmeric-soap",
-      slug: "turmeric-honey-soap",
+      slug: "herbal-therapy",
     },
   ];
 
