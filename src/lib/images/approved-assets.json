@@ -1,7 +1,63 @@
 {
   "schemaVersion": 1,
-  "sourceByteTotal": 947095,
+  "sourceByteTotal": 1174428,
   "assets": [
+    {
+      "id": "landing-aloe-puree-hero",
+      "file": "public/images/landing-aloe-puree-hero.jpg",
+      "src": "/images/landing-aloe-puree-hero.jpg",
+      "width": 1600,
+      "height": 900,
+      "format": "jpeg",
+      "bytes": 62033,
+      "sha256": "bd08ecadabd128ab9e60129e199308e82ffdd9ffc1796f6fb8df95301fbaa046",
+      "alt": "Large bottle of Aloe Puree complementary supplement on a warm studio background.",
+      "roles": [
+        "shell-hero"
+      ],
+      "repositoryCustodian": "Sankofa-Digital-Studio",
+      "sourceCommit": "c0a3192",
+      "sourceOwner": "Not recorded in the repository",
+      "rightsStatus": "retain-existing-only"
+    },
+    {
+      "id": "landing-aloe-puree-detail",
+      "file": "public/images/landing-aloe-puree-detail.jpg",
+      "src": "/images/landing-aloe-puree-detail.jpg",
+      "width": 1200,
+      "height": 1200,
+      "format": "jpeg",
+      "bytes": 92769,
+      "sha256": "5cb2d83383beee4e277e9a288c6a1ab2096a60bb172721828497e218357e8114",
+      "alt": "Compact bottle of Aloe Puree complementary supplement on a sage studio background.",
+      "roles": [
+        "shell-hero",
+        "product-detail"
+      ],
+      "repositoryCustodian": "Sankofa-Digital-Studio",
+      "sourceCommit": "c0a3192",
+      "sourceOwner": "Not recorded in the repository",
+      "rightsStatus": "retain-existing-only"
+    },
+    {
+      "id": "landing-herbal-therapy-card",
+      "file": "public/images/landing-herbal-therapy-card.jpg",
+      "src": "/images/landing-herbal-therapy-card.jpg",
+      "width": 900,
+      "height": 1125,
+      "format": "jpeg",
+      "bytes": 72531,
+      "sha256": "1bcecfd650be4370793f47b8e8db809ba2419d08c3f475f67c67194f502daed5",
+      "alt": "Bottle of Herbal Therapy herbal tea on a soft green studio background.",
+      "roles": [
+        "shell-hero",
+        "product-card"
+      ],
+      "repositoryCustodian": "Sankofa-Digital-Studio",
+      "sourceCommit": "c0a3192",
+      "sourceOwner": "Not recorded in the repository",
+      "rightsStatus": "retain-existing-only"
+    },
     {
       "id": "hero-reference",
       "file": "public/images/phekong-hero-reference.png",
@@ -12,7 +68,10 @@
       "bytes": 671979,
       "sha256": "b3d177f77f86343687ad75fa36165ca8b98d5ec66f2924201608afbcb0b35997",
       "alt": "Phekong wellness products arranged in a premium natural display.",
-      "roles": ["shell-hero", "home-story"],
+      "roles": [
+        "shell-hero",
+        "home-story"
+      ],
       "repositoryCustodian": "Sankofa-Digital-Studio",
       "sourceCommit": "202dbf98fab4b6b059a0ea5b777d57aeb8303fe4",
       "sourceOwner": "Not recorded in the repository",
@@ -28,7 +87,11 @@
       "bytes": 69137,
       "sha256": "d6e9dbf769a900de9296ee31ee9876edd9866fc767271035989f63d7c0a8ce0e",
       "alt": "An amber dropper bottle of hair oil on a stone pedestal with dried botanicals.",
-      "roles": ["shell-hero", "product-card", "product-detail"],
+      "roles": [
+        "shell-hero",
+        "product-card",
+        "product-detail"
+      ],
       "repositoryCustodian": "Sankofa-Digital-Studio",
       "sourceCommit": "202dbf98fab4b6b059a0ea5b777d57aeb8303fe4",
       "sourceOwner": "Not recorded in the repository",
@@ -44,7 +107,11 @@
       "bytes": 69744,
       "sha256": "34a8c1e58cd050ffd73d29a706e0a3be6cd31ed9a1a84e6f781b939d5a29d8ac",
       "alt": "A creamy shea butter jar on a stone pedestal with botanical leaves.",
-      "roles": ["shell-hero", "product-card", "product-detail"],
+      "roles": [
+        "shell-hero",
+        "product-card",
+        "product-detail"
+      ],
       "repositoryCustodian": "Sankofa-Digital-Studio",
       "sourceCommit": "202dbf98fab4b6b059a0ea5b777d57aeb8303fe4",
       "sourceOwner": "Not recorded in the repository",
@@ -60,7 +127,11 @@
       "bytes": 67795,
       "sha256": "e84d9580eb1ee45f0ff669b77c2d9ceef68c2832e48bac057f04f0a003cf2568",
       "alt": "A warm amber scrub jar with botanical accents on stone and wood.",
-      "roles": ["shell-hero", "product-card", "product-detail"],
+      "roles": [
+        "shell-hero",
+        "product-card",
+        "product-detail"
+      ],
       "repositoryCustodian": "Sankofa-Digital-Studio",
       "sourceCommit": "202dbf98fab4b6b059a0ea5b777d57aeb8303fe4",
       "sourceOwner": "Not recorded in the repository",
@@ -76,7 +147,11 @@
       "bytes": 68440,
       "sha256": "3145b6037f914a476b8f7da5bee6396ad16510ecaed054180c372d7d435684bb",
       "alt": "Stacked turmeric soap bars beside a kraft box with honey accents and leaves.",
-      "roles": ["shell-hero", "product-card", "product-detail"],
+      "roles": [
+        "shell-hero",
+        "product-card",
+        "product-detail"
+      ],
       "repositoryCustodian": "Sankofa-Digital-Studio",
       "sourceCommit": "202dbf98fab4b6b059a0ea5b777d57aeb8303fe4",
       "sourceOwner": "Not recorded in the repository",

@@ -188,19 +188,19 @@ function HomeSurface({
     {
       title: "Healing herbal teas for daily balance.",
       product: "Aloe Herbal Juice",
-      imageAssetId: "hero-reference",
+      imageAssetId: "landing-aloe-puree-hero",
       slug: "growth-strength-oil",
     },
     {
       title: "Fresh herbal juices with a clean finish.",
       product: "Lengana Tea Blend",
-      imageAssetId: "product-shea-butter",
+      imageAssetId: "landing-aloe-puree-detail",
       slug: "nourishing-shea-butter",
     },
     {
       title: "Therapy lab support for oral and topical care.",
       product: "Herbal Therapy Gel",
-      imageAssetId: "product-sugar-scrub",
+      imageAssetId: "landing-herbal-therapy-card",
       slug: "exfoliating-sugar-scrub",
     },
     {
@@ -613,5 +613,3 @@ function ShieldIcon() {
     </svg>
   );
 }
-
-
