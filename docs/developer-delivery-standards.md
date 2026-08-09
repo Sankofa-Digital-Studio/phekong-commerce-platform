@@ -2,7 +2,7 @@
 
 > **Sankofa Digital Proprietary and Confidential — Not for Distribution**
 
-Status: Proposed  
+Status: Active  
 Owner: Sankofa Digital Lead
 
 ## Purpose
