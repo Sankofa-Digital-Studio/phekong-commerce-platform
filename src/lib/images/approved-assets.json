@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "sourceByteTotal": 1174428,
+  "sourceByteTotal": 1079084,
   "assets": [
     {
       "id": "landing-aloe-puree-hero",
       "file": "public/images/landing-aloe-puree-hero.jpg",
       "src": "/images/landing-aloe-puree-hero.jpg",
-      "width": 1600,
-      "height": 900,
+      "width": 1024,
+      "height": 1024,
       "format": "jpeg",
-      "bytes": 62033,
-      "sha256": "bd08ecadabd128ab9e60129e199308e82ffdd9ffc1796f6fb8df95301fbaa046",
-      "alt": "Large bottle of Aloe Puree complementary supplement on a warm studio background.",
+      "bytes": 54036,
+      "sha256": "76e518237fe685e5b9f2b44be3bd1182b44c13dd2445b3fd78142d4fb12d50fc",
+      "alt": "A 1.5 litre bottle of Phekong Aloe Puree complementary supplement.",
       "roles": [
         "shell-hero"
       ],
@@ -24,12 +24,12 @@
       "id": "landing-aloe-puree-detail",
       "file": "public/images/landing-aloe-puree-detail.jpg",
       "src": "/images/landing-aloe-puree-detail.jpg",
-      "width": 1200,
-      "height": 1200,
+      "width": 715,
+      "height": 894,
       "format": "jpeg",
-      "bytes": 92769,
-      "sha256": "5cb2d83383beee4e277e9a288c6a1ab2096a60bb172721828497e218357e8114",
-      "alt": "Compact bottle of Aloe Puree complementary supplement on a sage studio background.",
+      "bytes": 37767,
+      "sha256": "62c3603801a8a6263ccff05bb27c19641a6645cafe930aab78d7632a5b7ba4b3",
+      "alt": "A 500 millilitre bottle of Phekong Aloe Puree complementary supplement.",
       "roles": [
         "shell-hero",
         "product-detail"
@@ -43,12 +43,12 @@
       "id": "landing-herbal-therapy-card",
       "file": "public/images/landing-herbal-therapy-card.jpg",
       "src": "/images/landing-herbal-therapy-card.jpg",
-      "width": 900,
-      "height": 1125,
+      "width": 1024,
+      "height": 1024,
       "format": "jpeg",
-      "bytes": 72531,
-      "sha256": "1bcecfd650be4370793f47b8e8db809ba2419d08c3f475f67c67194f502daed5",
-      "alt": "Bottle of Herbal Therapy herbal tea on a soft green studio background.",
+      "bytes": 40186,
+      "sha256": "7111da40504542839a4bfe28fe11d3272ee4b0d98c1debcc02966c8fe158ce24",
+      "alt": "A 100 millilitre bottle of Phekong Herbal Therapy soothing massage gel.",
       "roles": [
         "shell-hero",
         "product-card"

@@ -187,19 +187,19 @@ function HomeSurface({
   }> = [
     {
       title: "Aloe wellness for everyday balance.",
-      product: "Aloe Puree - Large Bottle",
+      product: "Aloe Puree - 1.5 L",
       imageAssetId: "landing-aloe-puree-hero",
       slug: "aloe-puree",
     },
     {
       title: "A closer look at our Aloe Puree.",
-      product: "Aloe Puree - Compact Bottle",
+      product: "Aloe Puree - 500 ml",
       imageAssetId: "landing-aloe-puree-detail",
       slug: "aloe-puree",
     },
     {
       title: "Herbal therapy rooted in traditional care.",
-      product: "Herbal Therapy",
+      product: "Herbal Therapy Gel - 100 ml",
       imageAssetId: "landing-herbal-therapy-card",
       slug: "herbal-therapy",
     },
