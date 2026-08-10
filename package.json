@@ -38,7 +38,7 @@
     "@chromatic-com/storybook": "^5.2.1",
     "@eslint/eslintrc": "^3.3.6",
     "@storybook/addon-a11y": "^10.5.0",
-    "@storybook/addon-docs": "^10.5.0",
+    "@storybook/addon-docs": "^10.5.7",
     "@storybook/addon-mcp": "^0.7.0",
     "@storybook/addon-vitest": "^10.5.0",
     "@storybook/nextjs-vite": "^10.5.0",
