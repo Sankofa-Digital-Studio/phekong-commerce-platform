@@ -2,6 +2,27 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
+    target-branch: "dev"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Africa/Johannesburg"
+    labels:
+      - "dependencies"
+      - "security"
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore"
+    groups:
+      production-runtime:
+        dependency-type: "production"
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "sharp"
+      development-tooling:
+        dependency-type: "development"
+        patterns:
+          - "*"
