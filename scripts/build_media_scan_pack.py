@@ -38,8 +38,8 @@ for src, dest, size, bg, panel, box in assets:
 
 md = """# Frontend media scan and usage plan
 
-**Status:** local review asset pack; not connected to the live frontend.  
-**Source:** shared Google Drive folder supplied by the product owner.  
+**Status:** local review asset pack; not connected to the live frontend.
+**Source:** shared Google Drive folder supplied by the product owner.
 **Branch:** `sankofa_xciv/feature-media-scan-frontend`
 
 ## Decision summary
