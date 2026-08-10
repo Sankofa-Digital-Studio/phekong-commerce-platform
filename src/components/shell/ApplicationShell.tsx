@@ -1,11 +1,18 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { ApprovedImage } from "@/components/media/ApprovedImage";
 import { ProductCatalogue, type ProductCatalogueState } from "../catalogue/ProductCatalogue";
 import { ActionFeedback, type FeedbackState } from "@/components/ui/ActionFeedback";
+import {
+  getApprovedImageAsset,
+  responsiveImageSizes,
+  type ApprovedImageAssetId,
+} from "@/lib/images/approved-assets";
 import { shellCopy, type ShellLocale } from "./translations";
+import { RitualLoader } from "./RitualLoader";
+import { SiteFooter } from "./SiteFooter";
 import "./application-shell.css";
 import "./adaptive-hero.css";
 
@@ -15,7 +22,7 @@ export interface ApplicationShellProps {
   children?: ReactNode;
   locale?: ShellLocale;
   state?: ShellState;
-  activeRoute?: "home" | "products" | "rituals" | "about" | "services" | "contact" | "account" | "cart";
+  activeRoute?: "home" | "products" | "rituals" | "wellness" | "about" | "services" | "contact" | "account" | "cart";
   showStatePanel?: boolean;
   catalogueState?: ProductCatalogueState;
   catalogueOnRetry?: () => void;
@@ -46,6 +53,7 @@ export function ApplicationShell({
     { route: "home", label: t.home, href: "/" },
     { route: "products", label: t.products, href: "/products" },
     { route: "rituals", label: t.rituals, href: "/rituals" },
+    { route: "wellness", label: t.wellness, href: "/#wellness" },
     { route: "about", label: t.about, href: "/about" },
     { route: "services", label: t.services, href: "/services" },
     { route: "contact", label: t.contact, href: "/contact" },
@@ -151,10 +159,7 @@ export function ApplicationShell({
         {shellContent}
       </main>
 
-      <footer className="site-footer" id="contact">
-        <strong>Phekong {t.wellnessCentre}</strong>
-        <span>Copyright 2026 Sankofa Digital</span>
-      </footer>
+      <SiteFooter wellnessCentreLabel={t.wellnessCentre} />
     </div>
   );
 }
@@ -171,41 +176,43 @@ function HomeSurface({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [dataSaver, setDataSaver] = useState(false);
   const [networkLabel, setNetworkLabel] = useState("Adaptive");
-  const [experienceReady, setExperienceReady] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
   const [carouselPaused, setCarouselPaused] = useState(false);
 
-  const slides = [
+  const slides: ReadonlyArray<{
+    title: string;
+    product: string;
+    imageAssetId: ApprovedImageAssetId;
+    slug: string;
+  }> = [
     {
       title: "Healing herbal teas for daily balance.",
       product: "Aloe Herbal Juice",
-      image: "/images/phekong-hero-reference.png",
-      alt: "Phekong restorative body oil arranged with ritual ingredients on a dark surface.",
+      imageAssetId: "hero-reference",
       slug: "growth-strength-oil",
     },
     {
       title: "Fresh herbal juices with a clean finish.",
       product: "Lengana Tea Blend",
-      image: "/images/product-shea-butter.png",
-      alt: "A creamy shea butter jar on a stone pedestal with botanical leaves.",
+      imageAssetId: "product-shea-butter",
       slug: "nourishing-shea-butter",
     },
     {
       title: "Therapy lab support for oral and topical care.",
       product: "Herbal Therapy Gel",
-      image: "/images/product-sugar-scrub.png",
-      alt: "A warm amber scrub jar with botanical accents on stone and wood.",
+      imageAssetId: "product-sugar-scrub",
       slug: "exfoliating-sugar-scrub",
     },
     {
       title: "Beauty lab care for skin and body.",
       product: "Shea Butter Cream",
-      image: "/images/product-turmeric-soap.png",
-      alt: "Stacked turmeric soap bars beside a kraft box with honey accents and leaves.",
+      imageAssetId: "product-turmeric-soap",
       slug: "turmeric-honey-soap",
     },
   ];
 
   useEffect(() => {
+    const welcomeSeen = window.sessionStorage.getItem("phekong-welcome-seen") === "true";
     const connection = (navigator as Navigator & {
       connection?: { effectiveType?: string; saveData?: boolean; downlink?: number };
     }).connection;
@@ -221,12 +228,26 @@ function HomeSurface({
     const preferenceTimer = window.setTimeout(() => {
       setDataSaver(shouldSaveData);
       setNetworkLabel(detectedNetwork);
+      setShowWelcome(!welcomeSeen);
     }, 0);
-    const readyTimer = window.setTimeout(() => setExperienceReady(true), shouldSaveData ? 240 : 760);
+    let readyTimer: number | undefined;
+    const finishWelcome = () => {
+      readyTimer = window.setTimeout(() => {
+        window.sessionStorage.setItem("phekong-welcome-seen", "true");
+        setShowWelcome(false);
+      }, shouldSaveData ? 350 : 1200);
+    };
+
+    if (document.readyState === "complete") {
+      finishWelcome();
+    } else {
+      window.addEventListener("load", finishWelcome, { once: true });
+    }
 
     return () => {
       window.clearTimeout(preferenceTimer);
-      window.clearTimeout(readyTimer);
+      if (readyTimer !== undefined) window.clearTimeout(readyTimer);
+      window.removeEventListener("load", finishWelcome);
     };
   }, []);
 
@@ -246,12 +267,10 @@ function HomeSurface({
   }, [carouselPaused, dataSaver, slides.length]);
 
   const toggleDataSaver = () => {
-    setDataSaver((current) => {
-      const next = !current;
-      window.localStorage.setItem("phekong-data-saver", next ? "on" : "off");
-      onNotify("success", next ? "Data saver enabled." : "Enhanced experience enabled.");
-      return next;
-    });
+    const next = !dataSaver;
+    setDataSaver(next);
+    window.localStorage.setItem("phekong-data-saver", next ? "on" : "off");
+    onNotify("success", next ? "Data saver enabled." : "Enhanced experience enabled.");
   };
 
   const nextSlide = () => {
@@ -268,16 +287,16 @@ function HomeSurface({
   };
 
   const slide = slides[currentSlide];
+  const slideImage = getApprovedImageAsset(slide.imageAssetId);
 
   return (
     <div className={`shell-surface ${dataSaver ? "is-data-saver" : "is-enhanced"}`}>
-      {!experienceReady && (
-        <div className="ritual-loader" role="status" aria-live="polite" aria-label="Preparing the Phekong experience">
-          <div className="ritual-loader__seed" aria-hidden="true"><span /><i /><b /></div>
-          <p>Rooting your wellness journey</p>
-          <span>Gathering the essentials for a calm arrival.</span>
-          <button type="button" onClick={() => setExperienceReady(true)}>Enter now</button>
-        </div>
+      {showWelcome && (
+        <RitualLoader
+          title="Rooting your wellness journey"
+          message="Growing a calm space for your arrival."
+          label="Preparing the Phekong experience"
+        />
       )}
       <section
         className="shell-hero"
@@ -319,7 +338,7 @@ function HomeSurface({
           </div>
 
           <div className="shell-trust">
-            <div className="shell-trust__avatars" aria-label="Trusted by 1,200+ customers">
+            <div className="shell-trust__avatars" role="img" aria-label="Trusted by 1,200+ customers">
               <span className="shell-avatar shell-avatar--one">A</span>
               <span className="shell-avatar shell-avatar--two">K</span>
               <span className="shell-avatar shell-avatar--three">M</span>
@@ -337,14 +356,17 @@ function HomeSurface({
         <aside className="shell-hero__visual" aria-label={`Editor's pick: ${slide.product}`}>
           <h2 className="visually-hidden">{slide.product}</h2>
           <div className="shell-hero__carousel">
-            <Image
+            <ApprovedImage
+              key={slideImage.id}
               className="shell-hero__image"
-              src={slide.image}
-              alt={slide.alt}
-              width={1200}
-              height={900}
+              src={slideImage.src}
+              alt={slideImage.alt}
+              width={slideImage.width}
+              height={slideImage.height}
               priority
-              sizes="(max-width: 760px) 100vw, (max-width: 1120px) 100vw, 55vw"
+              sizes={responsiveImageSizes.shellHero}
+              quality={75}
+              fallbackLabel="Featured product image unavailable"
             />
             <div className="shell-hero__product-card">
               <p className="shell-hero__product-eyebrow">EDITOR&apos;S PICK</p>

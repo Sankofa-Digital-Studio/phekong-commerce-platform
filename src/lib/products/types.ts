@@ -1,3 +1,5 @@
+import type { ApprovedImageAssetId } from "@/lib/images/approved-assets";
+
 export type ProductSource = "fixture" | "live";
 
 export type ProductAvailability = "in-stock" | "low-stock" | "out-of-stock";
@@ -7,8 +9,7 @@ export interface ProductCatalogueItem {
   category: string;
   name: string;
   description: string;
-  imageSrc: string;
-  imageAlt: string;
+  imageAssetId: ApprovedImageAssetId;
   priceCents: number;
   rating: number;
   stockQuantity: number;

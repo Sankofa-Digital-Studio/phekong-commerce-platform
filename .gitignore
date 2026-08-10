@@ -1,4 +1,5 @@
-node_modules/
+# Node dependencies and interrupted/backup install directories.
+/node_modules*/
 dist/
 .next/
 .vercel/
@@ -12,6 +13,7 @@ test-results/
 .vscode/
 .idea/
 supabase/.temp/
+supabase/.branches/
 
 tsconfig.tsbuildinfo
 # Storybook cache

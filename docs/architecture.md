@@ -76,7 +76,7 @@ Booking-conflict protection is enforced by PostgreSQL, not only by application c
 M0 uses the trimmed, case-insensitive `service_name` as a single-capacity service-slot key because no stable service/resource table exists yet. A future multi-capacity model must introduce an explicit service or resource identifier and migrate the exclusion constraint to that identifier before allowing concurrent capacity.
 
 ## Runtime and package management
-- Node.js: active LTS supported by the selected Next.js release
+- Node.js: 24 LTS across local development, CI and Vercel
 - Package manager: npm
 - Default branch: main
 - Merge strategy: squash merge

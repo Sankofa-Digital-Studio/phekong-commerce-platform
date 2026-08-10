@@ -12,6 +12,7 @@ const eslintConfig = defineConfig([...nextVitals, ...nextTypeScript, globalIgnor
   "storybook-static/**",
   "tmp/**",
   "coverage/**",
+  "node_modules.*/**",
   "next-env.d.ts",
 ]), ...storybook.configs["flat/recommended"]]);
 

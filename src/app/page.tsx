@@ -4,7 +4,7 @@ import { HomeExperience } from "@/components/home/HomeExperience";
 import { buildCanonicalUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Public product catalogue",
+  title: "Phekong Wellness Center",
   description: "Phekong Wellness Centre's public catalogue of approved products and product detail pages.",
   alternates: {
     canonical: buildCanonicalUrl("/"),

@@ -72,4 +72,21 @@ describe("product repository helpers", () => {
 
     await expect(resolveProductBySlug("nourishing-shea-butter")).resolves.toBeNull();
   });
+  it("surfaces configured live-service errors instead of presenting a false not-found state", async () => {
+    process.env.NEXT_PUBLIC_SUPABASE_URL = "https://example.supabase.co";
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = "public-anon-key";
+    createClientMock.mockReturnValue({
+      from: vi.fn(() => ({
+        select: vi.fn(() => ({
+          eq: vi.fn(() => ({
+            maybeSingle: vi.fn(async () => ({ data: null, error: { message: "network unavailable" } })),
+          })),
+        })),
+      })),
+    });
+
+    const { resolveProductBySlug } = await import("./repository");
+
+    await expect(resolveProductBySlug("growth-strength-oil")).rejects.toThrow("product service request failed");
+  });
 });

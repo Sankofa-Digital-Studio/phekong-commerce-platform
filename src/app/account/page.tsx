@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ApplicationShell } from "@/components/shell/ApplicationShell";
-import { CommercePreview } from "@/components/commerce/CommercePreview";
+import { CommerceScreen } from "@/components/commerce/CommerceScreen";
 
 export const metadata: Metadata = {
   title: "Account Preview",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function AccountPage() {
   return (
     <ApplicationShell activeRoute="account" showStatePanel={false}>
-      <CommercePreview initialStep="profile" />
+      <CommerceScreen kind="account" />
     </ApplicationShell>
   );
 }

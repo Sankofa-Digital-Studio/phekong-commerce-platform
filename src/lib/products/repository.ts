@@ -1,4 +1,4 @@
-﻿import { cache } from "react";
+import { cache } from "react";
 import { catalogueProducts, getCatalogueProductBySlug } from "./fixture-repository";
 import type {
   ProductCatalogueItem,
@@ -32,7 +32,11 @@ async function createSupabaseProductReader() {
         .eq("slug", slug)
         .maybeSingle<ProductLiveRow>();
 
-      if (error || !data) {
+      if (error) {
+        throw new Error("The product service request failed.", { cause: error });
+      }
+
+      if (!data) {
         return null;
       }
 

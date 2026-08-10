@@ -1,0 +1,124 @@
+.site-footer {
+  display: grid;
+  gap: var(--phekong-space-6);
+  padding: clamp(var(--phekong-space-6), 5vw, 4.5rem);
+  color: var(--phekong-footer-text);
+  background: var(--phekong-footer-bg);
+}
+
+.site-footer__lead {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--phekong-space-6);
+  padding-bottom: var(--phekong-space-6);
+  border-bottom: 1px solid color-mix(in srgb, var(--phekong-footer-text) 16%, transparent);
+}
+
+.site-footer__lead p {
+  max-width: 38rem;
+  color: var(--phekong-footer-muted);
+  line-height: 1.65;
+}
+
+.site-footer__eyebrow {
+  margin: 0 0 var(--phekong-space-2);
+  color: var(--phekong-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.site-footer__brand {
+  display: block;
+  font-family: var(--phekong-font-display);
+  font-size: clamp(1.55rem, 3vw, 2.5rem);
+}
+
+.site-footer__cta {
+  flex: none;
+  padding: 0.9rem 1.15rem;
+  border-radius: var(--phekong-radius-pill);
+  color: var(--phekong-footer-bg);
+  background: var(--phekong-accent);
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-footer__cta:focus-visible,
+.site-footer__links a:focus-visible {
+  outline: 3px solid var(--phekong-focus);
+  outline-offset: 3px;
+}
+
+.site-footer__links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--phekong-space-6);
+}
+
+.site-footer__links div {
+  display: grid;
+  align-content: start;
+  gap: var(--phekong-space-3);
+  min-width: 0;
+}
+
+.site-footer__links strong {
+  margin-bottom: var(--phekong-space-1);
+  color: var(--phekong-accent);
+}
+
+.site-footer__links a,
+.site-footer__links span {
+  color: var(--phekong-footer-muted);
+  text-decoration: none;
+}
+
+.site-footer__links a:hover {
+  color: var(--phekong-footer-text);
+  text-decoration: underline;
+}
+
+.site-footer__legal {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--phekong-space-4);
+  padding-top: var(--phekong-space-5);
+  border-top: 1px solid color-mix(in srgb, var(--phekong-footer-text) 16%, transparent);
+  color: var(--phekong-footer-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 44rem) {
+  .site-footer__lead,
+  .site-footer__legal {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .site-footer__links {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .site-footer__links div:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 30rem) {
+  .site-footer__cta {
+    width: 100%;
+    text-align: center;
+  }
+
+  .site-footer__links {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__links div:last-child {
+    grid-column: auto;
+  }
+}
