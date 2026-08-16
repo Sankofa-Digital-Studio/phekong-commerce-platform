@@ -53,12 +53,12 @@ describe("ApplicationShell adaptive homepage", () => {
   it("advances automatically while preserving manual navigation", () => {
     render(<ApplicationShell activeRoute="home" showStatePanel={false} />);
     act(() => vi.advanceTimersByTime(0));
-    expect(screen.getByRole("heading", { name: /healing herbal teas for daily balance/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /aloe wellness for everyday balance/i })).toBeInTheDocument();
 
     act(() => vi.advanceTimersByTime(6300));
-    expect(screen.getByRole("heading", { name: /fresh herbal juices with a clean finish/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /a closer look at our aloe puree/i })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "Previous slide" }));
-    expect(screen.getByRole("heading", { name: /healing herbal teas for daily balance/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /aloe wellness for everyday balance/i })).toBeInTheDocument();
   });
 });

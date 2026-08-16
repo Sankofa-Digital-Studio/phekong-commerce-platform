@@ -2,6 +2,9 @@ import manifest from "./approved-assets.json";
 
 export type ApprovedImageAssetId =
   | "hero-reference"
+  | "landing-aloe-puree-hero"
+  | "landing-aloe-puree-detail"
+  | "landing-herbal-therapy-card"
   | "product-hair-oil"
   | "product-shea-butter"
   | "product-sugar-scrub"

@@ -34,7 +34,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Publish Storybook and compare baselines
-        uses: chromaui/action@v13
+        uses: chromaui/action@30047ab459164cf99ae8f097f6aa5c7ef4fcc869 # v13
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true
