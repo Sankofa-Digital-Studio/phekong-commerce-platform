@@ -14,9 +14,20 @@ test-results/
 .idea/
 supabase/.temp/
 supabase/.branches/
-
 tsconfig.tsbuildinfo
-# Storybook cache
-tmp/
+
+# Generated and temporary output
+/output/
+/tmp/
+*.log
 *storybook.log
-storybook-static
+storybook-static/
+
+# Raw working media and local exports
+/docs/media-scan/source/
+/docs/media-scan/*.html
+/docs/media-scan/*.docx
+
+# Local Supabase state
+**/.supabase/
+**/telemetry.json
