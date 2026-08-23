@@ -69,6 +69,13 @@ Example:
 
 If a task does not clearly fit `DES`, `DEV`, or `LRN`, pause and ask the project lead before creating the issue.
 
+## M2 booking delivery references
+
+- `docs/intern/m2.md`: friendly intern briefing, delivery order and communication template
+- `docs/m2-booking-delivery-pack.md`: definition of ready, implementation checklist, evidence checklist and release gates
+- `docs/sankofa-developer-terminology-handbook.md`: plain-language Sankofa terminology with decision triggers
+- `docs/policies/booking-cancellation-cpa-review-draft.md`: development-only CPA review template; not approved customer terms
+
 ## Local setup
 
 1. Install Node.js LTS, Git, GitHub CLI and Docker Desktop. The Supabase CLI is installed from the repository lockfile.
