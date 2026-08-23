@@ -36,9 +36,9 @@ describe("adaptive homepage smoke", () => {
 
   it("supports manual carousel control and a persistent data-saver override", () => {
     waitForButtonlessWelcome();
-    cy.get("h1").contains(/healing herbal teas for daily balance/i).should("exist");
+    cy.get("h1").contains(/aloe wellness for everyday balance/i).should("exist");
     cy.get('[aria-label="Next slide"]').click();
-    cy.get("h1").contains(/fresh herbal juices with a clean finish/i).should("exist");
+    cy.get("h1").contains(/a closer look at our aloe puree/i).should("exist");
 
     cy.contains("button", "Use less data").click();
     cy.contains("button", "Use enhanced visuals").should("have.attr", "aria-pressed", "true");
@@ -53,7 +53,7 @@ describe("adaptive homepage smoke", () => {
       const initialHeight = $hero[0].getBoundingClientRect().height;
 
       cy.get('[aria-label="Next slide"]').click().click();
-      cy.contains("h1", /therapy lab support for oral and topical care/i).should("be.visible");
+      cy.contains("h1", /herbal therapy rooted in traditional care/i).should("be.visible");
       cy.get(".shell-hero").should(($changedHero) => {
         expect($changedHero[0].getBoundingClientRect().height).to.equal(initialHeight);
       });
@@ -74,6 +74,6 @@ describe("adaptive homepage smoke", () => {
     });
     cy.get('[role="group"][aria-label="Choose featured product slide"]')
       .find("button")
-      .should("have.length", 4);
+      .should("have.length", 3);
   });
 });

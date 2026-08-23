@@ -72,7 +72,7 @@ describe("product repository helpers", () => {
 
     await expect(resolveProductBySlug("nourishing-shea-butter")).resolves.toBeNull();
   });
-  it("surfaces configured live-service errors instead of presenting a false not-found state", async () => {
+  it("uses the approved fixture when the configured live service is unavailable", async () => {
     process.env.NEXT_PUBLIC_SUPABASE_URL = "https://example.supabase.co";
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = "public-anon-key";
     createClientMock.mockReturnValue({
@@ -87,6 +87,12 @@ describe("product repository helpers", () => {
 
     const { resolveProductBySlug } = await import("./repository");
 
-    await expect(resolveProductBySlug("growth-strength-oil")).rejects.toThrow("product service request failed");
+    await expect(resolveProductBySlug("growth-strength-oil")).resolves.toMatchObject({
+      product: {
+        slug: "growth-strength-oil",
+      },
+      source: "fixture",
+      fallbackReason: "live-unavailable",
+    });
   });
 });
