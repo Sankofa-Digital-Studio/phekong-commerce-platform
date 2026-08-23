@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "approvedNodeLtsMajor": 24,
+  "approvedNpmMajor": 11,
+  "auditFailureSeverities": ["high", "critical"],
+  "acceptedDevAuditFindings": [
+    "@storybook/addon-mcp@moderate",
+    "@storybook/mcp@moderate",
+    "@storybook/nextjs-vite@high",
+    "brace-expansion@high",
+    "image-size@high",
+    "postcss@moderate",
+    "valibot@moderate",
+    "vite-plugin-storybook-nextjs@high"
+  ],
+  "acceptedDeprecations": ["tsconfck@3.1.6"],
+  "manualReviewPackages": [
+    "next",
+    "react",
+    "react-dom",
+    "supabase",
+    "@supabase/ssr",
+    "@supabase/supabase-js"
+  ]
+}

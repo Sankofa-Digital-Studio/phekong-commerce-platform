@@ -23,6 +23,7 @@
     "test:e2e:cypress": "cypress run --browser chrome",
     "e2e:cypress:open": "cypress open",
     "dependencies:check": "npm ls --all",
+    "dependencies:governance": "node scripts/audit-dependency-drift.mjs",
     "images:check": "node scripts/validate-image-pipeline.mjs",
     "images:prepare": "node scripts/prepare-image.mjs"
   },

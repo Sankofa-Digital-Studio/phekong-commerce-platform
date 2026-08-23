@@ -2,27 +2,57 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    target-branch: "dev"
     schedule:
-      interval: "weekly"
-      day: "monday"
+      interval: "monthly"
       time: "06:00"
       timezone: "Africa/Johannesburg"
     labels:
       - "dependencies"
       - "security"
-    open-pull-requests-limit: 5
+    assignees:
+      - "OhhttooeXCIV"
+    open-pull-requests-limit: 2
     commit-message:
       prefix: "chore"
     groups:
-      production-runtime:
+      production-minor-patch:
+        applies-to: "version-updates"
         dependency-type: "production"
         patterns:
-          - "next"
-          - "react"
-          - "react-dom"
-          - "sharp"
-      development-tooling:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      development-minor-patch:
+        applies-to: "version-updates"
         dependency-type: "development"
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      security-updates:
+        applies-to: "security-updates"
+        patterns:
+          - "*"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      time: "06:15"
+      timezone: "Africa/Johannesburg"
+    assignees:
+      - "OhhttooeXCIV"
+    open-pull-requests-limit: 1
+    groups:
+      actions-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
