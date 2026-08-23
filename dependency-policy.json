@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "approvedNodeLtsMajor": 24,
+  "approvedNpmMajor": 11,
+  "auditFailureSeverities": ["high", "critical"],
+  "acceptedDeprecations": ["tsconfck@3.1.6"],
+  "manualReviewPackages": [
+    "next",
+    "react",
+    "react-dom",
+    "supabase",
+    "@supabase/ssr",
+    "@supabase/supabase-js"
+  ]
+}
