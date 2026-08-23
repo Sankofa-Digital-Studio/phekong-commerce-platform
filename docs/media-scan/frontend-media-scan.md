@@ -1,8 +1,12 @@
 # Frontend media scan and usage plan
 
-**Status:** local review asset pack; not connected to the live frontend.
-**Source:** shared Google Drive folder supplied by the product owner.
-**Branch:** `sankofa_xciv/feature-media-scan-frontend`
+**Status:** approved derivative review pack; not connected to the live frontend.  
+**Source:** shared Google Drive folder supplied by the product owner.  
+**Canonical record:** this Markdown file.
+
+## Repository hygiene decision
+
+Raw source masters are intentionally not stored in the active Git tree. They remain recoverable from repository history at commit `8c5c6dd2ede8a1aaceed064ee32ad87baa869bdc` and should be retained in the Owner-supplied Drive source. Only the three selected, edited review derivatives remain here. HTML and DOCX copies were removed because they duplicated this plan.
 
 ## Decision summary
 
@@ -10,7 +14,7 @@ Three JPEG frames were selected from the paired JPEG/CR2 shoot. The edits are de
 
 ## Screen assignments
 
-| Screen | Edited asset | Source | Role | Recommended treatment |
+| Screen | Edited asset | Original source | Role | Recommended treatment |
 |---|---|---|---|---|
 | Homepage / collection landing | `edited/home-collection-hero-aloe-puree.jpg` | `IMG_0077.JPG` | Primary campaign hero | 16:9; bottle right; left side reserved for copy and CTA |
 | Product detail | `edited/product-detail-aloe-puree.jpg` | `IMG_0081.JPG` | Main gallery image | Square; neutral sage surround; use `object-fit: contain` |
@@ -18,7 +22,7 @@ Three JPEG frames were selected from the paired JPEG/CR2 shoot. The edits are de
 
 ## Frontend usage contract
 
-- Keep source masters outside `public/`; only approved derivatives should be promoted later.
+- Keep source masters outside the active repository; only approved derivatives may be promoted.
 - Before production use, confirm product names, sizes, claims, ownership/consent, and alt text with the catalogue owner.
 - Proposed alt text: “Large bottle of Aloe Puree complementary supplement”; “Compact bottle of Aloe Puree complementary supplement”; “Bottle of Herbal Therapy herbal tea”.
 - Serve responsive AVIF/WebP variants at roughly 480, 768, 1200, and 1600 px; retain JPEG as fallback.
@@ -32,4 +36,4 @@ Three JPEG frames were selected from the paired JPEG/CR2 shoot. The edits are de
 
 ## Not selected
 
-`IMG_0050.JPG`, `IMG_0039.JPG`, and `IMG_0034.JPG` were retained only as scan references because the local downloads showed lower reliability or duplicated the selected visual roles.
+`IMG_0050.JPG`, `IMG_0039.JPG`, and `IMG_0034.JPG` were scan references only and are not retained in the active tree.

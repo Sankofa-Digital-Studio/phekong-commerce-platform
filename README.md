@@ -11,11 +11,11 @@ Custom commerce, booking, inventory, seller-tracking and business intelligence M
 - Pull Requests: review and acceptance evidence
 - `/docs`: architecture and operational documentation
 
-## Issue 23
+## Historical implementation references
 
-- `docs/issue-23-draft-pr-summary.md`: PR-ready summary of the shipped slice
 - `docs/issue-23-implementation-walkthrough.md`: three-pass implementation and token walkthrough
 - `docs/issue-23-storybook-alignment.md`: Storybook alignment notes for the live shell and catalogue
+- `docs/m1-implementation-report.md`: canonical M1 implementation report
 
 ## Git reference
 
@@ -51,22 +51,6 @@ Example:
 - Keep the title action-based: use verbs such as `Design`, `Build`, `Implement`, `Document`, `Audit`, or `Verify`.
 - Do not rename issue categories casually. Naming is part of the project architecture.
 
-### Correct examples
-
-```text
-[M1-DES-01] Design Penpot foundations, shell and responsive component states
-[M1-DEV-03] Implement official training landing page
-[M1-LRN-04] Present design-token correlation and local implementation evidence
-```
-
-### Incorrect examples
-
-```text
-[M1-UX-01] Make the training HTML artifact the official responsive landing page
-[M1-UI] Landing page work
-[M1 Task] Fix homepage
-```
-
 If a task does not clearly fit `DES`, `DEV`, or `LRN`, pause and ask the project lead before creating the issue.
 
 ## M2 booking delivery references
@@ -75,6 +59,14 @@ If a task does not clearly fit `DES`, `DEV`, or `LRN`, pause and ask the project
 - `docs/m2-booking-delivery-pack.md`: definition of ready, implementation checklist, evidence checklist and release gates
 - `docs/sankofa-developer-terminology-handbook.md`: plain-language Sankofa terminology with decision triggers
 - `docs/policies/booking-cancellation-cpa-review-draft.md`: development-only CPA review template; not approved customer terms
+
+## Repository hygiene
+
+- Keep generated output, temporary files, raw media masters and local telemetry out of Git.
+- Store only approved, optimised runtime assets in `public/`.
+- Store reproducible evidence selectively; do not commit byte-identical copies.
+- Keep project-specific Storybook stories, not generated tutorial examples.
+- Large business documents require a verified external archive before removal.
 
 ## Local setup
 
