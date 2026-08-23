@@ -87,13 +87,20 @@ try {
   add("warnings", `Could not query the Node release index: ${error.message}`);
 }
 
-const audit = runJson("npm", ["audit", "--json"]);
-const vulnerabilities = audit.data.metadata?.vulnerabilities ?? {};
+const productionAudit = runJson("npm", ["audit", "--omit=dev", "--json"]);
+const productionVulnerabilities = productionAudit.data.metadata?.vulnerabilities ?? {};
 for (const severity of policy.auditFailureSeverities) {
-  if ((vulnerabilities[severity] ?? 0) > 0) add("errors", `npm audit reports ${vulnerabilities[severity]} ${severity} vulnerabilities`);
+  if ((productionVulnerabilities[severity] ?? 0) > 0) add("errors", `Production npm audit reports ${productionVulnerabilities[severity]} ${severity} vulnerabilities`);
 }
-for (const severity of ["info", "low", "moderate"]) {
-  if ((vulnerabilities[severity] ?? 0) > 0) add("warnings", `npm audit reports ${vulnerabilities[severity]} ${severity} vulnerabilities`);
+
+const fullAudit = runJson("npm", ["audit", "--json"]);
+const fullFindings = Object.entries(fullAudit.data.vulnerabilities ?? {}).map(([name, value]) => `${name}@${value.severity}`);
+for (const finding of fullFindings) {
+  if (policy.acceptedDevAuditFindings.includes(finding)) add("warnings", `Accepted development-tool advisory remains open: ${finding}`);
+  else add("errors", `New npm audit finding requires triage: ${finding}`);
+}
+for (const accepted of policy.acceptedDevAuditFindings) {
+  if (!fullFindings.includes(accepted)) add("notices", `Previously accepted audit finding is no longer present: ${accepted}`);
 }
 
 const lines = [
