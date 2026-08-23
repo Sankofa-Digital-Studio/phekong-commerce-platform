@@ -21,7 +21,8 @@ Security updates remain advisory-driven and are not delayed by the version-updat
 - every SemVer-major jump fails for deliberate migration review;
 - protected runtime packages, including Next.js and Supabase, are reported even for minor changes;
 - npm major drift and Node LTS major drift are reported separately;
-- high and critical `npm audit` findings fail the audit.
+- production high and critical `npm audit` findings fail the audit;
+- current development-tool advisories are named individually in policy, and any new advisory identity fails the audit.
 
 The report is written to `tmp/dependency-governance.md` and to the GitHub Actions job summary.
 
