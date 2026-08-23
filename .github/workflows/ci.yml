@@ -36,7 +36,7 @@ jobs:
       - name: Build static Storybook
         run: npm run build-storybook
       - name: Cypress homepage smoke
-        uses: cypress-io/github-action@fa4a118725a8f001170d49631ea89e5d66fee626
+        uses: cypress-io/github-action@09090944bd8aaa2a517cefb6e38bf1aae336b42b
         with:
           start: npm run dev
           wait-on: http://127.0.0.1:3000
