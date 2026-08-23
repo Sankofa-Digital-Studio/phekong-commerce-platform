@@ -140,7 +140,18 @@ export async function resolveProductBySlug(slug: string): Promise<ProductResolut
     return null;
   }
 
-  const liveProduct = await readLiveProduct(slug);
+  let liveProduct: Awaited<ReturnType<typeof readLiveProduct>>;
+
+  try {
+    liveProduct = await readLiveProduct(slug);
+  } catch {
+    return {
+      product: fixtureProduct,
+      source: "fixture",
+      fallbackReason: "live-unavailable",
+    };
+  }
+
   if (liveProduct.liveSourceAvailable) {
     if (liveProduct.product) {
       return {
